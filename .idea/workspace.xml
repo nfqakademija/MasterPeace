@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9a8e383-0963-4d08-a3ee-b4833878fd6c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vilnius-1.iml" afterPath="$PROJECT_DIR$/.idea/vilnius-1.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
     </list>
     <ignored path="vilnius-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -246,12 +243,20 @@
       <workItem from="1476384474818" duration="104000" />
       <workItem from="1476384591742" duration="40000" />
       <workItem from="1476384645923" duration="244000" />
-      <workItem from="1476384907076" duration="1195000" />
+      <workItem from="1476384907076" duration="1250000" />
     </task>
+    <task id="LOCAL-00001" summary=".gitignore&#10;composer.json">
+      <created>1476386144784</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1476386144784</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7753000" />
+    <option name="totallyTimeSpent" value="7808000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,6 +320,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=".gitignore&#10;composer.json" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitignore&#10;composer.json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
