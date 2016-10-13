@@ -1,4 +1,4 @@
-edu_project
-===========
+app
+===
 
-A Symfony project created on October 11, 2016, 11:54 pm.
+A Symfony project created on October 13, 2016, 9:46 am.
