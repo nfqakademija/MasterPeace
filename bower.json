@@ -1,0 +1,22 @@
+{
+  "name": "MasterPeace",
+  "homepage": "https://github.com/nfqakademija/MasterPeace",
+  "authors": [
+    "Karolis <karolismatjosaitis@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
