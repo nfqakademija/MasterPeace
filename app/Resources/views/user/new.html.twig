@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User creation</h1>
-
+    <h1 class="text-center">User creation</h1>
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+        <input class="btn btn-default btn-lg" type="submit" value="Create" />
+        <a href="{{ path('user_index') }}" class="btn btn-default btn-lg">Back to the list</a>
+      </div>
+    </div>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

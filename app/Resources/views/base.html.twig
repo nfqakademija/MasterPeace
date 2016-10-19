@@ -2,27 +2,24 @@
 <html>
 
     <head>
-
-        <meta charset="UTF-8" />
-        <title>{% block title %}MasterPeace{% endblock %}</title>
-
+        {% block head %}
+          <meta charset="UTF-8" />
+          <title>{% block title %}{% endblock %}</title>
+          
         {% block stylesheets %}
             <link rel="stylesheet" href="{{asset('css/base.css')}}">
+            <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+            <link rel="icon" type="image/x-icon" href="{{ asset('img/masterpeace.png') }}" />
         {% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet"
-              href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/masterpeace.png') }}" />
-
-        <!-- Custom Fonts -->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
+          <!-- Custom Fonts -->
+          <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+          <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+          <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        {% endblock %}
     </head>
 
-    <body id="{% block body_id %}{% endblock %}" data-spy="scroll" data-target=".navbar-fixed-top">
+    <body id="main" data-spy="scroll" data-target=".navbar-fixed-top">
 
         <!-- Navigation -->
 
@@ -45,7 +42,7 @@
                             <a href="#page-top"></a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#about">About</a>
+                            <a class="page-scroll" href="#contact">About</a>
                         </li>
                         <li>
                             <a class="page-scroll" href="#download">Log in</a>
@@ -55,75 +52,44 @@
                         </li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container -->
         </nav>
-
-        <!-- Header Section -->
-        <!-- {% block header %} -->
-            <!-- Intro Header -->
-            <!-- <header class="intro">
-                <div class="intro-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <h1 class="brand-heading">Student tester</h1>
-                                <p class="intro-text">A free, teachers platform, for better education
-                                    <br>Created by MasterPeace</p>
-                                <a href="#about" class="btn btn-circle page-scroll">
-                                    <i class="fa fa-angle-double-down animated"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        {% endblock %} -->
-
-        <!-- About Section -->
-        <!-- <section id="about" class="container content-section text-center">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>One.</h2>
-                    <p>Two.</p>
-                    <p>Three.</p>
-                </div>
-            </div>
-        </section> -->
-
-        <!-- Contact section -->
-        <section id="contact" class="container content-section text-center">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Contact MasterPeace</h2>
-                    <p>Feel free to email us to provide some feedback on our web platform or to just say hello!</p>
-                    <p><a href="mailto:feedback@masterpeace.com">feedback@masterpeace.com</a>
-                    </p>
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/nfqakademija/MasterPeace" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                        </li>
-                        <li>
-                            <a href="" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Map Section, not finished -->
-        <div id="map"></div>
+    </body>
+  {% block header %}{% endblock %}
+  {% block body %}{% endblock %}
+  {% block content %}{% endblock %}
 
         <!-- Footer -->
+        {% block footer %}
         <footer>
+          <section id="contact" class="container content-section text-center">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <h2>Contact MasterPeace</h2>
+                      <p>Feel free to email us to provide some feedback on our web platform or to just say hello!</p>
+                      <p><a href="mailto:feedback@masterpeace.com">feedback@masterpeace.com</a>
+                      </p>
+                      <ul class="list-inline banner-social-buttons">
+                          <li>
+                              <a href="" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                          </li>
+                          <li>
+                              <a href="https://github.com/nfqakademija/MasterPeace" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                          </li>
+                          <li>
+                              <a href="" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </section>
+          <section id="copyright" class="container content-section text-center">
             <div class="container text-center">
                 <p>Copyright &copy; Our Website 2016</p>
             </div>
+          </section
         </footer>
+        {% endblock %}
 
         <!-- jQuery -->
         <script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
@@ -140,12 +106,8 @@
         <!-- Theme JavaScript -->
         <script src="{{ asset('js/app.js') }}"></script>
 
-        {% block body %}{% endblock %}
-
         {% block javascripts %}
             <script src="{{ asset('js/app.js') }}"></script>
         {% endblock %}
-
-    </body>
 
 </html>
