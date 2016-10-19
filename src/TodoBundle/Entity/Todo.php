@@ -2,62 +2,43 @@
 
 namespace TodoBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Entity
- * @ORM\Table(name="todo")
+ * Todo
  */
 class Todo
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
      */
     private $category;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="priority", type="string", length=255)
      */
     private $priority;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="due_date", type="datetime")
      */
     private $dueDate;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="create_date", type="datetime")
      */
     private $createDate;
 
@@ -65,7 +46,7 @@ class Todo
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
