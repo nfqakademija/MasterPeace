@@ -1,7 +1,7 @@
-{% extends 'todo.html.twig' %}
+{% extends 'TodoBundle::todo.html.twig' %}
 
 {%  block body %}
-    <a href="/" class="btn btn-primary">Back to Todo List</a>
+    <a href="/todo" class="btn btn-primary">Back to Todo List</a>
     <hr>
     <h2 class="page-header">{{ todo.name }}</h2>
     <ul class="list-group">

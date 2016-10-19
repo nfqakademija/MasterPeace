@@ -3,7 +3,6 @@
 namespace TodoBundle\Controller;
 
 use TodoBundle\Entity\Todo;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -14,20 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TodoController extends Controller
 {
-    /**
-     * @Route("/", name="todo_list")
-     */
     public function listAction()
     {
         $todos = $this->getDoctrine()
             ->getRepository('TodoBundle:Todo')
             ->findAll();
-        return $this->render('todo/index.html.twig', array('todos' => $todos));
+        return $this->render('TodoBundle:Todo:index.html.twig', array('todos' => $todos));
     }
 
-    /**
-     * @Route("/todo/create", name="todo_create")
-     */
     public function createAction(Request $request)
     {
         $todo = new Todo();
@@ -70,12 +63,9 @@ class TodoController extends Controller
 
         }
 
-        return $this->render('todo/create.html.twig', array('form' => $form->createView()));
+        return $this->render('TodoBundle:Todo:create.html.twig', array('form' => $form->createView()));
     }
 
-    /**
-     * @Route("/todo/edit/{id}", name="todo_edit")
-     */
     public function editAction($id, Request $request)
     {
         $todo = $this->getDoctrine()
@@ -126,23 +116,17 @@ class TodoController extends Controller
             return $this->redirectToRoute('todo_list');
 
         }
-        return $this->render('todo/edit.html.twig', array('todo' => $todo, 'form' => $form->createView()));
+        return $this->render('TodoBundle:Todo:edit.html.twig', array('todo' => $todo, 'form' => $form->createView()));
     }
 
-    /**
-     * @Route("/todo/details/{id}", name="todo_details")
-     */
     public function detailsAction($id)
     {
         $todos = $this->getDoctrine()
             ->getRepository('TodoBundle:Todo')
             ->find($id);
-        return $this->render('todo/details.html.twig', array('todo' => $todos));
+        return $this->render('TodoBundle:Todo:details.html.twig', array('todo' => $todos));
     }
 
-    /**
-     * @Route("/todo/delete/{id}", name="todo_delete")
-     */
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
