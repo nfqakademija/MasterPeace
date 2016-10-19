@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace TodoBundle\Controller;
 
-use AppBundle\Entity\Todo;
+use TodoBundle\Entity\Todo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,7 +20,7 @@ class TodoController extends Controller
     public function listAction()
     {
         $todos = $this->getDoctrine()
-            ->getRepository('AppBundle:Todo')
+            ->getRepository('TodoBundle:Todo')
             ->findAll();
         return $this->render('todo/index.html.twig', array('todos' => $todos));
     }
@@ -79,7 +79,7 @@ class TodoController extends Controller
     public function editAction($id, Request $request)
     {
         $todo = $this->getDoctrine()
-            ->getRepository('AppBundle:Todo')
+            ->getRepository('TodoBundle:Todo')
             ->find($id);
 
         $now = new\DateTime('now');
@@ -111,7 +111,7 @@ class TodoController extends Controller
             $due_date = $form['due_date']->getData();
 
             $em = $this->getDoctrine()->getManager();
-            $todo = $em->getRepository('AppBundle:Todo')->find($id);
+            $todo = $em->getRepository('TodoBundle:Todo')->find($id);
 
             $todo->setName($name);
             $todo->setCategory($category);
@@ -135,7 +135,7 @@ class TodoController extends Controller
     public function detailsAction($id)
     {
         $todos = $this->getDoctrine()
-            ->getRepository('AppBundle:Todo')
+            ->getRepository('TodoBundle:Todo')
             ->find($id);
         return $this->render('todo/details.html.twig', array('todo' => $todos));
     }
@@ -146,7 +146,7 @@ class TodoController extends Controller
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $todo = $em->getRepository('AppBundle:Todo')
+        $todo = $em->getRepository('TodoBundle:Todo')
             ->find($id);
 
         $em->remove($todo);

@@ -1,14 +1,12 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace TodoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Todo
- *
+ * @ORM\Entity
  * @ORM\Table(name="todo")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TodoRepository")
  */
 class Todo
 {
