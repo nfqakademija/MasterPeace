@@ -1,3 +1,4 @@
-todo:
-    resource: "@TodoBundle/Resources/config/routing.yml"
-    prefix:   /todo
+book:
+    resource: "@BookBundle/Controller/"
+    type:     annotation
+    prefix:   /book/

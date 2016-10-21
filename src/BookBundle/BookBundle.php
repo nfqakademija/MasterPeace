@@ -1,9 +1,9 @@
 <?php
 
-namespace TodoBundle;
+namespace BookBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class TodoBundle extends Bundle
+class BookBundle extends Bundle
 {
 }
