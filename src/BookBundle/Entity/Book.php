@@ -46,7 +46,7 @@ class Book
     private $cover;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $isbn_code;
 
