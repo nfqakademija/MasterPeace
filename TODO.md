@@ -1,5 +1,5 @@
-# TODO lis:
-- [x] create clean repo and wokring enviroment
+# TODO list:
+- [x] create clean repo and working environment
 - [x] aim of project: deadline 2016.10.14
 - [x] config mysql databases
 - [ ] create development plan: deadline 2016.10.18

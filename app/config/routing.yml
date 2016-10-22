@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
+book:
+    resource: "@BookBundle/Controller/"
     type:     annotation
+    prefix:   /book/
