@@ -18,3 +18,13 @@ _security_check_student:
 
 _security_logout_student:
     path:  /student/logout
+
+_security_login_teacher:
+    path:  /teacher/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+_security_check_teacher:
+    path:  /teacher/login_check
+
+_security_logout_teacher:
+    path:  /teacher/logout

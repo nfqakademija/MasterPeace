@@ -35,7 +35,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setName('Karolis');
         $user->setSurname('Matjosaitis');
         $user->setPlainPassword('password');
-        //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user->setEnabled(true);
         $user->setRoles(array('ROLE_ADMIN'));
 
@@ -45,7 +44,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user2->setName('Sergej');
         $user2->setSurname('Voronov');
         $user2->setPlainPassword('password');
-        //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user2->setEnabled(true);
         $user2->setRoles(array('ROLE_ADMIN'));
 
@@ -55,7 +53,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user3->setName('Lukas');
         $user3->setSurname('Laurutis');
         $user3->setPlainPassword('password');
-        //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user3->setEnabled(true);
         $user3->setRoles(array('ROLE_ADMIN'));
 
@@ -65,9 +62,17 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user4->setName('Mokinio Vardas');
         $user4->setSurname('Mokinio Pavardė');
         $user4->setPlainPassword('password');
-        //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user4->setEnabled(true);
         $user4->setRoles(array('ROLE_STUDENT'));
+
+        $user5 = $userManager->createUser();
+        $user5->setUsername('Mokytojas');
+        $user5->setEmail('mokytojo@domain.com');
+        $user5->setName('Mokytojo Vardas');
+        $user5->setSurname('Mokytojo Pavardė');
+        $user5->setPlainPassword('password');
+        $user5->setEnabled(true);
+        $user5->setRoles(array('ROLE_USER'));
 
 
 
@@ -76,5 +81,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $userManager->updateUser($user2, true);
         $userManager->updateUser($user3, true);
         $userManager->updateUser($user4, true);
+        $userManager->updateUser($user5, true);
     }
 }
