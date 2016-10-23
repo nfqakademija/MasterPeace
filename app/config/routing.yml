@@ -29,6 +29,7 @@ _security_check_teacher:
 
 _security_logout_teacher:
     path:  /teacher/logout
+
 book:
     resource: "@BookBundle/Controller/"
     type:     annotation
