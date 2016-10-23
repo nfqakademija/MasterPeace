@@ -1,6 +1,6 @@
 <?php
 
-namespace BookBundle;
+namespace UpRead\BookBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
