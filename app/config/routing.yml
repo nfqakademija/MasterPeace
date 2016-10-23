@@ -1,3 +1,4 @@
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -28,3 +29,7 @@ _security_check_teacher:
 
 _security_logout_teacher:
     path:  /teacher/logout
+book:
+    resource: "@BookBundle/Controller/"
+    type:     annotation
+    prefix:   /book/

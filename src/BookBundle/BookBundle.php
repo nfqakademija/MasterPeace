@@ -1,10 +1,13 @@
 <?php
-namespace AppBundle;
+
+namespace BookBundle;
+
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-class AppBundle extends Bundle
+
+class BookBundle extends Bundle
 {
     public function getParent()
     {
-        return 'FOSUserBundle';
+        return 'AppBundle';
     }
 }
