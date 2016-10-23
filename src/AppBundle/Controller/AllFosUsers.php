@@ -17,7 +17,6 @@ class AllFosUsers extends Controller {
             ->getRepository('AppBundle:User');
 
         $users = $repository->findAll();
-
         return $this->render('FOSUserBundle:Admin:allusers.html.twig', array('users' => $users));
     }
 
