@@ -5,5 +5,16 @@ user:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+_security_login_student:
+    path:  /student/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+_security_check_student:
+    path:  /student/login_check
+
+_security_logout_student:
+    path:  /student/logout
