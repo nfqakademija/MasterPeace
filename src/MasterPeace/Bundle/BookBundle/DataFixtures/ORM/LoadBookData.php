@@ -1,6 +1,6 @@
 <?php
 
-namespace UpRead\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\MasterPeace\BookBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
