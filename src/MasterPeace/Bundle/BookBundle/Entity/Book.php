@@ -60,6 +60,7 @@ class Book
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title)
@@ -70,7 +71,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -89,7 +90,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthor()
     {
@@ -98,6 +99,7 @@ class Book
 
     /**
      * @param int $year
+     *
      * @return $this
      */
     public function setYear(int $year)
@@ -108,7 +110,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getYear()
     {
@@ -117,6 +119,7 @@ class Book
 
     /**
      * @param string $publisher
+     *
      * @return $this
      */
     public function setPublisher(string $publisher)
@@ -127,7 +130,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPublisher()
     {
@@ -136,6 +139,7 @@ class Book
 
     /**
      * @param string $cover
+     *
      * @return $this
      */
     public function setCover(string $cover)
@@ -146,7 +150,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCover()
     {
@@ -155,6 +159,7 @@ class Book
 
     /**
      * @param int $isbnCode
+     *
      * @return $this
      */
     public function setIsbnCode(int $isbnCode)
@@ -165,7 +170,7 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getIsbnCode()
     {
