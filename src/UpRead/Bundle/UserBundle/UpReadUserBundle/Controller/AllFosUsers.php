@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace UpRead\Bundle\UserBundle\UpReadUserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,7 +13,7 @@ class AllFosUsers extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:User');
+            ->getRepository('UpReadUserBundle:User');
 
         $users = $repository->findAll();
         return $this->render('FOSUserBundle:Admin:allusers.html.twig', array('users' => $users));

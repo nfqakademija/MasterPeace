@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace UpRead\Bundle\UserBundle\UpReadUserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,6 +12,6 @@ class HomeController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('AppBundle::index.html.twig');
+        return $this->render('UpReadUserBundle::index.html.twig');
     }
 }

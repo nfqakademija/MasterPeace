@@ -1,7 +1,7 @@
 <?php
-namespace AppBundle;
+namespace UpRead\Bundle\UserBundle\UpReadUserBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-class AppBundle extends Bundle
+class UpReadUserBundle extends Bundle
 {
     public function getParent()
     {
