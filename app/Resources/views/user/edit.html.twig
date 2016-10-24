@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">User edit</h1>
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+        <input class="btn btn-default btn-lg"  type="submit" value="Edit" />
+        <a href="{{ path('user_index') }}" class="btn btn-default btn-lg">Back to the list</a>
+      </div>
+    </div>
+    {{ form_end(edit_form) }}
+    {{ form_start(delete_form) }}
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            <input class="btn btn-default btn-lg" type="submit" value="Delete">
+          </div>
+        </div>
+    {{ form_end(delete_form) }}
+{% endblock %}

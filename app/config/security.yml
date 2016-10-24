@@ -1,24 +1,63 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
-security:
+# security:
+#
+#     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_STUDENT:     ROLE_STUDENT
+        ROLE_USER:        [ROLE_STUDENT, ROLE_USER]
+        ROLE_ADMIN:       [ROLE_STUDENT, ROLE_USER, ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_STUDENT, ROLE_USER, ROLE_ADMI, ROLE_SUPER_ADMIN]
+
     providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
         in_memory:
             memory: ~
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
+        student_area:
+            pattern:  ^/student
             anonymous: ~
-            # activate different ways to authenticate
+            form_login:
+                check_path: /student/login_check
+                login_path: /student/login
+            logout:
+                path:   /student/logout
+                target: /
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+        teacher_area:
+                    pattern:  ^/teacher
+                    anonymous: ~
+                    form_login:
+                        check_path: /teacher/login_check
+                        login_path: /teacher/login
+                    logout:
+                        path:   /teacher/logout
+                        target: /
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            logout:       true
+            anonymous:    true
+
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/student/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/teacher/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }

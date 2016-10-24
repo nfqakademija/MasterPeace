@@ -1,3 +1,35 @@
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+_security_login_student:
+    path:  /student/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+_security_check_student:
+    path:  /student/login_check
+
+_security_logout_student:
+    path:  /student/logout
+
+_security_login_teacher:
+    path:  /teacher/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+_security_check_teacher:
+    path:  /teacher/login_check
+
+_security_logout_teacher:
+    path:  /teacher/logout
+
 book:
     resource: "@BookBundle/Controller/"
     type:     annotation
