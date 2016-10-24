@@ -28,5 +28,5 @@ book:
     prefix:   /book/
 
 upreaduser:
-    resource: "@UpReadUserBundle/Controller"
+    resource: "@UpReadUserBundle/Controller/"
     type:     annotation
