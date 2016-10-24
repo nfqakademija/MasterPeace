@@ -1,16 +1,16 @@
 <?php
 
-namespace MasterPeace\MasterPeace\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use UpRead\BookBundle\Entity\Book;
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 
 class LoadBookData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getBook() as $item => $bookDetail) {
+        foreach ($this->getBookDetails() as $bookDetail) {
             $book = new Book();
             $book
                 ->setTitle($bookDetail['title'])
@@ -24,7 +24,7 @@ class LoadBookData implements FixtureInterface
         $manager->flush();
     }
 
-    private function getBook()
+    private function getBookDetails()
     {
         $bookList = array();
 
