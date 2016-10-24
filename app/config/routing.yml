@@ -23,10 +23,10 @@ _security_logout_teacher:
     path:  /teacher/logout
 
 book:
-    resource: "@BookBundle/Controller/"
+    resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
     prefix:   /book/
 
 upreaduser:
-    resource: "@UpReadUserBundle/Controller/"
+    resource: "@MasterPeaceUserBundle/Controller/"
     type:     annotation

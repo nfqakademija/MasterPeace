@@ -73,7 +73,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: UpRead\Bundle\UserBundle\UpReadUserBundle\Entity\User
+    user_class: MasterPeace\Bundle\UserBundle\Entity\User
     registration:
             form:
-                type: UpRead\Bundle\UserBundle\UpReadUserBundle\Form\RegistrationType
+                type: MasterPeace\Bundle\UserBundle\Form\RegistrationType

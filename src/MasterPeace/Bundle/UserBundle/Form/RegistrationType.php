@@ -1,6 +1,6 @@
 <?php
 
-namespace UpRead\Bundle\UserBundle\UpReadUserBundle\Form;
+namespace MasterPeace\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

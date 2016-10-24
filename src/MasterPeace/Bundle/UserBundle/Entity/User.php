@@ -1,6 +1,6 @@
 <?php
 
-namespace UpRead\Bundle\UserBundle\UpReadUserBundle\Entity;
+namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;

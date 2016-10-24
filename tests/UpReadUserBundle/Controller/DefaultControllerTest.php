@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\UpReadUserBundle\Controller;
+namespace Tests\MasterPeaceUserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -34,7 +34,7 @@ class DefaultControllerTest extends WebTestCase
 
         // Load fixtures
         $loader = new \Doctrine\Common\DataFixtures\Loader;
-        $fixtures = new \UpReadUserBundle\DataFixtures\ORM\LoadUserData();
+        $fixtures = new \MasterPeaceUserBundle\DataFixtures\ORM\LoadUserData();
         $fixtures->setContainer($container);
         $loader->addFixture($fixtures);
         $executor->execute($loader->getFixtures());
