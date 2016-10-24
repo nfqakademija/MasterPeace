@@ -8,6 +8,9 @@ use MasterPeace\Bundle\BookBundle\Entity\Book;
 
 class LoadBookData implements FixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         foreach ($this->getBookDetails() as $bookDetail) {
@@ -24,6 +27,9 @@ class LoadBookData implements FixtureInterface
         $manager->flush();
     }
 
+    /**
+     * @return array
+     */
     private function getBookDetails()
     {
         return [

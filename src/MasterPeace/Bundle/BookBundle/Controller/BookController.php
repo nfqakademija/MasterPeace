@@ -9,6 +9,7 @@ class BookController extends Controller
 {
     /**
      * @Route("/")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction()
     {
@@ -17,6 +18,8 @@ class BookController extends Controller
 
     /**
      * @Route("/view/{id}")
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction(int $id)
     {
