@@ -55,7 +55,7 @@ class LoadBookData implements FixtureInterface
             'year' => 2016,
             'publisher' => 'Baltų lankų leidyba',
             'cover' => '',
-            'isbn_code' => 9786090124680,
+            'isbn_code' => 9789955232520,
             ],
         ];
     }
