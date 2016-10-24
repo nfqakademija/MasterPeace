@@ -7,7 +7,7 @@
           <title>{% block title %}{% endblock %}</title>
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{asset('css/base.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/framework/css/body.css')}}">
             <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
             <link rel="icon" type="image/x-icon" href="{{ asset('img/masterpeace.png') }}" />
         {% endblock %}
@@ -38,9 +38,6 @@
                 <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                     <ul class="nav navbar-nav">
                         <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
                         <li>
                             <a class="page-scroll" href="/allusers">Users</a>
                         </li>

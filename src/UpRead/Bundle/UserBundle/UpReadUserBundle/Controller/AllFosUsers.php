@@ -16,7 +16,12 @@ class AllFosUsers extends Controller
             ->getRepository('UpReadUserBundle:User');
 
         $users = $repository->findAll();
-        return $this->render('FOSUserBundle:Admin:allusers.html.twig', array('users' => $users));
+        return $this->render('', array('users' => $users));
+    }
+
+    public function usersAction()
+    {
+        return $this->render('UpReadUserBundle::index.html.twig');
     }
 
 }

@@ -1,5 +1,5 @@
 <?php
-namespace UpRead\Bundle\UserBundle\UpReadUserBundle\DataFixtures\ORM;
+namespace UpRead\Bundle\UserBundle\UpReadUserBundle\DataFixtures;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
