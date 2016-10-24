@@ -12,6 +12,7 @@ class BookController extends Controller
      * @Route ("/", name="book_list")
      * @return Response
      */
+
     public function listAction()
     {
         return $this->render('MasterPeaceBookBundle:Book:list.html.twig');
@@ -23,6 +24,7 @@ class BookController extends Controller
      *
      * @return Response
      */
+
     public function viewAction(int $id)
     {
         return $this->render('MasterPeaceBookBundle:Book:view.html.twig');
