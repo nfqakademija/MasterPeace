@@ -1,6 +1,6 @@
 <?php
 
-namespace UpRead\BookBundle\Controller;
+namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

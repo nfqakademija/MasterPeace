@@ -1,6 +1,6 @@
 <?php
 
-namespace UpRead\BookBundle\Entity;
+namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
