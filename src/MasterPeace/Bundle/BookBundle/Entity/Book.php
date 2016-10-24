@@ -6,14 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Book
- *
  * @ORM\Table(name="book")
  * @ORM\Entity
  */
-
 class Book
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -21,32 +21,44 @@ class Book
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $author;
 
     /**
+     * @var int
+     *
      * @ORM\Column(type="integer")
      */
     private $year;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=45)
      */
     private $publisher;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $cover;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @var int
+     *
+     * @ORM\Column(type="bigint", unique=true)
      */
     private $isbnCode;
 
@@ -66,7 +78,6 @@ class Book
     public function setTitle(string $title)
     {
         $this->title = $title;
-
         return $this;
     }
 
