@@ -4,25 +4,27 @@ namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class BookController extends Controller
 {
     /**
      * @Route ("/", name="book_list")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function listAction()
     {
-        return $this->render('BookBundle:Book:list.html.twig');
+        return $this->render('MasterPeaceBookBundle:Book:list.html.twig');
     }
 
     /**
      * @Route ("/view/{id}", name="book_view")
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response
      */
     public function viewAction(int $id)
     {
-        return $this->render('BookBundle:Book:view.html.twig');
+        return $this->render('MasterPeaceBookBundle:Book:view.html.twig');
     }
 }
