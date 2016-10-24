@@ -51,7 +51,7 @@ class Book
     private $isbnCode;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -59,7 +59,8 @@ class Book
     }
 
     /**
-     * @return mixed
+     * @param string $title
+     * @return $this
      */
     public function setTitle(string $title)
     {

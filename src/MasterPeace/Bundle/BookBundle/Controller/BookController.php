@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class BookController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route ("/", name="book_list")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction()
@@ -17,7 +17,7 @@ class BookController extends Controller
     }
 
     /**
-     * @Route("/view/{id}")
+     * @Route ("/view/{id}", name="book_view")
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
