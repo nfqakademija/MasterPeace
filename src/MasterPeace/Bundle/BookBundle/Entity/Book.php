@@ -50,11 +50,17 @@ class Book
      */
     private $isbnCode;
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
     public function setTitle(string $title)
     {
         $this->title = $title;
@@ -62,11 +68,18 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param string $author
+     * @return $this
+     */
     public function setAuthor(string $author)
     {
         $this->author = $author;
@@ -74,11 +87,18 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getAuthor()
     {
         return $this->author;
     }
 
+    /**
+     * @param int $year
+     * @return $this
+     */
     public function setYear(int $year)
     {
         $this->year = $year;
@@ -86,11 +106,18 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getYear()
     {
         return $this->year;
     }
 
+    /**
+     * @param string $publisher
+     * @return $this
+     */
     public function setPublisher(string $publisher)
     {
         $this->publisher = $publisher;
@@ -98,11 +125,18 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPublisher()
     {
         return $this->publisher;
     }
 
+    /**
+     * @param string $cover
+     * @return $this
+     */
     public function setCover(string $cover)
     {
         $this->cover = $cover;
@@ -110,11 +144,18 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCover()
     {
         return $this->cover;
     }
 
+    /**
+     * @param int $isbnCode
+     * @return $this
+     */
     public function setIsbnCode(int $isbnCode)
     {
         $this->isbnCode = $isbnCode;
@@ -122,6 +163,9 @@ class Book
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getIsbnCode()
     {
         return $this->isbnCode;
