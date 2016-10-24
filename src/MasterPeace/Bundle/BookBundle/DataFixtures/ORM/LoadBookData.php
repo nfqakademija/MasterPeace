@@ -26,35 +26,31 @@ class LoadBookData implements FixtureInterface
 
     private function getBookDetails()
     {
-        $bookList = array();
-
-        $bookList[] = [
+        return [
+            [
             'title' => 'Nesustabdomas. Ko galime pasiekti tikėdami. Tikra istorija',
             'author' => 'Nick Vujicic',
             'year' => 2016,
             'publisher' => 'Alma Littera',
             'cover' => '',
-            'isbn_code' => 9786090124680
-        ];
-
-        $bookList[] = [
+            'isbn_code' => 9786090124680,
+            ],
+            [
             'title' => 'Smaragdo akies paslaptis',
             'author' => 'Džeronimas Stiltonas',
             'year' => 2013,
             'publisher' => 'Baltų lankų leidyba',
             'cover' => '',
-            'isbn_code' => 9789955236788
-        ];
-
-        $bookList[] = [
+            'isbn_code' => 9789955236788,
+            ],
+            [
             'title' => 'Prisukamo paukščio kronikos',
             'author' => 'Haruki Murakami',
             'year' => 2016,
             'publisher' => 'Baltų lankų leidyba',
             'cover' => '',
-            'isbn_code' => 9786090124680
+            'isbn_code' => 9786090124680,
+            ],
         ];
-
-        return $bookList;
     }
 }
