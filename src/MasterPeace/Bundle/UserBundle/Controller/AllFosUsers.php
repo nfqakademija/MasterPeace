@@ -18,5 +18,4 @@ class AllFosUsers extends Controller
         $users = $repository->findAll();
         return $this->render('', array('users' => $users));
     }
-
 }
