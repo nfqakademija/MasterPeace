@@ -34,7 +34,6 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
         foreach ($bookObject as $id => $book) {
             $this->addReference('book' . $id, $book);
         }
-
     }
 
     /**

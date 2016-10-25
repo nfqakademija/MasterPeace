@@ -7,7 +7,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\BookBundle\Entity\Answer;
 
-
 class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
@@ -42,7 +41,6 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($answer);
         }
         $manager->flush();
-
     }
 
     /**
