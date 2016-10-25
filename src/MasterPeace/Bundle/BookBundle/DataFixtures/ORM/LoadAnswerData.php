@@ -50,5 +50,4 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
     {
         return 3;
     }
-
 }
