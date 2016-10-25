@@ -8,7 +8,6 @@
 
 * [Project Description](#project-description)
 * [Requirements](#requirements)
-* [Installation](#Installation)
 * [Usage](#usage)
 * [To-Do List](#todo-list)
 * [Team Members](#team-members)
@@ -16,15 +15,11 @@
 
 # <a name="project-description"></a>Project Description
 
-Description
+UpRead is a platform developed for raising motivation to read more. 
 
 # <a name="requirements"></a>Requirements
 
 * PHP >= 5.5.9
-
-# <a name="installation"></a>Installation
-
-    Installation
 
 # <a name="usage"></a>Usage
 
@@ -32,13 +27,12 @@ Usage
 
 # <a name="todo-list"></a>To-Do List
 
-* One
-* Two
-* Three
+* Book reviews
+* Comments for questions
 
 # <a name="team-members"></a>Team Members
 
-#### SCRUM Master:
+#### Team Lead:
 
 * Povilas Sušinskas (<povilas.susinskas@nfq.lt>)
 
