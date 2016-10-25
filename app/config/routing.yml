@@ -2,3 +2,10 @@ book:
     resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
     prefix:   /book/
+
+upreaduser:
+    resource: "@MasterPeaceUserBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
