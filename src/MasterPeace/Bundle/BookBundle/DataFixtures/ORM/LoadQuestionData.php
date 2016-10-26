@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\BookBundle\Entity\Question;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
@@ -14,26 +15,28 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
-        $questionObject = new \ArrayObject();
+        for ($i = 0; $i < 12; $i++) {
+            $bookReference = $i % 3;
+            $questionReference = $i % 4 + 1;
 
-        for ($i = 0; $i < 15; $i++) {
-            $mod = $i % 3;
-            $book = $this->getReference('book' . $mod);
+            /**
+             * @var Book $book
+             */
+            $book = $this->getReference('book' . $bookReference);
 
             $question = new Question();
-            $question->setTitle("Klausimas nr. " . $i);
-            $question->setTeacherId($i);
-            $question->setBook($book);
+            $question
+                ->setTitle('Klausimas nr. ' . $questionReference)
+                ->setBook($book);
+
+            // TODO Add teacher
 
             $manager->persist($question);
 
-            $questionObject->append($question);
+            $this->addReference('question' . $i, $question);
         }
         $manager->flush();
 
-        foreach ($questionObject as $id => $question) {
-            $this->addReference('question' . $id, $question);
-        }
     }
 
     /**

@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\BookBundle\Entity\Answer;
+use MasterPeace\Bundle\BookBundle\Entity\Question;
 
 class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -14,29 +15,33 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $correctAnswers = new \ArrayObject();
+        $answerMod = 0;
+        $correctAnswers = [];
 
-        for ($j = 0; $j < 15; $j++) {
-            $correctAnswers->append(rand(1, 4));
+        for ($j = 0; $j < 12; $j++) {
+            array_push($correctAnswers, random_int(1, 4));
         }
 
-        for ($i = 0; $i < 60; $i++) {
-            $mod = $i % 15;
-            $answerMod = $i % 4 + 1;
-            $correct = $correctAnswers[$mod];
+        for ($i = 0; $i < 48; $i++) {
 
-            $question = $this->getReference('question' . $mod);
+            $questionReference = $i % 12;
+
+            if($questionReference == 0)
+                $answerMod++;
+
+            $correct = $correctAnswers[$questionReference];
+
+            /**
+             * @var Question $question
+             */
+            $question = $this->getReference('question' . $questionReference);
 
             $answer = new Answer();
-            $answer->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correct . ' )');
 
-            if ($answerMod == $correct) {
-                $answer->setCorrect(true);
-            } else {
-                $answer->setCorrect(false);
-            }
-
-            $answer->setQuestion($question);
+            $answer
+                ->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correct . ' )')
+                ->setCorrect($answerMod === $correct)
+                ->setQuestion($question);
 
             $manager->persist($answer);
         }

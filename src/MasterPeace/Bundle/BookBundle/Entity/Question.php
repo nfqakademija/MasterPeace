@@ -29,13 +29,6 @@ class Question
     private $title;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
-     */
-    private $teacherId;
-
-    /**
      * @var Book
      *
      * @ORM\ManyToOne(targetEntity="Book")
@@ -68,31 +61,11 @@ class Question
     /**
      * @param string $title
      *
-     * @return $this
+     * @return string
      */
     public function setTitle(string $title)
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getTeacherId()
-    {
-        return $this->teacherId;
-    }
-
-    /**
-     * @param integer $teacherId
-     *
-     * @return $this
-     */
-    public function setTeacherId(int $teacherId)
-    {
-        $this->teacherId = $teacherId;
 
         return $this;
     }
@@ -108,7 +81,7 @@ class Question
     /**
      * @param Book $book
      *
-     * @return $this
+     * @return Book
      */
     public function setBook(Book $book)
     {
@@ -128,7 +101,7 @@ class Question
     /**
      * @param Answer $answer
      *
-     * @return $this
+     * @return Answer
      */
     public function setAnswer($answer)
     {

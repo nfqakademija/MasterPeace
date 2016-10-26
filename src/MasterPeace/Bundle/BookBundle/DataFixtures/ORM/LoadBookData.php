@@ -14,9 +14,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $bookObject = new \ArrayObject();
-
-        foreach ($this->getBookDetails() as $bookDetail) {
+        foreach ($this->getBookDetails() as $id => $bookDetail) {
             $book = new Book();
             $book
                 ->setTitle($bookDetail['title'])
@@ -27,13 +25,11 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
                 ->setIsbnCode($bookDetail['isbn_code']);
             $manager->persist($book);
 
-            $bookObject->append($book);
+            $this->addReference('book' . $id, $book);
+
         }
         $manager->flush();
 
-        foreach ($bookObject as $id => $book) {
-            $this->addReference('book' . $id, $book);
-        }
     }
 
     /**

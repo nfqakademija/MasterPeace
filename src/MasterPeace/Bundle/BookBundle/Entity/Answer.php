@@ -29,7 +29,7 @@ class Answer
     private $title;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(type="boolean")
      */
@@ -61,9 +61,9 @@ class Answer
     /**
      * @param string $title
      *
-     * @return $this
+     * @return string
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -71,7 +71,7 @@ class Answer
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getCorrect()
     {
@@ -79,11 +79,11 @@ class Answer
     }
 
     /**
-     * @param boolean $correct
+     * @param bool $correct
      *
-     * @return $this
+     * @return bool
      */
-    public function setCorrect($correct)
+    public function setCorrect(bool $correct)
     {
         $this->correct = $correct;
 
@@ -101,9 +101,9 @@ class Answer
     /**
      * @param Question $question
      *
-     * @return $this
+     * @return Question
      */
-    public function setQuestion($question)
+    public function setQuestion(Question $question)
     {
         $this->question = $question;
 
