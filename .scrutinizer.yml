@@ -2,3 +2,7 @@ filter:
     paths: ["src/*"]
 checks:
     php: true
+build:
+    environment:
+        php:
+            version: 7.0
