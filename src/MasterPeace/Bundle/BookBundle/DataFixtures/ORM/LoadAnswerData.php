@@ -26,8 +26,9 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 
             $questionReference = $i % 12;
 
-            if($questionReference == 0)
+            if ($questionReference == 0) {
                 $answerMod++;
+            }
 
             $correct = $correctAnswers[$questionReference];
 

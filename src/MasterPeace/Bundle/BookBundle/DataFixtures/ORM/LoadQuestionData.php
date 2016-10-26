@@ -36,7 +36,6 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             $this->addReference('question' . $i, $question);
         }
         $manager->flush();
-
     }
 
     /**
