@@ -2,13 +2,14 @@
 
 namespace MasterPeace\Bundle\UserBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AllFosUsers extends Controller
 {
     /**
      * @Route("/allusers")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -16,6 +17,7 @@ class AllFosUsers extends Controller
             ->getRepository('MasterPeaceUserBundle:User');
 
         $users = $repository->findAll();
-        return $this->render('', array('users' => $users));
+
+        return $this->render('', ['users' => $users]);
     }
 }

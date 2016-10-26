@@ -22,6 +22,9 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
 
@@ -36,7 +39,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setSurname('Matjosaitis');
         $user->setPlainPassword('password');
         $user->setEnabled(true);
-        $user->setRoles(array('ROLE_ADMIN'));
+        $user->setRoles(['ROLE_ADMIN']);
 
         $user2 = $userManager->createUser();
         $user2->setUsername('SergejV');
@@ -45,7 +48,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user2->setSurname('Voronov');
         $user2->setPlainPassword('password');
         $user2->setEnabled(true);
-        $user2->setRoles(array('ROLE_ADMIN'));
+        $user2->setRoles(['ROLE_ADMIN']);
 
         $user3 = $userManager->createUser();
         $user3->setUsername('LukasL');
@@ -54,7 +57,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user3->setSurname('Laurutis');
         $user3->setPlainPassword('password');
         $user3->setEnabled(true);
-        $user3->setRoles(array('ROLE_ADMIN'));
+        $user3->setRoles(['ROLE_ADMIN']);
 
         $user4 = $userManager->createUser();
         $user4->setUsername('Mokinys');
@@ -63,7 +66,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user4->setSurname('Mokinio Pavardė');
         $user4->setPlainPassword('password');
         $user4->setEnabled(true);
-        $user4->setRoles(array('ROLE_STUDENT'));
+        $user4->setRoles(['ROLE_STUDENT']);
 
         $user5 = $userManager->createUser();
         $user5->setUsername('Mokytojas');
@@ -72,8 +75,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user5->setSurname('Mokytojo Pavardė');
         $user5->setPlainPassword('password');
         $user5->setEnabled(true);
-        $user5->setRoles(array('ROLE_USER'));
-
+        $user5->setRoles(['ROLE_USER']);
 
 
         // Update the user

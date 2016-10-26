@@ -2,8 +2,8 @@
 
 namespace MasterPeace\Bundle\UserBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -50,38 +50,53 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getName()
     {
 
         return $this->name;
     }
+
+    /**
+     * @param $name
+     * @return $this
+     */
     public function setName($name)
     {
-        $this->name=$name;
+        $this->name = $name;
+
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getSurname()
     {
 
         return $this->surname;
     }
+
+    /**
+     * @param $surname
+     * @return $this
+     */
     public function setSurname($surname)
     {
-        $this->surname=$surname;
+        $this->surname = $surname;
+
         return $this;
     }
 }
