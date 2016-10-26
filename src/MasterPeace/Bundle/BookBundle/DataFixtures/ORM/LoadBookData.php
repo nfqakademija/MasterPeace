@@ -26,10 +26,8 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($book);
 
             $this->addReference('book' . $id, $book);
-
         }
         $manager->flush();
-
     }
 
     /**

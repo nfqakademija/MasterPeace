@@ -23,7 +23,6 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         for ($i = 0; $i < 48; $i++) {
-
             $questionReference = $i % 12;
 
             if ($questionReference == 0) {
