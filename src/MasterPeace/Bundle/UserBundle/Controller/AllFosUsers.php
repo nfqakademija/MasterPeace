@@ -11,7 +11,7 @@ class AllFosUsers extends Controller
      * @Route("/allusers")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexUserAction()
     {
         $repository = $this->getDoctrine()
             ->getRepository('MasterPeaceUserBundle:User');
