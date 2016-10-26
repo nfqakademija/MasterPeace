@@ -5,19 +5,19 @@ namespace MasterPeace\Bundle\UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AllFosUsers extends Controller
+class UserController extends Controller
 {
     /**
-     * @Route("/allusers")
+     * @Route("/list")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexUserAction()
+    public function listAction()
     {
         $repository = $this->getDoctrine()
             ->getRepository('MasterPeaceUserBundle:User');
 
         $users = $repository->findAll();
 
-        return $this->render('', ['users' => $users]);
+        return $this->render('@MasterPeaceUser/list.html.twig', ['users' => $users]);
     }
 }

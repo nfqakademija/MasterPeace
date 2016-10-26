@@ -73,5 +73,5 @@ fos_user:
     firewall_name: main
     user_class: MasterPeace\Bundle\UserBundle\Entity\User
     registration:
-            form:
-                type: MasterPeace\Bundle\UserBundle\Form\RegistrationType
+        form:
+            type: MasterPeace\Bundle\UserBundle\Form\RegistrationType

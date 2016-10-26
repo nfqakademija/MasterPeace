@@ -12,15 +12,15 @@ group:
 security:
     login:
         username: 'Naudotojo vardas'
-        password: Slaptažodis
-        remember_me: Atsiminti
-        submit: Prisijungti
+        password: 'Slaptažodis'
+        remember_me: 'Atsiminti'
+        submit: 'Prisijungti'
 profile:
     show:
         username: 'Naudotojo vardas'
         email: 'El. paštas'
     edit:
-        submit: Atnaujinti
+        submit: 'Atnaujinti'
     flash:
         updated: 'Profilis atnaujintas'
 change_password:
@@ -31,7 +31,7 @@ registration:
     check_email: 'El. pašto pranešimas išsiųstas adresu %email%. Jame rasite nuorodą, kurią aplankę, aktyvuosite savo paskyrą.'
     confirmed: 'Sveikiname, jūsų paskyra aktyvuota.'
     back: 'Grįžti atgal'
-    submit: Registruotis
+    submit: 'Registruotis'
     flash:
         user_created: 'Naudotojas sukurtas'
     email:
@@ -42,7 +42,7 @@ resetting:
     check_email: 'El. pašto pranešimas išsiųstas adresu %email%. Jame rasite nuorodą, kurią paspaudę, galėsite pakeisti savo slaptažodį.'
     request:
         username: 'Naudotojo vardas arba el. paštas'
-        submit: Tęsti
+        submit: 'Tęsti'
     reset:
         submit: 'Pakeisti slaptažodį'
     flash:
@@ -51,16 +51,16 @@ resetting:
         subject: 'Slaptažodžio keitimas'
         message: "Sveiki %username%!\n\nNorėdami pakeisti savo slaptažodį, apsilankykite adresu %confirmationUrl%\n\nPagarbiai,\nKomanda.\n"
 layout:
-    logout: Atsijungti
-    login: Prisijungti
-    register: Registruotis
+    logout: 'Atsijungti'
+    login: 'Prisijungti'
+    register: 'Registruotis'
     logged_in_as: 'Prisijungęs kaip %username%'
 form:
     group_name: 'Grupės vardas'
     username: 'Naudotojo vardas'
     email: 'El. paštas'
     current_password: 'Dabartinis slaptažodis'
-    password: Slaptažodis
+    password: 'Slaptažodis'
     password_confirmation: 'Pakartoti slaptažodį'
     new_password: 'Naujas slaptažodis'
     new_password_confirmation: 'Naujas slaptažodis (pakartoti)'

@@ -3,7 +3,7 @@ book:
     type:     annotation
     prefix:   /book/
 
-upreaduser:
+masterpeace_user:
     resource: "@MasterPeaceUserBundle/Controller/"
     type:     annotation
 

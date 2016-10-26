@@ -22,9 +22,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
 
