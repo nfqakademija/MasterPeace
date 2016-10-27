@@ -4,12 +4,13 @@ namespace MasterPeace\Bundle\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use \Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
     /**
      * @Route("/list")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function listAction()
     {

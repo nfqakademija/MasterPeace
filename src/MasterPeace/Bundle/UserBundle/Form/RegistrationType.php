@@ -19,11 +19,11 @@ class RegistrationType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return class
      */
     public function getParent()
     {
-        return 'RegistrationFormType::class';
+        return RegistrationFormType::class;
     }
 
     /**

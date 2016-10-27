@@ -48,7 +48,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -66,7 +66,7 @@ class User extends BaseUser
 
     /**
      * @param $name
-     * @return $this
+     * @return $string
      */
     public function setName($name)
     {
@@ -76,7 +76,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSurname()
     {
