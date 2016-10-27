@@ -79,6 +79,7 @@ class Book
     public function setTitle(string $title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -92,11 +93,13 @@ class Book
 
     /**
      * @param string $author
+     *
      * @return $this
      */
     public function setAuthor(string $author)
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -116,6 +119,7 @@ class Book
     public function setYear(int $year)
     {
         $this->year = $year;
+
         return $this;
     }
 
@@ -135,6 +139,7 @@ class Book
     public function setPublisher(string $publisher)
     {
         $this->publisher = $publisher;
+
         return $this;
     }
 
@@ -154,6 +159,7 @@ class Book
     public function setCover(string $cover)
     {
         $this->cover = $cover;
+
         return $this;
     }
 
@@ -173,6 +179,7 @@ class Book
     public function setIsbnCode(int $isbnCode)
     {
         $this->isbnCode = $isbnCode;
+
         return $this;
     }
 
