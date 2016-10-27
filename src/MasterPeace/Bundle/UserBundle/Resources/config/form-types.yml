@@ -1,0 +1,6 @@
+services:
+
+    masterpeace.form.registration:
+        class: MasterPeace\Bundle\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: masterpeace_user_registration }

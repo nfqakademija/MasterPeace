@@ -1,4 +1,0 @@
-services:
-#    f_user.example:
-#        class: FUserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

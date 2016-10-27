@@ -84,11 +84,11 @@ class User extends BaseUser
     }
 
     /**
-     * @param $surname
+     * @param string $surname
      *
      * @return $this
      */
-    public function setSurname($surname)
+    public function setSurname(string $surname)
     {
         $this->surname = $surname;
 
