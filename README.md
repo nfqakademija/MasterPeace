@@ -1,4 +1,4 @@
-![coollogo_com-173654960.png](https://s11.postimg.org/ilm2qha0j/coollogo_com_173654960.png)
+![2zyR6J0Pusez.jpg](https://ibin.co/2zyR6J0Pusez.jpg)
 
 [![Build Status](https://travis-ci.org/nfqakademija/MasterPeace.svg?branch=master)](https://travis-ci.org/nfqakademija/MasterPeace)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nfqakademija/MasterPeace/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nfqakademija/MasterPeace/?branch=master)
@@ -22,7 +22,7 @@ UpRead is a platform developed for raising motivation to read more.
 
 # <a name="usage"></a>Usage
 
-Usage
+To be announced
 
 # <a name="todo-list"></a>To-Do List
 
