@@ -19,7 +19,7 @@ class RegistrationType extends AbstractType
     }
 
     /**
-     * @return class
+     * @return string
      */
     public function getParent()
     {
