@@ -16,36 +16,48 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $answerMod = 0;
-        $correctAnswers = [];
 
-        for ($j = 0; $j < 12; $j++) {
-            array_push($correctAnswers, random_int(1, 4));
-        }
+        for ($i = 0; $i < self::getAnswerTotalCount(); $i++) {
+            $questionReference = $i % LoadQuestionData::getQuestionTotalCount();
+            $smt = $i % self::getAnswersPerQuestion();
 
-        for ($i = 0; $i < 48; $i++) {
-            $questionReference = $i % 12;
+            if (empty($correctAnswers[$smt])) {
+                $correctAnswers[$smt] = random_int(1, 4);
+            }
 
-            if ($questionReference == 0) {
+            if ($questionReference === 0) {
                 $answerMod++;
             }
 
-            $correct = $correctAnswers[$questionReference];
-
-            /**
-             * @var Question $question
-             */
+            /** @var Question $question */
             $question = $this->getReference('question' . $questionReference);
 
             $answer = new Answer();
 
             $answer
-                ->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correct . ' )')
-                ->setCorrect($answerMod === $correct)
+                ->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correctAnswers[$smt] . ' )')
+                ->setCorrect($answerMod === $correctAnswers[$smt])
                 ->setQuestion($question);
 
             $manager->persist($answer);
         }
         $manager->flush();
+    }
+
+    /**
+     * @return int
+     */
+    public static function getAnswerTotalCount()
+    {
+        return LoadQuestionData::getQuestionTotalCount() * self::getAnswersPerQuestion();
+    }
+
+    /**
+     * @return int
+     */
+    public static function getAnswersPerQuestion()
+    {
+        return 4;
     }
 
     /**

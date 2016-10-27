@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Answer
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -61,7 +61,7 @@ class Answer
     /**
      * @param string $title
      *
-     * @return string
+     * @return $this
      */
     public function setTitle(string $title)
     {
@@ -81,7 +81,7 @@ class Answer
     /**
      * @param bool $correct
      *
-     * @return bool
+     * @return $this
      */
     public function setCorrect(bool $correct)
     {
@@ -101,7 +101,7 @@ class Answer
     /**
      * @param Question $question
      *
-     * @return Question
+     * @return $this
      */
     public function setQuestion(Question $question)
     {

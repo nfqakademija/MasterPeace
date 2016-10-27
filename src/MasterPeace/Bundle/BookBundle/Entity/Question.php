@@ -61,7 +61,7 @@ class Question
     /**
      * @param string $title
      *
-     * @return string
+     * @return $this
      */
     public function setTitle(string $title)
     {
@@ -81,7 +81,7 @@ class Question
     /**
      * @param Book $book
      *
-     * @return Book
+     * @return $this
      */
     public function setBook(Book $book)
     {
@@ -101,9 +101,9 @@ class Question
     /**
      * @param Answer $answer
      *
-     * @return Answer
+     * @return $this
      */
-    public function setAnswer($answer)
+    public function setAnswer(Answer $answer)
     {
         $this->answer = $answer;
 
