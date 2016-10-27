@@ -60,13 +60,13 @@ class User extends BaseUser
      */
     public function getName()
     {
-
         return $this->name;
     }
 
     /**
      * @param $name
-     * @return $string
+     *
+     * @return $this
      */
     public function setName($name)
     {
@@ -80,12 +80,12 @@ class User extends BaseUser
      */
     public function getSurname()
     {
-
         return $this->surname;
     }
 
     /**
      * @param $surname
+     *
      * @return $this
      */
     public function setSurname($surname)
