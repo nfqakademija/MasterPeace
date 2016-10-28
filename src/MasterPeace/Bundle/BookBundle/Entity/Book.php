@@ -45,7 +45,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $publisher;
 
@@ -57,9 +57,9 @@ class Book
     private $cover;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(type="bigint", unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $isbnCode;
 
@@ -172,11 +172,11 @@ class Book
     }
 
     /**
-     * @param int $isbnCode
+     * @param string $isbnCode
      *
      * @return $this
      */
-    public function setIsbnCode(int $isbnCode)
+    public function setIsbnCode(string $isbnCode)
     {
         $this->isbnCode = $isbnCode;
 
@@ -184,7 +184,7 @@ class Book
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getIsbnCode()
     {
