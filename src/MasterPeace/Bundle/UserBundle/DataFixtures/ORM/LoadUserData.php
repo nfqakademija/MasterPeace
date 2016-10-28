@@ -96,5 +96,4 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             ],
         ];
     }
-
 }
