@@ -3,8 +3,8 @@
 namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends Controller
 {
@@ -15,18 +15,15 @@ class BookController extends Controller
      */
     public function listAction()
     {
-        return $this->render('MasterPeaceBookBundle:Book:list.html.twig');
-    }
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $books = $em
+            ->getRepository('MasterPeaceBookBundle:Book')
+            ->findAll();
 
-    /**
-     * @Route ("/view/{id}", name="book_view")
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function viewAction(int $id)
-    {
-        return $this->render('MasterPeaceBookBundle:Book:view.html.twig');
+        return $this->render('MasterPeaceBookBundle:Book:list.html.twig', [
+            'books' => $books,
+        ]);
     }
 }
