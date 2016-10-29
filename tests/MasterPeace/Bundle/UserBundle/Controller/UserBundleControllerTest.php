@@ -14,7 +14,8 @@ class UserBundleControllerTest extends WebTestCase
     /**
      * Set up database and fixtures before each test
      */
-    public function setUp() {
+    public function setUp()
+    {
 
         $client = self::createClient();
         $container = $client->getKernel()->getContainer();
@@ -44,6 +45,22 @@ class UserBundleControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Log in")')->count());
     }
 
+    private function logIn()
+    {
+        $client = self::createClient();
+        $session = $client->getContainer()->get('session');
+
+        // the firewall context (defaults to the firewall name)
+        $firewall = 'main';
+
+        $token = new UsernamePasswordToken('password', null, $firewall, ['ROLE_ADMIN']);
+        $session->set('_security_' . $firewall, serialize($token));
+        $session->save();
+
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $client->getCookieJar()->set($cookie);
+    }
+
     public function testIndex()
     {
         $client = self::createClient();
@@ -56,21 +73,5 @@ class UserBundleControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertTrue($crawler->filter('html:contains("Username")')->count() == 1);
 
-    }
-
-    private function logIn()
-    {
-        $client = self::createClient();
-        $session = $client->getContainer()->get('session');
-
-        // the firewall context (defaults to the firewall name)
-        $firewall = 'main';
-
-        $token = new UsernamePasswordToken('password', null, $firewall, array('ROLE_ADMIN'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
-
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $client->getCookieJar()->set($cookie);
     }
 }
