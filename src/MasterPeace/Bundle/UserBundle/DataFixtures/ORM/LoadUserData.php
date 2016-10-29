@@ -1,5 +1,5 @@
 <?php
-namespace MasterPeace\Bundle\UserBundle\DataFixtures;
+namespace MasterPeace\Bundle\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
