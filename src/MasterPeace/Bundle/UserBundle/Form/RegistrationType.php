@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\UserBundle\Form;
 
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
