@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
-
     /**
      * @var ContainerInterface
      */
@@ -22,64 +21,79 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
 
-        // Get our userManager, you must implement `ContainerAwareInterface`
         $userManager = $this->container->get('fos_user.user_manager');
 
-        // Create our user and set details
-        $user = $userManager->createUser();
-        $user->setUsername('KarolisM');
-        $user->setEmail('karolis@domain.com');
-        $user->setName('Karolis');
-        $user->setSurname('Matjosaitis');
-        $user->setPlainPassword('password');
-        $user->setEnabled(true);
-        $user->setRoles(['ROLE_ADMIN']);
-
-        $user2 = $userManager->createUser();
-        $user2->setUsername('SergejV');
-        $user2->setEmail('sergej@domain.com');
-        $user2->setName('Sergej');
-        $user2->setSurname('Voronov');
-        $user2->setPlainPassword('password');
-        $user2->setEnabled(true);
-        $user2->setRoles(['ROLE_ADMIN']);
-
-        $user3 = $userManager->createUser();
-        $user3->setUsername('LukasL');
-        $user3->setEmail('lukas@domain.com');
-        $user3->setName('Lukas');
-        $user3->setSurname('Laurutis');
-        $user3->setPlainPassword('password');
-        $user3->setEnabled(true);
-        $user3->setRoles(['ROLE_ADMIN']);
-
-        $user4 = $userManager->createUser();
-        $user4->setUsername('Mokinys');
-        $user4->setEmail('mokinio@domain.com');
-        $user4->setName('Mokinio Vardas');
-        $user4->setSurname('Mokinio Pavardė');
-        $user4->setPlainPassword('password');
-        $user4->setEnabled(true);
-        $user4->setRoles(['ROLE_STUDENT']);
-
-        $user5 = $userManager->createUser();
-        $user5->setUsername('Mokytojas');
-        $user5->setEmail('mokytojo@domain.com');
-        $user5->setName('Mokytojo Vardas');
-        $user5->setSurname('Mokytojo Pavardė');
-        $user5->setPlainPassword('password');
-        $user5->setEnabled(true);
-        $user5->setRoles(['ROLE_USER']);
-
-
-        // Update the user
+        foreach ($this->getUserData() as $userDetail) {
+            $user = $userManager->createUser();
+            $user
+                ->setUsername($userDetail['username'])
+                ->setEmail($userDetail['email'])
+                ->setName($userDetail['name'])
+                ->setSurname($userDetail['surname'])
+                ->setPlainPassword($userDetail['pass'])
+                ->setEnabled($userDetail['enable'])
+                ->setRoles($userDetail['role']);
+        }
         $userManager->updateUser($user, true);
-        $userManager->updateUser($user2, true);
-        $userManager->updateUser($user3, true);
-        $userManager->updateUser($user4, true);
-        $userManager->updateUser($user5, true);
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserData()
+    {
+        return [
+            [
+                'username' => 'KarolisM',
+                'email' => 'karois@domain.com',
+                'name' => 'Karolis',
+                'surname' => 'Matjosaitis',
+                'pass' => 'password',
+                'enable' => true,
+                'role' => ['ROLE_USER_ADMIN'],
+            ],
+            [
+                'username' => 'SergejV',
+                'email' => 'sergej@domain.com',
+                'name' => 'Sergej',
+                'surname' => 'Voronov',
+                'pass' => 'password',
+                'enable' => true,
+                'role' => ['ROLE_USER'],
+            ],
+            [
+                'username' => 'LukasL',
+                'email' => 'lukas@domain.com',
+                'name' => 'Lukas',
+                'surname' => 'Laurutis',
+                'pass' => 'password',
+                'enable' => true,
+                'role' => ['ROLE_USER'],
+            ],
+            [
+                'username' => 'MokytojasM',
+                'email' => 'mokytojo@domain.com',
+                'name' => 'Petraitis',
+                'surname' => 'Stuobrys',
+                'pass' => 'password',
+                'enable' => true,
+                'role' => ['ROLE_USER'],
+            ],
+            [
+                'username' => 'Student',
+                'email' => 'studento@domain.com',
+                'name' => 'Kovas',
+                'surname' => 'Balandaitis',
+                'pass' => 'password',
+                'enable' => true,
+                'role' => ['ROLE_USER_STUDENT'],
+            ],
+        ];
     }
 }
