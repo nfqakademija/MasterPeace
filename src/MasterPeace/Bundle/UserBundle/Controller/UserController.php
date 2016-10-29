@@ -9,7 +9,7 @@ use \Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @Route("/list")
+     * @Route("/list", name="user_list")
      * @return Response
      */
     public function listAction()

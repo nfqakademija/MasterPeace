@@ -39,8 +39,8 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
                 ->setPlainPassword($userDetail['pass'])
                 ->setEnabled($userDetail['enable'])
                 ->setRoles($userDetail['role']);
+            $userManager->updateUser($user, true);
         }
-        $userManager->updateUser($user, true);
     }
 
     /**
