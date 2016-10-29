@@ -9,13 +9,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserBundleControllerTest extends WebTestCase
 {
-    private $client = null;
-
-    public function setUpClient()
-    {
-        $this->client = static::createClient();
-    }
-
     private $em;
 
     /**
@@ -40,13 +33,14 @@ class UserBundleControllerTest extends WebTestCase
         $executor->execute($loader->getFixtures());
     }
 
-    public function tetLogIn()
+    public function testLogIn()
     {
+        $client = self::createClient();
         $this->logIn();
 
-        $crawler = $this->client->request('GET', '/login');
+        $crawler = $client->request('GET', '/login');
 
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertTrue($client->getResponse()->isSuccessful());
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Log in")')->count());
     }
 
@@ -66,7 +60,8 @@ class UserBundleControllerTest extends WebTestCase
 
     private function logIn()
     {
-        $session = $this->client->getContainer()->get('session');
+        $client = self::createClient();
+        $session = $client->getContainer()->get('session');
 
         // the firewall context (defaults to the firewall name)
         $firewall = 'main';
@@ -76,6 +71,6 @@ class UserBundleControllerTest extends WebTestCase
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $client->getCookieJar()->set($cookie);
     }
 }
