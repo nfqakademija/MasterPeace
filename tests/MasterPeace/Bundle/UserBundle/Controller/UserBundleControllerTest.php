@@ -42,7 +42,7 @@ class UserBundleControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/login');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Log in")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Prisijungti")')->count());
     }
 
     private function logIn()
@@ -71,7 +71,7 @@ class UserBundleControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/login');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('html:contains("Username")')->count() == 1);
+        $this->assertTrue($crawler->filter('html:contains("Naudotojo vardas")')->count() == 1);
 
     }
 }
