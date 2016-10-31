@@ -17,7 +17,9 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
     {
         $answerMod = 0;
 
-        for ($i = 0; $i < self::getAnswerTotalCount(); $i++) {
+        $answerCount = self::getAnswerTotalCount();
+
+        for ($i = 0; $i < $answerCount; $i++) {
             $questionReference = $i % LoadQuestionData::getQuestionTotalCount();
             $smt = $i % Question::ANSWERS_COUNT;
 

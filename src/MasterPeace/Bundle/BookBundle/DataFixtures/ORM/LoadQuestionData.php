@@ -19,8 +19,9 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
     {
         $bookCount = LoadBookData::getBookCount();
         $questionAmount = self::QUESTIONS_COUNT;
+        $bookQuestions = $bookCount * $questionAmount;
 
-        for ($i = 0; $i < $bookCount * $questionAmount; $i++) {
+        for ($i = 0; $i < $bookQuestions; $i++) {
             $bookReference = $i % $bookCount;
             $questionReference = $i % $questionAmount + 1;
 
