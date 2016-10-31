@@ -19,9 +19,9 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 
         for ($i = 0; $i < self::getAnswerTotalCount(); $i++) {
             $questionReference = $i % LoadQuestionData::getQuestionTotalCount();
-            $smt = $i % self::getAnswersPerQuestion();
+            $smt = $i % Question::ANSWERS_COUNT;
 
-            if (empty($correctAnswers[$smt])) {
+            if (!isset($correctAnswers[$smt])) {
                 $correctAnswers[$smt] = random_int(1, 4);
             }
 
@@ -49,15 +49,7 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
      */
     public static function getAnswerTotalCount()
     {
-        return LoadQuestionData::getQuestionTotalCount() * self::getAnswersPerQuestion();
-    }
-
-    /**
-     * @return int
-     */
-    public static function getAnswersPerQuestion()
-    {
-        return 4;
+        return LoadQuestionData::getQuestionTotalCount() * Question::ANSWERS_COUNT;
     }
 
     /**

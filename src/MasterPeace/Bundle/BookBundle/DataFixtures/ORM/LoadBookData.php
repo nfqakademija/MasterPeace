@@ -9,11 +9,6 @@ use MasterPeace\Bundle\BookBundle\Entity\Book;
 
 class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
 {
-    public static function getBookCount()
-    {
-        return count(self::getBookDetails());
-    }
-
     /**
      * @param ObjectManager $manager
      */
@@ -74,5 +69,13 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 1;
+    }
+
+    /**
+     * @return int
+     */
+    public static function getBookCount()
+    {
+        return count(self::getBookDetails());
     }
 }

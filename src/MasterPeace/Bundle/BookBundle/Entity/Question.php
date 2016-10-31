@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
+    const ANSWERS_COUNT = 4;
+
     /**
      * @var integer
      *

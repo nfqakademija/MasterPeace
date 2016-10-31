@@ -10,13 +10,7 @@ use MasterPeace\Bundle\BookBundle\Entity\Question;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @return int
-     */
-    public static function getQuestionTotalCount()
-    {
-        return self::getQuestionsPerBook() * LoadBookData::getBookCount();
-    }
+    const QUESTIONS_COUNT = 4;
 
     /**
      * @param ObjectManager $manager
@@ -24,11 +18,11 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
         $bookCount = LoadBookData::getBookCount();
-        $questionAmmount = self::getQuestionsPerBook();
+        $questionAmount = self::QUESTIONS_COUNT;
 
-        for ($i = 0; $i < $bookCount * $questionAmmount; $i++) {
+        for ($i = 0; $i < $bookCount * $questionAmount; $i++) {
             $bookReference = $i % $bookCount;
-            $questionReference = $i % $questionAmmount + 1;
+            $questionReference = $i % $questionAmount + 1;
 
             /** @var Book $book */
             $book = $this->getReference('book' . $bookReference);
@@ -50,9 +44,9 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
     /**
      * @return int
      */
-    public static function getQuestionsPerBook()
+    public static function getQuestionTotalCount()
     {
-        return 4;
+        return self::QUESTIONS_COUNT * LoadBookData::getBookCount();
     }
 
     /**
