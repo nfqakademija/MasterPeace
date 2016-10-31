@@ -2,18 +2,19 @@
 
 namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 
-class LoadBookData implements FixtureInterface
+class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getBookDetails() as $bookDetail) {
+        foreach ($this->getBookDetails() as $id => $bookDetail) {
             $book = new Book();
             $book
                 ->setTitle($bookDetail['title'])
@@ -23,6 +24,8 @@ class LoadBookData implements FixtureInterface
                 ->setCover($bookDetail['cover'])
                 ->setIsbnCode($bookDetail['isbn_code']);
             $manager->persist($book);
+
+            $this->addReference('book' . $id, $book);
         }
         $manager->flush();
     }
@@ -58,5 +61,21 @@ class LoadBookData implements FixtureInterface
             'isbn_code' => 9789955232520,
             ],
         ];
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder()
+    {
+        return 1;
+    }
+
+    /**
+     * @return int
+     */
+    public static function getBookCount()
+    {
+        return count(self::getBookDetails());
     }
 }
