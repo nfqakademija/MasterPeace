@@ -2,7 +2,6 @@
 
 namespace tests\MasterPeace\Bundle\UserBundle\Controller;
 
-use MasterPeace\Bundle\UserBundle\DataFixtures\ORM\LoadUserData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -23,30 +22,16 @@ class UserBundleControllerTest extends WebTestCase
     private function logIn()
     {
         $client = self::createClient();
+
         $session = $client->getContainer()->get('session');
 
-        // the firewall context (defaults to the firewall name)
         $firewall = 'main';
 
-        $token = new UsernamePasswordToken('password', null, $firewall, ['ROLE_ADMIN']);
+        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_USER_ADMIN']);
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $client->getCookieJar()->set($cookie);
-    }
-
-    public function testIndex()
-    {
-        $client = self::createClient();
-        $crawler = $client->request('GET', '/user/list');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('html:contains("all users")')->count() == 1);
-
-        $crawler = $client->request('GET', '/login');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('html:contains("Naudotojo vardas")')->count() == 1);
-
     }
 }
