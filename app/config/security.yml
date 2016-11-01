@@ -26,8 +26,7 @@ security:
             form_login:
                 check_path: /login_check
                 login_path: /login
-                always_use_default_target_path: false
-                default_target_path:            /list
+
             logout:
                 path:   /logout
                 target: /
@@ -47,5 +46,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # TODO add separate paths for student and teacher users
-        - { path: ^/*, role: [ROLE_STUDENT, ROLE_ADMIN, ROLE_TEACHER] }
+        - { path: ^/*, role: [ROLE_ADMIN] }
         - { path: ^/admin/, role: ROLE_ADMIN }

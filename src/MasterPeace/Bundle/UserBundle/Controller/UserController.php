@@ -21,13 +21,4 @@ class UserController extends Controller
 
         return $this->render('@MasterPeaceUser/list.html.twig', ['users' => $users]);
     }
-
-    /**
-     * @Route("/", name="user_login")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function logInAction()
-    {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
-    }
 }

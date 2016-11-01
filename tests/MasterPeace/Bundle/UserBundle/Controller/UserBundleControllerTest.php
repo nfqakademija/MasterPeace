@@ -8,30 +8,35 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserBundleControllerTest extends WebTestCase
 {
+    private $client = null;
+
+    public function setUp()
+    {
+        $this->client = static::createClient();
+    }
+
     public function testLogIn()
     {
-        $client = self::createClient();
         $this->logIn();
+        // TODO: pakeiti /list i /, kai toks bus
+        $crawler = $this->client->request('GET', '/list');
 
-        $crawler = $client->request('GET', '/login');
-
-        $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Prisijungti")')->count());
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        // TODO: atitinkamai ir contains
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("user")')->count());
     }
 
     private function logIn()
     {
-        $client = self::createClient();
+        $session = $this->client->getContainer()->get('session');
 
-        $session = $client->getContainer()->get('session');
+        $firewall = 'secure_area';
 
-        $firewall = 'main';
-
-        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_USER_ADMIN']);
+        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_ADMIN']);
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
-        $client->getCookieJar()->set($cookie);
+        $this->client->getCookieJar()->set($cookie);
     }
 }
