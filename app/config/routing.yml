@@ -1,3 +1,8 @@
+quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/"
+    type:     annotation
+    prefix:   /quiz/
+
 book:
     resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
