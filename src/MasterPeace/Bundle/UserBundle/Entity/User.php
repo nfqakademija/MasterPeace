@@ -12,6 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
+    const ROLE_STUDENT = 'ROLE_STUDENT';
+    const ROLE_TEACHER = 'ROLE_TEACHER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Column(type="string", length=255)
      *
@@ -94,4 +98,29 @@ class User extends BaseUser
 
         return $this;
     }
+
+    public function isAdmin()
+    {
+        if ($this->hasRole('ROLE_ADMIN'))
+        {
+            return true;
+        }
+    }
+
+    public function isStudent()
+    {
+        if ($this->hasRole('ROLE_STUDENT'))
+        {
+            return true;
+        }
+    }
+
+    public function isTeacher()
+    {
+        if ($this->hasRole('ROLE_TEACHER'))
+        {
+            return true;
+        }
+    }
+
 }
