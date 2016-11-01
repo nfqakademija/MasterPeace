@@ -2,6 +2,7 @@
 
 namespace tests\MasterPeace\Bundle\UserBundle\Controller;
 
+
 use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
@@ -9,6 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserBundleControllerTest extends WebTestCase
 {
+
     private $client = null;
 
     public function setUp()
@@ -29,11 +31,11 @@ class UserBundleControllerTest extends WebTestCase
 
     private function logIn()
     {
-        $session = $this->client->getContainer()->get('session');
+        $client = self::createClient();
+        $session = $client->getContainer()->get('session');
+        $firewall = 'main';
 
-        $firewall = 'secure_area';
-
-        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_ADMIN']);
+        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_USER_ADMIN']);
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
@@ -45,6 +47,5 @@ class UserBundleControllerTest extends WebTestCase
     {
         $user = new User();
         $this->assertTrue($this->client->isAdmin());
-
     }
 }

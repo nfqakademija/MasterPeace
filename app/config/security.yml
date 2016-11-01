@@ -31,7 +31,6 @@ security:
                 path:   /logout
                 target: /
 
-
         main:
             pattern: ^/
             form_login:
