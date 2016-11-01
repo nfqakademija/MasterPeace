@@ -18,7 +18,7 @@ UpRead is a platform developed for raising motivation to read more.
 
 # <a name="requirements"></a>Requirements
 
-* PHP >= 5.5.9
+* PHP >= 7.0.0
 
 # <a name="usage"></a>Usage
 
