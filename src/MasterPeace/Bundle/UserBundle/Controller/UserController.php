@@ -24,7 +24,7 @@ class UserController extends Controller
 
     /**
      * @Route("/", name="user_login")
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function logInAction()
     {
