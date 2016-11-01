@@ -21,7 +21,7 @@ class UserBundleControllerTest extends WebTestCase
     public function testLogIn()
     {
         $this->logIn();
-        // TODO: pakeiti /list i /, kai toks bus
+        // TODO: pakeisti /list i /, kai toks bus
         $crawler = $this->client->request('GET', '/list');
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -31,21 +31,22 @@ class UserBundleControllerTest extends WebTestCase
 
     private function logIn()
     {
-        $client = self::createClient();
-        $session = $client->getContainer()->get('session');
-        $firewall = 'main';
+        $session = $this->client->getContainer()->get('session');
 
-        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_USER_ADMIN']);
+        $firewall = 'secure_area';
+
+        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_ADMIN']);
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
     }
-
+    //TODO: finish test
     public function testUserRole()
     {
         $user = new User();
-        $this->assertTrue($this->client->isAdmin());
+        $username = 'KarolisM';
+        $this->assertTrue($user->isAdmin($username));
     }
 }

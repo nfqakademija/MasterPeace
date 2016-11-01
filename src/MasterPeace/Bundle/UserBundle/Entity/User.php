@@ -4,8 +4,12 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Model\UserInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -88,20 +92,27 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $surname
+     * @param $surname
      *
      * @return $this
      */
-    public function setSurname(string $surname)
+    public function setSurname($surname)
     {
         $this->surname = $surname;
 
         return $this;
     }
 
+    //TODO: solve "methods not found"
+    /**
+     * @param $username
+     * @return bool
+     */
     public function isAdmin($username)
     {
-        if ($username->hasRole('ROLE_ADMIN'))
+        $user = $this->findUserByUsername($username);
+
+        if ($user->hasRole('ROLE_ADMIN'))
         {
             return true;
         }
@@ -109,7 +120,8 @@ class User extends BaseUser
 
     public function isStudent($username)
     {
-        if ($username->hasRole('ROLE_STUDENT'))
+        $user = $this->findUserByUsername($username);
+        if ($user->hasRole('ROLE_STUDENT'))
         {
             return true;
         }
@@ -117,7 +129,8 @@ class User extends BaseUser
 
     public function isTeacher($username)
     {
-        if ($username->hasRole('ROLE_TEACHER'))
+        $user = $this->findUserByUsername($username);
+        if ($user->hasRole('ROLE_TEACHER'))
         {
             return true;
         }
