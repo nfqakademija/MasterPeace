@@ -99,25 +99,25 @@ class User extends BaseUser
         return $this;
     }
 
-    public function isAdmin()
+    public function isAdmin($username)
     {
-        if ($this->hasRole('ROLE_ADMIN'))
+        if ($username->hasRole('ROLE_ADMIN'))
         {
             return true;
         }
     }
 
-    public function isStudent()
+    public function isStudent($username)
     {
-        if ($this->hasRole('ROLE_STUDENT'))
+        if ($username->hasRole('ROLE_STUDENT'))
         {
             return true;
         }
     }
 
-    public function isTeacher()
+    public function isTeacher($username)
     {
-        if ($this->hasRole('ROLE_TEACHER'))
+        if ($username->hasRole('ROLE_TEACHER'))
         {
             return true;
         }
