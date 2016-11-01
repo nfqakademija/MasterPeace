@@ -1,12 +1,17 @@
+quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/"
+    type:     annotation
+    prefix:   /quiz/
+
 book:
     resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
     prefix:   /book/
 
-masterpeace_user:
+user:
     resource: "@MasterPeaceUserBundle/Controller/"
     type:     annotation
-    prefix: /user/
+    prefix:   /user/
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
