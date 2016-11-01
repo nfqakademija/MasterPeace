@@ -47,5 +47,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # TODO add separate paths for student and teacher users
-        - { path: ^/*, role: ROLE_ADMIN }
+        - { path: ^/*, role: [ROLE_STUDENT, ROLE_ADMIN, ROLE_TEACHER] }
         - { path: ^/admin/, role: ROLE_ADMIN }
