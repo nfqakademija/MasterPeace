@@ -3,6 +3,12 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
+    role_hierarchy:
+        ROLE_STUDENT:     ROLE_STUDENT
+        ROLE_USER:        [ROLE_STUDENT, ROLE_USER]
+        ROLE_ADMIN:       [ROLE_STUDENT, ROLE_USER, ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_STUDENT, ROLE_USER, ROLE_ADMI, ROLE_SUPER_ADMIN]
+
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
@@ -14,6 +20,16 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        secure_area:
+            pattern:  ^/
+            anonymous: ~
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout:
+                path:   /logout
+                target: /
 
         main:
             pattern: ^/
@@ -28,6 +44,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/student/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/teacher/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # TODO add separate paths for student and teacher users
+        - { path: ^/*, role: ROLE_STUDENT }
         - { path: ^/admin/, role: ROLE_ADMIN }
