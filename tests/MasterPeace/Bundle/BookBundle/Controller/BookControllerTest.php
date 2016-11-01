@@ -2,6 +2,7 @@
 
 namespace Tests\MasterPeace\Bundle\BookBundle\Controller;
 
+use MasterPeace\Bundle\BookBundle\DataFixtures\ORM\LoadBookData;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BookControllerTest extends WebTestCase
@@ -10,7 +11,7 @@ class BookControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/book/');
-        $this->assertCount(3, $crawler->filter('td'));
+        $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
         $this->assertGreaterThan(0, $crawler->filter('td')->count());
         $this->assertGreaterThan(0, $crawler->filter('td:contains("Prisukamo paukščio kronikos")')->count());
     }

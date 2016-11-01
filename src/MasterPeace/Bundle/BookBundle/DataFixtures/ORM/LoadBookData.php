@@ -14,7 +14,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getBookDetails() as $id => $bookDetail) {
+        foreach (self::getBookDetails() as $id => $bookDetail) {
             $book = new Book();
             $book
                 ->setTitle($bookDetail['title'])
@@ -33,7 +33,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @return array
      */
-    private function getBookDetails()
+    private static function getBookDetails()
     {
         return [
             [
