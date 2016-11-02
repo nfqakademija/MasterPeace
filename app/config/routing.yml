@@ -3,10 +3,5 @@ book:
     type:     annotation
     prefix:   /book/
 
-masterpeace_user:
-    resource: "@MasterPeaceUserBundle/Controller/"
-    type:     annotation
-    prefix: /user/
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

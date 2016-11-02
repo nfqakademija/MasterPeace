@@ -1,5 +1,5 @@
 <?php
-namespace MasterPeace\Bundle\UserBundle\DataFixtures;
+namespace MasterPeace\Bundle\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -56,7 +56,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Matjosaitis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_USER_ADMIN'],
+            'role' => ['ROLE_ADMIN'],
             ],
             [
             'username' => 'SergejV',
@@ -65,7 +65,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Voronov',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_USER'],
+            'role' => ['ROLE_ADMIN'],
             ],
             [
             'username' => 'LukasL',
@@ -74,7 +74,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Laurutis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_USER'],
+            'role' => ['ROLE_ADMIN'],
             ],
             [
             'username' => 'MokytojasM',
@@ -83,7 +83,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Stuobrys',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_USER'],
+            'role' => ['ROLE_TEACHER'],
             ],
             [
             'username' => 'Student',
@@ -92,7 +92,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Balandaitis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_USER_STUDENT'],
+            'role' => ['ROLE_STUDENT'],
             ],
         ];
     }
