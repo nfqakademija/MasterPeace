@@ -7,6 +7,7 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class UserBundleControllerTest extends WebTestCase
 {
@@ -41,12 +42,5 @@ class UserBundleControllerTest extends WebTestCase
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
-    }
-    //TODO: finish test
-    public function testUserRole()
-    {
-        $user = new User();
-        $username = 'KarolisM';
-        $this->assertTrue($user->isAdmin($username));
     }
 }

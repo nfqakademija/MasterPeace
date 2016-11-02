@@ -4,12 +4,13 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Model\UserManager;
 use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\FOSUserBundle;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -103,37 +104,23 @@ class User extends BaseUser
         return $this;
     }
 
-    //TODO: solve "methods not found"
     /**
-     * @param $username
      * @return bool
      */
-    public function isAdmin($username)
-    {
-        $user = $this->findUserByUsername($username);
+    public function isAdmin()
 
-        if ($user->hasRole('ROLE_ADMIN'))
-        {
-            return true;
-        }
+    {
+        return in_array(self::ROLE_ADMIN, $this->getRoles(), true);
     }
 
-    public function isStudent($username)
+    public function isStudent()
     {
-        $user = $this->findUserByUsername($username);
-        if ($user->hasRole('ROLE_STUDENT'))
-        {
-            return true;
-        }
+        return in_array(self::ROLE_STUDENT, $this->getRoles(), true);
     }
 
-    public function isTeacher($username)
+    public function isTeacher()
     {
-        $user = $this->findUserByUsername($username);
-        if ($user->hasRole('ROLE_TEACHER'))
-        {
-            return true;
-        }
+        return in_array(self::ROLE_TEACHER, $this->getRoles(), true);
     }
 
 }
