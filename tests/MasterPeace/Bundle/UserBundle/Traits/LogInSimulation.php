@@ -2,22 +2,16 @@
 
 namespace Tests\MasterPeace\Bundle\UserBundle\Traits;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class LogInSimulation extends WebTestCase
+trait LogInSimulation
 {
-    public $client = null;
 
-    public function setUp()
+    public function logIn($client)
     {
-        $this->client = static::createClient();
-    }
-
-    public function logIn()
-    {
-        $session = $this->client->getContainer()->get('session');
+        $session = $client->getContainer()->get('session');
 
         $firewall = 'secure_area';
 
@@ -26,6 +20,6 @@ class LogInSimulation extends WebTestCase
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $client->getCookieJar()->set($cookie);
     }
 }
