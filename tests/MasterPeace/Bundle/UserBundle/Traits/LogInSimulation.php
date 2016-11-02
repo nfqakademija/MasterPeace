@@ -1,36 +1,21 @@
 <?php
 
-namespace tests\MasterPeace\Bundle\UserBundle\Controller;
+namespace Tests\MasterPeace\Bundle\UserBundle\Traits;
 
-
-use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Doctrine\Common\Persistence\ObjectManager;
 
-class UserBundleControllerTest extends WebTestCase
+class LogInSimulation extends WebTestCase
 {
-
-    private $client = null;
+    public $client = null;
 
     public function setUp()
     {
         $this->client = static::createClient();
     }
 
-    public function testLogIn()
-    {
-        $this->logIn();
-        // TODO: pakeisti /list i /, kai toks bus
-        $crawler = $this->client->request('GET', '/list');
-
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
-        // TODO: atitinkamai ir contains
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("user")')->count());
-    }
-
-    private function logIn()
+    public function logIn()
     {
         $session = $this->client->getContainer()->get('session');
 
