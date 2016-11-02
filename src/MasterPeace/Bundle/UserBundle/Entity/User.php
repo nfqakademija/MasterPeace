@@ -4,13 +4,8 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use FOS\UserBundle\Model\UserManager;
-use phpDocumentor\Reflection\Types\String_;
 use Symfony\Component\Validator\Constraints as Assert;
-use FOS\UserBundle\Model\UserManagerInterface;
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\FOSUserBundle;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
@@ -108,7 +103,6 @@ class User extends BaseUser
      * @return bool
      */
     public function isAdmin()
-
     {
         return in_array(self::ROLE_ADMIN, $this->getRoles(), true);
     }
@@ -128,5 +122,4 @@ class User extends BaseUser
     {
         return in_array(self::ROLE_TEACHER, $this->getRoles(), true);
     }
-
 }
