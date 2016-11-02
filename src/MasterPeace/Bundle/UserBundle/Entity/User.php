@@ -113,11 +113,17 @@ class User extends BaseUser
         return in_array(self::ROLE_ADMIN, $this->getRoles(), true);
     }
 
+    /**
+     * @return bool
+     */
     public function isStudent()
     {
         return in_array(self::ROLE_STUDENT, $this->getRoles(), true);
     }
 
+    /**
+     * @return bool
+     */
     public function isTeacher()
     {
         return in_array(self::ROLE_TEACHER, $this->getRoles(), true);
