@@ -3,10 +3,6 @@ language: php
 php:
     - 7.0
 
-branches:
-  only:
-    - master
-
 before_script:
   - cp app/config/parameters.yml.dist app/config/parameters.yml
   - composer install
