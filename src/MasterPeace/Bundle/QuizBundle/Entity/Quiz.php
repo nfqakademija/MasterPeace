@@ -3,14 +3,16 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
  * Quiz
  *
  * @ORM\Table(name="quiz")
+ * @ORM\Entity
  */
 class Quiz
 {
@@ -31,22 +33,23 @@ class Quiz
     private $title;
 
     /**
-     * @var Question
+     * @var User
      *
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="Quiz")
+     * @ORM\OneToMany(targetEntity="\MasterPeace\Bundle\UserBundle\Entity\User", mappedBy="user")
      */
-    private $question;
+    private $user;
 
     /**
      * @var Book
      *
-     * @ORM\OneToOne(targetEntity="Book")
+     * @ORM\ManyToOne(targetEntity="\MasterPeace\Bundle\BookBundle\Entity\Book", inversedBy="book")
+     * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */
     private $book;
 
     public function __construct()
     {
-        $this->question = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     /**
@@ -62,7 +65,7 @@ class Quiz
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -78,31 +81,31 @@ class Quiz
     }
 
     /**
-     * @param Question $question
+     * @param User $user
      *
      * @return $this
      */
-    public function addQuestion(Question $question)
+    public function addUser(User $user)
     {
-        $this->question[] = $question;
+        $this->user[] = $user;
 
         return $this;
     }
 
     /**
-     * @param Question $question
+     * @param User $user
      */
-    public function removeQuestion(Question $question)
+    public function removeUser(User $user)
     {
-        $this->question->removeElement($question);
+        $this->user->removeElement($user);
     }
 
     /**
-     * @return Question
+     * @return Collection
      */
-    public function getQuestion()
+    public function getUser()
     {
-        return $this->question;
+        return $this->user;
     }
 
     /**
