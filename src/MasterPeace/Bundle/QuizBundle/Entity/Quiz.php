@@ -2,8 +2,6 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\UserBundle\Entity\User;
@@ -35,7 +33,8 @@ class Quiz
     /**
      * @var User
      *
-     * @ORM\OneToMany(targetEntity="\MasterPeace\Bundle\UserBundle\Entity\User", mappedBy="user")
+     * @ORM\ManyToOne(targetEntity="\MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -47,10 +46,6 @@ class Quiz
      */
     private $book;
 
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
 
     /**
      * @return integer
@@ -63,9 +58,9 @@ class Quiz
     /**
      * @param string $title
      *
-     * @return $this
+     * @return Quiz
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
 
@@ -81,27 +76,7 @@ class Quiz
     }
 
     /**
-     * @param User $user
-     *
-     * @return $this
-     */
-    public function addUser(User $user)
-    {
-        $this->user[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function removeUser(User $user)
-    {
-        $this->user->removeElement($user);
-    }
-
-    /**
-     * @return Collection
+     * @return User
      */
     public function getUser()
     {
@@ -111,7 +86,7 @@ class Quiz
     /**
      * @param Book $book
      *
-     * @return $this
+     * @return Quiz
      */
     public function setBook(Book $book = null)
     {
