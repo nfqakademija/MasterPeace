@@ -57,7 +57,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Matjosaitis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_ADMIN'],
+            'role' => [User::ROLE_ADMIN],
             ],
             [
             'username' => 'SergejV',
