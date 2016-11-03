@@ -34,9 +34,9 @@ class Quiz
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="\MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="user")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
      */
-    private $user;
+    private $teacher;
 
     /**
      * @var Book
@@ -60,7 +60,7 @@ class Quiz
      *
      * @return Quiz
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -73,14 +73,6 @@ class Quiz
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -101,5 +93,13 @@ class Quiz
     public function getBook()
     {
         return $this->book;
+    }
+
+    /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
     }
 }
