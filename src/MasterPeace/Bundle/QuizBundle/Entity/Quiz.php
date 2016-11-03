@@ -3,7 +3,10 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
+use MasterPeace\Bundle\BookBundle\Entity\Question;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
@@ -46,6 +49,18 @@ class Quiz
      */
     private $book;
 
+    /**
+     * @var Question
+     *
+     * @ORM\ManyToMany(targetEntity="\MasterPeace\Bundle\BookBundle\Entity\Question", inversedBy="quiz")
+     * @ORM\JoinTable(name="quiz_question")
+     */
+    private $question;
+
+    public function __construct()
+    {
+        $this->question = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -76,6 +91,14 @@ class Quiz
     }
 
     /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
+
+    /**
      * @param Book $book
      *
      * @return Quiz
@@ -96,10 +119,30 @@ class Quiz
     }
 
     /**
-     * @return User
+     * @param Question $question
+     *
+     * @return Quiz
      */
-    public function getTeacher()
+    public function addQuestion(Question $question)
     {
-        return $this->teacher;
+        $this->question[] = $question;
+
+        return $this;
+    }
+
+    /**
+     * @param Question $question
+     */
+    public function removeQuestion(Question $question)
+    {
+        $this->question->removeElement($question);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }
