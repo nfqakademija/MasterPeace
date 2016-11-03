@@ -3,19 +3,25 @@
 namespace Tests\MasterPeace\Bundle\UserBundle\Traits;
 
 
+use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 trait LogInSimulation
 {
-
-    public function logIn($client)
+    /**
+     * @param $client
+     * @param $role
+     * @param $username
+     * @param $password
+     */
+    public function logIn(Client $client, array $role, string $username, string $password)
     {
         $session = $client->getContainer()->get('session');
 
         $firewall = 'secure_area';
 
-        $token = new UsernamePasswordToken('KarolisM', 'password', $firewall, ['ROLE_ADMIN']);
+        $token = new UsernamePasswordToken($username, $password, $firewall, $role);
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 

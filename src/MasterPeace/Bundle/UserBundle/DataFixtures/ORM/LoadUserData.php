@@ -3,6 +3,7 @@ namespace MasterPeace\Bundle\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -65,7 +66,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Voronov',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_ADMIN'],
+            'role' => [User::ROLE_ADMIN],
             ],
             [
             'username' => 'LukasL',
@@ -74,7 +75,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Laurutis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_ADMIN'],
+            'role' => [User::ROLE_ADMIN],
             ],
             [
             'username' => 'MokytojasM',
@@ -83,7 +84,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Stuobrys',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_TEACHER'],
+            'role' => [User::ROLE_TEACHER],
             ],
             [
             'username' => 'Student',
@@ -92,7 +93,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             'surname' => 'Balandaitis',
             'pass' => 'password',
             'enable' => true,
-            'role' => ['ROLE_STUDENT'],
+            'role' => [User::ROLE_STUDENT],
             ],
         ];
     }
