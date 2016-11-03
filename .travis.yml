@@ -4,6 +4,7 @@ php:
     - 7.0
 
 before_script:
+  - mkdir -p build/logs
   - cp app/config/parameters.yml.dist app/config/parameters.yml
   - composer install
   - composer require satooshi/php-coveralls --dev
@@ -14,7 +15,6 @@ before_script:
 
 script:
   - vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
-  - vendor/bin/phpunit
 
 after_script:
 - php vendor/bin/coveralls -v
