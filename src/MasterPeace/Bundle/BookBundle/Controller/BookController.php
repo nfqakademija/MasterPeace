@@ -31,13 +31,13 @@ class BookController extends Controller
     }
 
     /**
-     * @Route ("/add", name="book_add")
+     * @Route ("/create", name="book_create")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function addAction(Request $request)
+    public function createAction(Request $request)
     {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
@@ -53,7 +53,7 @@ class BookController extends Controller
             return $this->redirectToRoute('book_list');
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:add.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
