@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nfqakademija/MasterPeace.svg?branch=master)](https://travis-ci.org/nfqakademija/MasterPeace)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nfqakademija/MasterPeace/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nfqakademija/MasterPeace/?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/nfqakademija/MasterPeace/badge.svg?branch=bundle%2Fcoveralls)](https://coveralls.io/github/nfqakademija/MasterPeace?branch=bundle%2Fcoveralls)
+[![Coverage Status](https://coveralls.io/repos/github/nfqakademija/MasterPeace/badge.svg?branch=master)](https://coveralls.io/github/nfqakademija/MasterPeace?branch=master)
 
 # Table of Contents
 
