@@ -20,16 +20,18 @@ class BookType extends AbstractType
             ->add('year', IntegerType::class)
             ->add('publisher', TextType::class)
             ->add('cover', FileType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('isbnCode', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Add New Book'));
+            ->add('save', SubmitType::class, [
+                'label' => 'Add New Book',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'MasterPeace\Bundle\BookBundle\Entity\Book',
-        ));
+        ]);
     }
 }
