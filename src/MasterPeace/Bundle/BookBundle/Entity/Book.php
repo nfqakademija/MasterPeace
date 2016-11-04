@@ -41,9 +41,10 @@ class Book
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", length=4)
      *
      * @Assert\NotBlank()
+     * @Assert\Length(min="4", max="4")
      */
     private $year;
 
@@ -57,7 +58,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Image()
      */
