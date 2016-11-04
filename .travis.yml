@@ -6,6 +6,7 @@ php:
 before_script:
   - cp app/config/parameters.yml.dist app/config/parameters.yml
   - composer install
+  - composer require satooshi/php-coveralls
   - php bin/console doctrine:database:create
   - php bin/console doctrine:schema:drop --force
   - php bin/console doctrine:schema:create
