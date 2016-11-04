@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\BookBundle\Form;
 
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -12,6 +13,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -24,14 +29,17 @@ class BookType extends AbstractType
             ])
             ->add('isbnCode', TextType::class)
             ->add('save', SubmitType::class, [
-                'label' => 'Add New Book',
+                'label' => 'book.save.button',
             ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'MasterPeace\Bundle\BookBundle\Entity\Book',
+            'data_class' => Book::class,
         ]);
     }
 }

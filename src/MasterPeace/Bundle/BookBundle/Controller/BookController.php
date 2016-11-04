@@ -42,11 +42,10 @@ class BookController extends Controller
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
 
+        $form->setData($book);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $book = $form->getData();
-
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($book);
             $em->flush();
