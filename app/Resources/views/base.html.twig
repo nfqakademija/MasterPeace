@@ -22,11 +22,12 @@
     {% endblock %}
 </head>
 
-{#TODO add head or nav bar to pages#}
 <body>
 {% block body %}{% endblock %}
 
-{#TODO add footer#}
+<div class="container">
+    {% block container %}{% endblock %}
+</div>
 
 {% block javascripts %}
     <script src="{{ asset('js/app.js') }}"></script>
