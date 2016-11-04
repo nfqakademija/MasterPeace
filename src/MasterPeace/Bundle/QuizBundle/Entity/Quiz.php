@@ -103,7 +103,7 @@ class Quiz
      *
      * @return Quiz
      */
-    public function setBook(Book $book = null)
+    public function setBook(Book $book)
     {
         $this->book = $book;
 
