@@ -16,8 +16,7 @@ class BookControllerTest extends WebTestCase
 
     public function testListAction()
     {
-        $client = static::createClient();
-        $this->logIn($client, [User::ROLE_TEACHER], self::USERNAME, self::PASSWORD);
+        $client = $this->loginClient();
         $crawler = $client->request('GET', '/book/');
         $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
         $this->assertGreaterThan(0, $crawler->filter('td')->count());
@@ -26,14 +25,14 @@ class BookControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
-        $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN], self::USERNAME, self::PASSWORD);
+        $client = $this->loginClient();
         $crawler = $client->request('GET', '/book/create');
         $form = $crawler->filter('form[name=book]')->form();
 
         $form['book[title]'] = 'Naujas Pavadinimas';
         $form['book[author]'] = 'Autorius';
         $form['book[year]'] = 2000;
+        $form['book[cover]'] = '';
         $form['book[publisher]'] = 'Leidejas';
         $form['book[isbnCode]'] = '9971-5-0210-0';
 
@@ -44,5 +43,13 @@ class BookControllerTest extends WebTestCase
             'Naujas Pavadinimas',
             $client->getResponse()->getContent()
         );
+    }
+
+    private function loginClient()
+    {
+        $client = static::createClient();
+        $this->logIn($client, [User::ROLE_ADMIN], self::USERNAME, self::PASSWORD);
+
+        return $client;
     }
 }
