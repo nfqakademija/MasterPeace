@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\BookBundle\Entity\Question;
 
 /**
  * Result
@@ -31,32 +32,35 @@ class Result
     /**
      * @var int
      *
-     * @ORM\Column(name="answer", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
+     * @ORM\JoinColumn(name="answer", referencedColumnName="id")
      */
     private $answer;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="question", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
+     * @ORM\JoinColumn(name="question", referencedColumnName="id" )
      */
     private $question;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="student", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="student", referencedColumnName="id")
      */
     private $student;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="quiz", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
+     * @ORM\JoinColumn(name="quiz", referencedColumnName="id")
      */
     private $quiz;
 
