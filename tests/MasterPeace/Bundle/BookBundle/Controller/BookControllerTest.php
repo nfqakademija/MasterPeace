@@ -11,13 +11,13 @@ class BookControllerTest extends WebTestCase
 {
     use LogInSimulation;
 
-    const USERNAME = 'KarolisM';
+    const USERNAME = 'teacher';
     const PASSWORD = 'password';
 
     public function testListAction()
     {
         $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN], self::USERNAME, self::PASSWORD);
+        $this->logIn($client, [User::ROLE_TEACHER], self::USERNAME, self::PASSWORD);
         $crawler = $client->request('GET', '/book/');
         $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
         $this->assertGreaterThan(0, $crawler->filter('td')->count());
