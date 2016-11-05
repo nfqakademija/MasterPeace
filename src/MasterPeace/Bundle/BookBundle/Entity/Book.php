@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Book
@@ -32,13 +33,18 @@ class Book
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $author;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", length=4)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min="4", max="4")
      */
     private $year;
 
@@ -52,14 +58,22 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Image()
      */
-    private $cover;
+    private $cover = null;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Isbn(
+     *     type = null,
+     *     bothIsbnMessage = "This value is neither a valid ISBN-10 nor a valid ISBN-13."
+     * )
      */
     private $isbnCode;
 
