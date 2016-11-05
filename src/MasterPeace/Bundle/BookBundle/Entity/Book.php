@@ -62,7 +62,7 @@ class Book
      *
      * @Assert\Image()
      */
-    private $cover;
+    private $cover = null;
 
     /**
      * @var string
