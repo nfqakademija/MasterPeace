@@ -35,24 +35,21 @@ class Quiz
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="\MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="user")
-     * @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $teacher;
 
     /**
      * @var Book
      *
-     * @ORM\ManyToOne(targetEntity="\MasterPeace\Bundle\BookBundle\Entity\Book", inversedBy="book")
-     * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
      */
     private $book;
 
     /**
      * @var ArrayCollection|Question[]
      *
-     * @ORM\ManyToMany(targetEntity="\MasterPeace\Bundle\BookBundle\Entity\Question", inversedBy="quiz")
-     * @ORM\JoinTable(name="quiz_question")
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
      */
     private $questions;
 
