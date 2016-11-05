@@ -34,32 +34,33 @@ class Result
     /**
      * @var Answer
      *
-     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
      */
     private $answer;
 
     /**
      * @var Question
-     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
+     *
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
      */
     private $question;
 
     /**
      * @var User
-     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     *
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $student;
 
     /**
      * @var Quiz
-     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
+     *
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
      */
     private $quiz;
 
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -68,8 +69,6 @@ class Result
     }
 
     /**
-     * Get result
-     *
      * @return bool
      */
     public function getResult()
@@ -78,13 +77,11 @@ class Result
     }
 
     /**
-     * Set result
-     *
      * @param boolean $result
      *
      * @return Result
      */
-    public function setResult($result)
+    public function setResult(bool $result)
     {
         $this->result = $result;
 
@@ -92,8 +89,6 @@ class Result
     }
 
     /**
-     * Get answer
-     *
      * @return Answer
      */
     public function getAnswer()
@@ -102,8 +97,6 @@ class Result
     }
 
     /**
-     * Set answer
-     *
      * @param Answer $answer
      *
      * @return Result
@@ -116,8 +109,6 @@ class Result
     }
 
     /**
-     * Get question
-     *
      * @return Question
      */
     public function getQuestion()
@@ -126,8 +117,6 @@ class Result
     }
 
     /**
-     * Set question
-     *
      * @param Question $question
      *
      * @return Result
@@ -140,8 +129,6 @@ class Result
     }
 
     /**
-     * Get student
-     *
      * @return User
      */
     public function getStudent()
@@ -150,8 +137,6 @@ class Result
     }
 
     /**
-     * Set student
-     *
      * @param User $student
      *
      * @return Result
@@ -164,8 +149,6 @@ class Result
     }
 
     /**
-     * Get quiz
-     *
      * @return Quiz
      */
     public function getQuiz()
@@ -174,8 +157,6 @@ class Result
     }
 
     /**
-     * Set quiz
-     *
      * @param Quiz $quiz
      *
      * @return Result
