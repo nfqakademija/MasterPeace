@@ -191,4 +191,3 @@ class Result
         return $this;
     }
 }
-
