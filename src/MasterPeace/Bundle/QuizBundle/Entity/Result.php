@@ -3,7 +3,9 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\BookBundle\Entity\Answer;
 use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
  * Result
@@ -30,32 +32,26 @@ class Result
     private $result;
 
     /**
-     * @var int
+     * @var Answer
      *
-     * @ORM\Column(name="answer_id", type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
      */
     private $answer;
 
     /**
-     * @var int
-     * @ORM\Column(name="question_id", type="integer")
+     * @var Question
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
      */
     private $question;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="student_id", type="integer")
+     * @var User
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $student;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="quiz_id", type="integer")
+     * @var Quiz
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
      */
     private $quiz;
@@ -98,7 +94,7 @@ class Result
     /**
      * Get answer
      *
-     * @return integer
+     * @return Answer
      */
     public function getAnswer()
     {
@@ -108,11 +104,11 @@ class Result
     /**
      * Set answer
      *
-     * @param integer $answer
+     * @param Answer $answer
      *
      * @return Result
      */
-    public function setAnswer(int $answer)
+    public function setAnswer(Answer $answer)
     {
         $this->answer = $answer;
 
@@ -122,7 +118,7 @@ class Result
     /**
      * Get question
      *
-     * @return integer
+     * @return Question
      */
     public function getQuestion()
     {
@@ -132,11 +128,11 @@ class Result
     /**
      * Set question
      *
-     * @param integer $question
+     * @param Question $question
      *
      * @return Result
      */
-    public function setQuestion(int $question)
+    public function setQuestion(Question $question)
     {
         $this->question = $question;
 
@@ -146,7 +142,7 @@ class Result
     /**
      * Get student
      *
-     * @return integer
+     * @return User
      */
     public function getStudent()
     {
@@ -156,11 +152,11 @@ class Result
     /**
      * Set student
      *
-     * @param integer $student
+     * @param User $student
      *
      * @return Result
      */
-    public function setStudent(int $student)
+    public function setStudent(User $student)
     {
         $this->student = $student;
 
@@ -170,7 +166,7 @@ class Result
     /**
      * Get quiz
      *
-     * @return integer
+     * @return Quiz
      */
     public function getQuiz()
     {
@@ -180,11 +176,11 @@ class Result
     /**
      * Set quiz
      *
-     * @param integer $quiz
+     * @param Quiz $quiz
      *
      * @return Result
      */
-    public function setQuiz(int $quiz)
+    public function setQuiz(Quiz $quiz)
     {
         $this->quiz = $quiz;
 
