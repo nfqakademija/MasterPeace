@@ -4,6 +4,7 @@ namespace Tests\MasterPeace\Bundle\BookBundle\Controller;
 
 use MasterPeace\Bundle\BookBundle\DataFixtures\ORM\LoadBookData;
 use MasterPeace\Bundle\UserBundle\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Tests\MasterPeace\Bundle\UserBundle\Traits\LogInSimulation;
 
@@ -45,6 +46,9 @@ class BookControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * @return Client
+     */
     private function loginClient()
     {
         $client = static::createClient();
