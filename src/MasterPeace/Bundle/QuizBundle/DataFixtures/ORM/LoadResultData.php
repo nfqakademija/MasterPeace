@@ -33,28 +33,28 @@ class LoadResultData implements FixtureInterface
         return [
             [
                 'result' => true,
-                'answer' => false,
+                'answer' => 2,
                 'question' => 1,
                 'quiz' => 2040,
                 'student' => 1040,
             ],
             [
                 'result' => false,
-                'answer' => false,
+                'answer' => 3,
                 'question' => 4,
                 'quiz' => 2040,
                 'student' => 1040,
             ],
             [
                 'result' => false,
-                'answer' => false,
+                'answer' => 5,
                 'question' => 3,
                 'quiz' => 2040,
                 'student' => 1040,
             ],
             [
                 'result' => false,
-                'answer' => true,
+                'answer' => 3,
                 'question' => 2,
                 'quiz' => 2040,
                 'student' => 1040,

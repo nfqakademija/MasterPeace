@@ -32,35 +32,31 @@ class Result
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="answer_id", type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
-     * @ORM\JoinColumn(name="answer", referencedColumnName="id")
      */
     private $answer;
 
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="question_id", type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
-     * @ORM\JoinColumn(name="question", referencedColumnName="id" )
      */
     private $question;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="student_id", type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="student", referencedColumnName="id")
      */
     private $student;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="quiz_id", type="integer")
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
-     * @ORM\JoinColumn(name="quiz", referencedColumnName="id")
      */
     private $quiz;
 
