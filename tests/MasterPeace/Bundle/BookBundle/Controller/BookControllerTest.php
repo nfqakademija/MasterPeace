@@ -49,7 +49,7 @@ class BookControllerTest extends WebTestCase
     private function getLoggedClient()
     {
         $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN], '', '');
+        $this->logIn($client, [User::ROLE_ADMIN]);
 
         return $client;
     }
