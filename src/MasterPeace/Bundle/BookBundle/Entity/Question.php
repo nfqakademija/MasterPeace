@@ -42,7 +42,7 @@ class Question
      *
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
      */
-    private $answer;
+    private $answers;
 
     /**
      * @return integer
@@ -63,7 +63,7 @@ class Question
     /**
      * @param string $title
      *
-     * @return $this
+     * @return Question
      */
     public function setTitle(string $title)
     {
@@ -83,7 +83,7 @@ class Question
     /**
      * @param Book $book
      *
-     * @return $this
+     * @return Question
      */
     public function setBook(Book $book)
     {
@@ -95,19 +95,19 @@ class Question
     /**
      * @return Answer
      */
-    public function getAnswer()
+    public function getAnswers()
     {
-        return $this->answer;
+        return $this->answers;
     }
 
     /**
-     * @param Answer $answer
+     * @param Answer $answers
      *
-     * @return $this
+     * @return Question
      */
-    public function setAnswer(Answer $answer)
+    public function setAnswers(Answer $answers)
     {
-        $this->answer = $answer;
+        $this->answers = $answers;
 
         return $this;
     }
