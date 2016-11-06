@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\BookBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +44,11 @@ class Question
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
      */
     private $answers;
+
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -93,22 +99,22 @@ class Question
     }
 
     /**
-     * @return Answer
-     */
-    public function getAnswers()
-    {
-        return $this->answers;
-    }
-
-    /**
-     * @param Answer $answers
+     * @param Answer $answer
      *
      * @return Question
      */
-    public function setAnswers(Answer $answers)
+    public function addAnswer(Answer $answer)
     {
-        $this->answers = $answers;
+        $this->answers[] = $answer;
 
         return $this;
+    }
+
+    /**
+     * @param Answer $answer
+     */
+    public function removeAnswer(Answer $answer)
+    {
+        $this->answers->removeElement($answer);
     }
 }
