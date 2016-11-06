@@ -12,12 +12,9 @@ class BookControllerTest extends WebTestCase
 {
     use LogInSimulation;
 
-    const USERNAME = 'teacher';
-    const PASSWORD = 'password';
-
     public function testListAction()
     {
-        $client = $this->loginClient();
+        $client = $this->getLoggedClient();
         $crawler = $client->request('GET', '/book/');
         $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
         $this->assertGreaterThan(0, $crawler->filter('td')->count());
@@ -26,7 +23,7 @@ class BookControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
-        $client = $this->loginClient();
+        $client = $this->getLoggedClient();
         $crawler = $client->request('GET', '/book/create');
         $form = $crawler->filter('form[name=book]')->form();
 
@@ -49,10 +46,10 @@ class BookControllerTest extends WebTestCase
     /**
      * @return Client
      */
-    private function loginClient()
+    private function getLoggedClient()
     {
         $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN], self::USERNAME, self::PASSWORD);
+        $this->logIn($client, [User::ROLE_ADMIN], '', '');
 
         return $client;
     }
