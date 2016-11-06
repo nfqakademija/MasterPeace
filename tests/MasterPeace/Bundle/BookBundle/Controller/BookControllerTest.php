@@ -14,7 +14,7 @@ class BookControllerTest extends WebTestCase
     public function testListAction()
     {
         $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN], 'KarolisM', 'password');
+        $this->logIn($client, [User::ROLE_ADMIN]);
 
         $crawler = $client->request('GET', '/book/');
         $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));

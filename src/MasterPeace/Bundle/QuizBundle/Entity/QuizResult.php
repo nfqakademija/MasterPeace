@@ -11,9 +11,9 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
  * Result
  *
  * @ORM\Table(name="result")
- * @ORM\Entity(repositoryClass="MasterPeace\Bundle\QuizBundle\Repository\ResultRepository")
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\QuizBundle\Repository\QuizResultRepository")
  */
-class Result
+class QuizResult
 {
     /**
      * @var int
@@ -23,13 +23,6 @@ class Result
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="result", type="boolean")
-     */
-    private $result;
 
     /**
      * @var Answer
@@ -59,33 +52,12 @@ class Result
      */
     private $quiz;
 
-
     /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
-     * @param boolean $result
-     *
-     * @return Result
-     */
-    public function setResult(bool $result)
-    {
-        $this->result = $result;
-
-        return $this;
     }
 
     /**
@@ -99,7 +71,7 @@ class Result
     /**
      * @param Answer $answer
      *
-     * @return Result
+     * @return QuizResult
      */
     public function setAnswer(Answer $answer)
     {
@@ -119,7 +91,7 @@ class Result
     /**
      * @param Question $question
      *
-     * @return Result
+     * @return QuizResult
      */
     public function setQuestion(Question $question)
     {
@@ -139,7 +111,7 @@ class Result
     /**
      * @param User $student
      *
-     * @return Result
+     * @return QuizResult
      */
     public function setStudent(User $student)
     {
@@ -159,7 +131,7 @@ class Result
     /**
      * @param Quiz $quiz
      *
-     * @return Result
+     * @return QuizResult
      */
     public function setQuiz(Quiz $quiz)
     {
