@@ -39,7 +39,7 @@ class Question
     private $book;
 
     /**
-     * @var Answer
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
      */
