@@ -121,7 +121,7 @@ class Question
     /**
      * @return Answer
      */
-    public function getAnswer()
+    public function getAnswers()
     {
         return $this->answer;
     }
@@ -131,7 +131,7 @@ class Question
      *
      * @return $this
      */
-    public function setAnswer(Answer $answer)
+    public function setAnswers(Answer $answer)
     {
         $this->answer = $answer;
 
