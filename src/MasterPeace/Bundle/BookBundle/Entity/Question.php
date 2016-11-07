@@ -117,4 +117,24 @@ class Question
     {
         $this->answers->removeElement($answer);
     }
+
+    /**
+     * @return Answer
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * @param Answer $answer
+     *
+     * @return $this
+     */
+    public function setAnswer(Answer $answer)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
 }
