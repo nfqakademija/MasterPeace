@@ -67,6 +67,14 @@ class Quiz
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * @param string $title
      *
      * @return Quiz
@@ -79,11 +87,11 @@ class Quiz
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getTitle()
+    public function getTeacher()
     {
-        return $this->title;
+        return $this->teacher;
     }
 
     /**
@@ -99,11 +107,11 @@ class Quiz
     }
 
     /**
-     * @return User
+     * @return Book
      */
-    public function getTeacher()
+    public function getBook()
     {
-        return $this->teacher;
+        return $this->book;
     }
 
     /**
@@ -119,31 +127,31 @@ class Quiz
     }
 
     /**
-     * @return Book
-     */
-    public function getBook()
-    {
-        return $this->book;
-    }
-
-    /**
      * @param Question $question
      *
      * @return Quiz
      */
     public function addQuestion(Question $question)
     {
-        $this->questions[] = $question;
+        if (false === $this->questions->contains($question)) {
+            $this->questions->add($question);
+        }
 
         return $this;
     }
 
     /**
      * @param Question $question
+     *
+     * @return $this
      */
     public function removeQuestion(Question $question)
     {
-        $this->questions->removeElement($question);
+        if ($this->questions->contains($question)) {
+            $this->questions->removeElement($question);
+        }
+
+        return $this;
     }
 
     /**

@@ -10,7 +10,7 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
 /**
  * Result
  *
- * @ORM\Table(name="result")
+ * @ORM\Table(name="quiz_result")
  * @ORM\Entity(repositoryClass="MasterPeace\Bundle\QuizBundle\Repository\QuizResultRepository")
  */
 class QuizResult

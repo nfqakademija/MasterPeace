@@ -105,25 +105,11 @@ class Question
      */
     public function addAnswer(Answer $answer)
     {
-        $this->answers[] = $answer;
+        if (false === $this->answers->contains($answer)) {
+            $this->answers->add($answer);
+        }
 
         return $this;
-    }
-
-    /**
-     * @param Answer $answer
-     */
-    public function removeAnswer(Answer $answer)
-    {
-        $this->answers->removeElement($answer);
-    }
-
-    /**
-     * @return Answer
-     */
-    public function getAnswers()
-    {
-        return $this->answer;
     }
 
     /**
@@ -131,9 +117,31 @@ class Question
      *
      * @return $this
      */
-    public function setAnswers(Answer $answer)
+    public function removeAnswer(Answer $answer)
     {
-        $this->answer = $answer;
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
+    /**
+     * @param ArrayCollection $answers
+     *
+     * @return $this
+     */
+    public function setAnswers(ArrayCollection $answers)
+    {
+        $this->answers = $answers;
 
         return $this;
     }
