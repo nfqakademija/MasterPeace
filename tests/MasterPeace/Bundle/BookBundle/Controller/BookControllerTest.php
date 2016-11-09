@@ -15,10 +15,22 @@ class BookControllerTest extends WebTestCase
     public function testListAction()
     {
         $client = $this->getLoggedClient();
+
         $crawler = $client->request('GET', '/book/');
         $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
         $this->assertGreaterThan(0, $crawler->filter('td')->count());
         $this->assertGreaterThan(0, $crawler->filter('td:contains("Prisukamo paukščio kronikos")')->count());
+    }
+
+    /**
+     * @return Client
+     */
+    private function getLoggedClient()
+    {
+        $client = static::createClient();
+        $this->logIn($client, [User::ROLE_ADMIN]);
+
+        return $client;
     }
 
     public function testCreateAction()
@@ -41,16 +53,5 @@ class BookControllerTest extends WebTestCase
             'Naujas Pavadinimas',
             $client->getResponse()->getContent()
         );
-    }
-
-    /**
-     * @return Client
-     */
-    private function getLoggedClient()
-    {
-        $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN]);
-
-        return $client;
     }
 }

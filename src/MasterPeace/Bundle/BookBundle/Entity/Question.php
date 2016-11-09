@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\BookBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,11 +39,16 @@ class Question
     private $book;
 
     /**
-     * @var Answer
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
      */
-    private $answer;
+    private $answers;
+
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -63,7 +69,7 @@ class Question
     /**
      * @param string $title
      *
-     * @return $this
+     * @return Question
      */
     public function setTitle(string $title)
     {
@@ -83,7 +89,7 @@ class Question
     /**
      * @param Book $book
      *
-     * @return $this
+     * @return Question
      */
     public function setBook(Book $book)
     {
@@ -93,11 +99,17 @@ class Question
     }
 
     /**
-     * @return Answer
+     * @param Answer $answer
+     *
+     * @return Question
      */
-    public function getAnswer()
+    public function addAnswer(Answer $answer)
     {
-        return $this->answer;
+        if (false === $this->answers->contains($answer)) {
+            $this->answers->add($answer);
+        }
+
+        return $this;
     }
 
     /**
@@ -105,9 +117,31 @@ class Question
      *
      * @return $this
      */
-    public function setAnswer(Answer $answer)
+    public function removeAnswer(Answer $answer)
     {
-        $this->answer = $answer;
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
+    /**
+     * @param ArrayCollection $answers
+     *
+     * @return $this
+     */
+    public function setAnswers(ArrayCollection $answers)
+    {
+        $this->answers = $answers;
 
         return $this;
     }

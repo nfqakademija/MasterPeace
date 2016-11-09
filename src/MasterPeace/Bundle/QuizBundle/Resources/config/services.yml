@@ -1,0 +1,4 @@
+services:
+#    master_peace_quiz.example:
+#        class: MasterPeace\Bundle\QuizBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
