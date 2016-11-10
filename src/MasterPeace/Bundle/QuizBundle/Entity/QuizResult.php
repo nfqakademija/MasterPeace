@@ -3,8 +3,6 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
@@ -23,20 +21,6 @@ class QuizResult
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var Answer
-     *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
-     */
-    private $answer;
-
-    /**
-     * @var Question
-     *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
-     */
-    private $question;
 
     /**
      * @var User
@@ -58,46 +42,6 @@ class QuizResult
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Answer
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
-    }
-
-    /**
-     * @param Answer $answer
-     *
-     * @return QuizResult
-     */
-    public function setAnswer(Answer $answer)
-    {
-        $this->answer = $answer;
-
-        return $this;
-    }
-
-    /**
-     * @return Question
-     */
-    public function getQuestion()
-    {
-        return $this->question;
-    }
-
-    /**
-     * @param Question $question
-     *
-     * @return QuizResult
-     */
-    public function setQuestion(Question $question)
-    {
-        $this->question = $question;
-
-        return $this;
     }
 
     /**
