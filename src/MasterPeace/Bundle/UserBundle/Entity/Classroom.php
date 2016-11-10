@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,9 +32,15 @@ class Classroom
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
+     * @ORM\JoinTable(name="user_classroom")
      */
-    private $user;
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -64,20 +71,29 @@ class Classroom
     }
 
     /**
-     * @return User
+     * @param User $user
+     *
+     * @return Classroom
      */
-    public function getUser()
+    public function addUser(User $user)
     {
-        return $this->user;
+        if (false === $this->users->contains($user)) {
+            $this->users->add($user);
+        }
+
+        return $this;
     }
 
     /**
      * @param User $user
-     * @return $this
+     *
+     * @return Classroom
      */
-    public function setUser(User $user)
+    public function removeUser(User $user)
     {
-        $this->user = $user;
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
 
         return $this;
     }
