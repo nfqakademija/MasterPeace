@@ -73,7 +73,9 @@ class Classroom
     }
 
     /**
-     * @return User
+     * @param User $user
+     *
+     * @return Classroom
      */
     public function getTeacher()
     {
