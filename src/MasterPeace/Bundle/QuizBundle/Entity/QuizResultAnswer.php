@@ -46,8 +46,6 @@ class QuizResultAnswer
 
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -65,6 +63,7 @@ class QuizResultAnswer
 
     /**
      * @param $quizResult
+     *
      * @return QuizResultAnswer
      */
     public function setQuizResult($quizResult)
