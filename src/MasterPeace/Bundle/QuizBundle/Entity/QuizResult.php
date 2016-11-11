@@ -26,7 +26,7 @@ class QuizResult
     /**
      * @var User
      *
-     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $student;
 
