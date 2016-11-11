@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
@@ -41,7 +42,12 @@ class QuizResult
      *
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer", mappedBy="quizResult")
      */
-    private $quizResultAnswer;
+    private $quizResultAnswers;
+
+    public function __construct()
+    {
+        $this->quizResultAnswers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -92,18 +98,44 @@ class QuizResult
     }
 
     /**
-     * @return QuizResultAnswer
+     * @return ArrayCollection
      */
-    public function getQuizResultAnswer(): QuizResultAnswer
+    public function getQuizResultAnswers()
     {
-        return $this->quizResultAnswer;
+        return $this->quizResultAnswers;
+    }
+
+    /**
+     * @param QuizResultAnswer $quizResultAnswers
+     */
+    public function setQuizResultAnswers(QuizResultAnswer $quizResultAnswers)
+    {
+        $this->quizResultAnswers = $quizResultAnswers;
     }
 
     /**
      * @param QuizResultAnswer $quizResultAnswer
+     * @return $this
      */
-    public function setQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    public function addQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
     {
-        $this->quizResultAnswer = $quizResultAnswer;
+        if (false === $this->quizResultAnswers->contains($quizResultAnswer)) {
+            $this->quizResultAnswers->add($quizResultAnswer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param QuizResultAnswer $quizResultAnswer
+     * @return $this
+     */
+    public function removeAnswer(QuizResultAnswer $quizResultAnswer)
+    {
+        if ($this->quizResultAnswers->contains($quizResultAnswer)) {
+            $this->quizResultAnswers->removeElement($quizResultAnswer);
+        }
+
+        return $this;
     }
 }

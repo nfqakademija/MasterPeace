@@ -26,7 +26,7 @@ class QuizResultAnswer
     /**
      * @var QuizResult
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResult", inversedBy="quizResultAnswer")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResult", inversedBy="quizResultAnswers")
      */
     private $quizResult;
 
