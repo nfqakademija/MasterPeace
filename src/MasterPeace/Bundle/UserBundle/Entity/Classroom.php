@@ -31,15 +31,20 @@ class Classroom
 
     /**
      * @var User
-     *
-     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
-     * @ORM\JoinTable(name="user_classroom")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
-    private $users;
+    private $teacher;
+
+    /**
+     * @var User
+     *
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent")
+     */
+    private $students;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     /**
@@ -63,7 +68,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -71,14 +76,30 @@ class Classroom
     }
 
     /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
+
+    /**
+     * @param User $teacher
+     */
+    public function setTeacher(User $teacher)
+    {
+        $this->teacher = $teacher;
+    }
+
+    /**
      * @param User $user
      *
      * @return Classroom
      */
-    public function addUser(User $user)
+    public function addStudent(User $user)
     {
-        if (false === $this->users->contains($user)) {
-            $this->users->add($user);
+        if (false === $this->students->contains($user)) {
+            $this->students->add($user);
         }
 
         return $this;
@@ -89,10 +110,10 @@ class Classroom
      *
      * @return Classroom
      */
-    public function removeUser(User $user)
+    public function removeStudent(User $user)
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
+        if ($this->students->contains($user)) {
+            $this->students->removeElement($user);
         }
 
         return $this;
