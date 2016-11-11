@@ -2,20 +2,25 @@
 namespace MasterPeace\Bundle\UpReadBundle\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait TimestampableTrait
 {
     /**
      * @var \DateTime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
+     *
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
