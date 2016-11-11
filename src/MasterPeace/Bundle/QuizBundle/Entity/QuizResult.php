@@ -25,7 +25,7 @@ class QuizResult
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $student;
 
@@ -35,6 +35,13 @@ class QuizResult
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
      */
     private $quiz;
+
+    /**
+     * @var QuizResultAnswer
+     *
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer", mappedBy="quizResult")
+     */
+    private $quizResultAnswer;
 
     /**
      * @return int
@@ -82,5 +89,21 @@ class QuizResult
         $this->quiz = $quiz;
 
         return $this;
+    }
+
+    /**
+     * @return QuizResultAnswer
+     */
+    public function getQuizResultAnswer(): QuizResultAnswer
+    {
+        return $this->quizResultAnswer;
+    }
+
+    /**
+     * @param QuizResultAnswer $quizResultAnswer
+     */
+    public function setQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    {
+        $this->quizResultAnswer = $quizResultAnswer;
     }
 }

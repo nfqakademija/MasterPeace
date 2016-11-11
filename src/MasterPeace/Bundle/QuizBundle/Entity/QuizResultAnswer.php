@@ -26,7 +26,7 @@ class QuizResultAnswer
     /**
      * @var QuizResult
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResult")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResult", inversedBy="quizResultAnswer")
      */
     private $quizResult;
 
@@ -43,7 +43,6 @@ class QuizResultAnswer
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
      */
     private $question;
-
 
     /**
      * @return int
@@ -62,11 +61,11 @@ class QuizResultAnswer
     }
 
     /**
-     * @param $quizResult
+     * @param QuizResultAnswer $quizResult
      *
      * @return QuizResultAnswer
      */
-    public function setQuizResult($quizResult)
+    public function setQuizResult(QuizResultAnswer $quizResult)
     {
         $this->quizResult = $quizResult;
 
