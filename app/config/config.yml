@@ -69,3 +69,9 @@ fos_user:
     registration:
         form:
             type: MasterPeace\Bundle\UserBundle\Form\RegistrationType
+
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    orm:
+        default:
+            timestampable: true
