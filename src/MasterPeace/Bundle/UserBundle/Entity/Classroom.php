@@ -28,6 +28,12 @@ class Classroom
     private $title;
     /**
      * @var User
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     */
+    private $teacher;
+
+    /**
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
      */
@@ -70,6 +76,22 @@ class Classroom
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
+
+    /**
+     * @param User $teacher
+     */
+    public function setTeacher(User $teacher)
+    {
+        $this->teacher = $teacher;
     }
 
     /**
