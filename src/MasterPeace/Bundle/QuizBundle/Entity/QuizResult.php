@@ -26,7 +26,7 @@ class QuizResult
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
     private $student;
 
@@ -38,7 +38,7 @@ class QuizResult
     private $quiz;
 
     /**
-     * @var QuizResultAnswer
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer", mappedBy="quizResult")
      */
@@ -106,9 +106,9 @@ class QuizResult
     }
 
     /**
-     * @param QuizResultAnswer $quizResultAnswers
+     * @param ArrayCollection $quizResultAnswers
      */
-    public function setQuizResultAnswers(QuizResultAnswer $quizResultAnswers)
+    public function setQuizResultAnswers(ArrayCollection $quizResultAnswers)
     {
         $this->quizResultAnswers = $quizResultAnswers;
     }
@@ -130,7 +130,7 @@ class QuizResult
      * @param QuizResultAnswer $quizResultAnswer
      * @return $this
      */
-    public function removeAnswer(QuizResultAnswer $quizResultAnswer)
+    public function removeQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
     {
         if ($this->quizResultAnswers->contains($quizResultAnswer)) {
             $this->quizResultAnswers->removeElement($quizResultAnswer);
