@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
@@ -16,6 +17,8 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
  */
 class Quiz
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *

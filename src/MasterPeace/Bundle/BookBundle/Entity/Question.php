@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 
 /**
  * Question
@@ -13,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
+    use TimestampableTrait;
+
     const ANSWERS_COUNT = 4;
 
     /**
