@@ -29,10 +29,9 @@ class ClassroomStudent
     private $student;
 
     /**
-     * @var integer,
+     * @var integer
      *
-     * @ORM\Column(name="classroom_id", type="integer,")
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", inversedBy="students")
      */
     private $classroom;
 
@@ -52,7 +51,7 @@ class ClassroomStudent
     }
 
     /**
-     * @param integer, $student
+     * @param integer $student
      *
      * @return ClassroomStudent
      */
@@ -72,7 +71,7 @@ class ClassroomStudent
     }
 
     /**
-     * @param integer, $classroom
+     * @param integer $classroom
      *
      * @return ClassroomStudent
      */
