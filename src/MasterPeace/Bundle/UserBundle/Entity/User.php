@@ -55,7 +55,7 @@ class User extends BaseUser
     /**
      * @var Classroom
      *
-     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="teacher")
      */
 
     protected $classrooms;
@@ -158,12 +158,28 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function removeUser(Classroom $classroom)
+    public function removeClassroom(Classroom $classroom)
     {
         if ($this->classrooms->contains($classroom)) {
             $this->classrooms->removeElement($classroom);
         }
 
         return $this;
+    }
+
+    /**
+     * @return Classroom
+     */
+    public function getClassrooms()
+    {
+        return $this->classrooms;
+    }
+
+    /**
+     * @param Classroom $classrooms
+     */
+    public function setClassrooms(Classroom $classrooms)
+    {
+        $this->classrooms = $classrooms;
     }
 }
