@@ -29,7 +29,7 @@ security:
 
             logout:
                 path:   /logout
-                target: /
+                target: /login
 
         main:
             pattern: ^/
@@ -45,5 +45,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # TODO add separate paths for student and teacher users
-        - { path: ^/*, role: [ROLE_ADMIN] }
+        - { path: ^/student/, role: [ROLE_STUDENT] }
+        - { path: ^/teacher/, role: [ROLE_TEACHER] }
         - { path: ^/admin/, role: ROLE_ADMIN }

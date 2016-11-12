@@ -5,3 +5,8 @@ book:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+home:
+    resource: "@MasterPeaceUpReadBundle/Controller/"
+    type:     annotation
+    prefix:   /
