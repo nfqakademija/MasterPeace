@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
@@ -55,8 +56,22 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="teacher")
+     */
+    protected $classrooms;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->classrooms = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
+
     public function getId()
     {
         return $this->id;
@@ -124,5 +139,49 @@ class User extends BaseUser
     public function isTeacher()
     {
         return in_array(self::ROLE_TEACHER, $this->getRoles(), true);
+    }
+
+    /**
+     * @param Classroom $classroom
+     *
+     * @return User
+     */
+    public function addClassroom(Classroom $classroom)
+    {
+        if (false === $this->classrooms->contains($classroom)) {
+            $this->classrooms->add($classroom);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Classroom $classroom
+     *
+     * @return User
+     */
+    public function removeClassroom(Classroom $classroom)
+    {
+        if ($this->classrooms->contains($classroom)) {
+            $this->classrooms->removeElement($classroom);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getClassrooms()
+    {
+        return $this->classrooms;
+    }
+
+    /**
+     * @param ArrayCollection $classrooms
+     */
+    public function setClassrooms(ArrayCollection $classrooms)
+    {
+        $this->classrooms = $classrooms;
     }
 }
