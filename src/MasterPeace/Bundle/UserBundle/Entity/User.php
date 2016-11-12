@@ -53,7 +53,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var Classroom
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="teacher")
      */
