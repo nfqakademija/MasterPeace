@@ -4,10 +4,10 @@ namespace MasterPeace\Bundle\UserBundle\Controller;
 
 use MasterPeace\Bundle\UserBundle\Entity\Classroom;
 use MasterPeace\Bundle\UserBundle\Form\ClassroomType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ClassroomController extends Controller
 {
@@ -40,6 +40,7 @@ class ClassroomController extends Controller
     public function createAction(Request $request)
     {
         $classroom = new Classroom();
+        $classroom->setTeacher($this->getUser());
         $form = $this->createForm(ClassroomType::class, $classroom);
 
         $form->setData($classroom);
