@@ -44,7 +44,6 @@ class QuizResultAnswer
      */
     private $question;
 
-
     /**
      * @return int
      */
@@ -62,11 +61,11 @@ class QuizResultAnswer
     }
 
     /**
-     * @param $quizResult
+     * @param QuizResult $quizResult
      *
      * @return QuizResultAnswer
      */
-    public function setQuizResult($quizResult)
+    public function setQuizResult(QuizResult $quizResult)
     {
         $this->quizResult = $quizResult;
 
