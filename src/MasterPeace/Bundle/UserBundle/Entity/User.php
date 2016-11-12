@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser
 {
+    use TimestampableTrait;
+
     const ROLE_STUDENT = 'ROLE_STUDENT';
     const ROLE_TEACHER = 'ROLE_TEACHER';
     const ROLE_ADMIN = 'ROLE_ADMIN';

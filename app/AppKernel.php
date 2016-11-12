@@ -17,11 +17,13 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             //MasterPeace
             new MasterPeace\Bundle\BookBundle\MasterPeaceBookBundle(),
             new MasterPeace\Bundle\UserBundle\MasterPeaceUserBundle(),
             new MasterPeace\Bundle\QuizBundle\MasterPeaceQuizBundle(),
+            new MasterPeace\Bundle\UpReadBundle\MasterPeaceUpReadBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

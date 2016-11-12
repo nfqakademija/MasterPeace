@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
@@ -14,6 +15,8 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
  */
 class QuizResult
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *

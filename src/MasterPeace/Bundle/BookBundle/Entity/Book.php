@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Book
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *
