@@ -3,5 +3,10 @@ book:
     type:     annotation
     prefix:   /book/
 
+classroom:
+    resource: "@MasterPeaceUserBundle/Controller/ClassroomController.php"
+    type:     annotation
+    prefix:   /classroom/
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
