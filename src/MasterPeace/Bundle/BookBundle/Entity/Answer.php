@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 
 /**
  * Answer
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Answer
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *
