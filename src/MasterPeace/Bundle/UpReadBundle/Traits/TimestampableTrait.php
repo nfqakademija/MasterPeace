@@ -24,7 +24,6 @@ trait TimestampableTrait
      */
     private $updatedAt;
 
-
     /**
      * @return \DateTime
      */
