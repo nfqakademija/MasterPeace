@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block container %}
+    <div class="panel panel-default">
+        <table class="table">
+            {% for classroom in classrooms %}
+                <tr>
+                    <td>
+                        {{ classroom.title }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
