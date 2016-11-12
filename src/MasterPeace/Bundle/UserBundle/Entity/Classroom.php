@@ -36,7 +36,7 @@ class Classroom
     private $teacher;
 
     /**
-     * @var User
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent", mappedBy="classroom")
      */
@@ -85,6 +85,8 @@ class Classroom
 
     /**
      * @param User $teacher
+     *
+     * @return $this
      */
     public function setTeacher(User $teacher)
     {
