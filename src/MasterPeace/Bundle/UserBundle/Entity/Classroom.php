@@ -31,6 +31,7 @@ class Classroom
 
     /**
      * @var User
+     *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
      */
     private $teacher;
@@ -94,28 +95,28 @@ class Classroom
     }
 
     /**
-     * @param User $user
+     * @param User $student
      *
      * @return Classroom
      */
-    public function addStudent(User $user)
+    public function addStudent(User $student)
     {
-        if (false === $this->students->contains($user)) {
-            $this->students->add($user);
+        if (false === $this->students->contains($student)) {
+            $this->students->add($student);
         }
 
         return $this;
     }
 
     /**
-     * @param User $user
+     * @param User $student
      *
      * @return Classroom
      */
-    public function removeStudent(User $user)
+    public function removeStudent(User $student)
     {
-        if ($this->students->contains($user)) {
-            $this->students->removeElement($user);
+        if ($this->students->contains($student)) {
+            $this->students->removeElement($student);
         }
 
         return $this;
