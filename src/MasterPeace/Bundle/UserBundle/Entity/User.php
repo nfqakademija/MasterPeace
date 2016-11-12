@@ -60,7 +60,6 @@ class User extends BaseUser
      *
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="teacher")
      */
-
     protected $classrooms;
 
     public function __construct()
@@ -171,7 +170,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return Classroom
+     * @return ArrayCollection
      */
     public function getClassrooms()
     {
@@ -179,9 +178,9 @@ class User extends BaseUser
     }
 
     /**
-     * @param Classroom $classrooms
+     * @param ArrayCollection $classrooms
      */
-    public function setClassrooms(Classroom $classrooms)
+    public function setClassrooms(ArrayCollection $classrooms)
     {
         $this->classrooms = $classrooms;
     }
