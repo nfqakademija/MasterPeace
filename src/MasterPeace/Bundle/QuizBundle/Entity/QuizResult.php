@@ -2,9 +2,8 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
@@ -28,20 +27,6 @@ class QuizResult
     private $id;
 
     /**
-     * @var Answer
-     *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
-     */
-    private $answer;
-
-    /**
-     * @var Question
-     *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
-     */
-    private $question;
-
-    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
@@ -56,51 +41,23 @@ class QuizResult
     private $quiz;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer", mappedBy="quizResult")
+     */
+    private $quizResultAnswers;
+
+    public function __construct()
+    {
+        $this->quizResultAnswers = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Answer
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
-    }
-
-    /**
-     * @param Answer $answer
-     *
-     * @return QuizResult
-     */
-    public function setAnswer(Answer $answer)
-    {
-        $this->answer = $answer;
-
-        return $this;
-    }
-
-    /**
-     * @return Question
-     */
-    public function getQuestion()
-    {
-        return $this->question;
-    }
-
-    /**
-     * @param Question $question
-     *
-     * @return QuizResult
-     */
-    public function setQuestion(Question $question)
-    {
-        $this->question = $question;
-
-        return $this;
     }
 
     /**
@@ -139,6 +96,48 @@ class QuizResult
     public function setQuiz(Quiz $quiz)
     {
         $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getQuizResultAnswers()
+    {
+        return $this->quizResultAnswers;
+    }
+
+    /**
+     * @param ArrayCollection $quizResultAnswers
+     */
+    public function setQuizResultAnswers(ArrayCollection $quizResultAnswers)
+    {
+        $this->quizResultAnswers = $quizResultAnswers;
+    }
+
+    /**
+     * @param QuizResultAnswer $quizResultAnswer
+     * @return $this
+     */
+    public function addQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    {
+        if (false === $this->quizResultAnswers->contains($quizResultAnswer)) {
+            $this->quizResultAnswers->add($quizResultAnswer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param QuizResultAnswer $quizResultAnswer
+     * @return $this
+     */
+    public function removeQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    {
+        if ($this->quizResultAnswers->contains($quizResultAnswer)) {
+            $this->quizResultAnswers->removeElement($quizResultAnswer);
+        }
 
         return $this;
     }
