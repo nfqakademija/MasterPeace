@@ -61,11 +61,11 @@ class QuizResultAnswer
     }
 
     /**
-     * @param QuizResultAnswer $quizResult
+     * @param QuizResult $quizResult
      *
      * @return QuizResultAnswer
      */
-    public function setQuizResult(QuizResultAnswer $quizResult)
+    public function setQuizResult(QuizResult $quizResult)
     {
         $this->quizResult = $quizResult;
 
