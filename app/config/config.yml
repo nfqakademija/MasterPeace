@@ -77,6 +77,10 @@ stof_doctrine_extensions:
             timestampable: true
 
 easy_admin:
+    site_name: 'UpRead-Admin'
+    design:
+        color_scheme: 'dark'
+        brand_color: '#333333'
     entities:
         User:
             class: MasterPeace\Bundle\UserBundle\Entity\User
@@ -88,19 +92,50 @@ easy_admin:
                     - lastLogin
                     - { property: 'plainPassword', type: 'text', type_options: { required: false } }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+            label: 'User'
+            list:
+                title: 'User manager'
         Classroom:
             class: MasterPeace\Bundle\UserBundle\Entity\Classroom
+            label: 'Classroom'
+            list:
+                title: 'Classroom manager'
         ClassroomStudent:
             class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
+            label: 'Classroom Student'
+            list:
+                title: 'Classroom Student manager'
         Book:
             class: MasterPeace\Bundle\BookBundle\Entity\Book
+            label: 'Book'
+            list:
+                title: 'Book manager'
         Quiz:
             class: MasterPeace\Bundle\QuizBundle\Entity\Quiz
+            label: 'Quiz'
+            list:
+                title: 'Quiz manager'
         Question:
             class: MasterPeace\Bundle\BookBundle\Entity\Question
+            label: 'Question'
+            list:
+                title: 'Question manager'
         Answer:
             class: MasterPeace\Bundle\BookBundle\Entity\Answer
+            label: 'Answer'
+            list:
+                title: 'Answer manager'
         QuizResult:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResult
+            label: 'Quiz Result'
+            list:
+                title: 'Quiz result manager'
         QuizResultAnswer:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
+            label: 'Quiz Result Answer'
+            list:
+                title: 'Quiz result answer manager'
+    edit:
+        actions: ['show']
+    list:
+        actions: ['edit', 'search']
