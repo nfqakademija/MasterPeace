@@ -119,4 +119,14 @@ class Classroom
 
         return $this;
     }
+
+    /**
+     * @return ArrayCollection
+     *
+     * @return ArrayCollection
+     */
+    public function getStudents()
+    {
+        return $this->students;
+    }
 }
