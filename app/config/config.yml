@@ -75,3 +75,16 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+easy_admin:
+    entities:
+        - MasterPeace\Bundle\BookBundle\Entity\Answer
+        - MasterPeace\Bundle\BookBundle\Entity\Book
+        - MasterPeace\Bundle\BookBundle\Entity\Question
+        - MasterPeace\Bundle\QuizBundle\Entity\Quiz
+        - MasterPeace\Bundle\QuizBundle\Entity\QuizResult
+        - MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
+        - MasterPeace\Bundle\UserBundle\Entity\Classroom
+        - MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
+        - MasterPeace\Bundle\UserBundle\Entity\User
+
