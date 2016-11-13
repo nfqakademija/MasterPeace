@@ -2,7 +2,7 @@
 
 namespace Tests\MasterPeace\Bundle\UserBundle\Traits;
 
-use Symfony\Component\BrowserKit\Client;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -12,7 +12,7 @@ trait LogInSimulation
      * @param Client $client
      * @param array $roles
      * @param string $username
-     * @param string $password
+     * @param null $password
      */
     public function logIn(Client $client, array $roles, $username = 'admin', $password = null)
     {

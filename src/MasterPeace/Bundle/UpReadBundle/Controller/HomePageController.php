@@ -4,46 +4,25 @@ namespace MasterPeace\Bundle\UpReadBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomePageController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function redirectUserAction()
+    public function redirectAction()
     {
         $response = null;
 
         if ($this->getUser()->isTeacher()) {
-            $response = $this->render('MasterPeaceUpReadBundle::teacher.html.twig');
+            $response = $this->render('MasterPeaceUpReadBundle:HomePage:teacher.html.twig');
         }
 
         if ($this->getUser()->isStudent()) {
-            $response = $this->render('MasterPeaceUpReadBundle::student.html.twig');
-        }
-
-        if ($this->getUser()->isAdmin()) {
-            $response = $this->render('MasterPeaceUpReadBundle::admin.html.twig');
-        }
-
-        return $response;
-    }
-
-    /**
-     * @Route("/admin", name="admin")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function redirectAdminAction()
-    {
-        $response = null;
-
-        if ($this->getUser()->isAdmin()) {
-            $response = $this->render('MasterPeaceUpReadBundle::admin.html.twig');
-        } else {
-            $response = $this->render('MasterPeaceUserBundle::layout.html.twig');
+            $response = $this->render('MasterPeaceUpReadBundle:HomePage:student.html.twig');
         }
 
         return $response;
