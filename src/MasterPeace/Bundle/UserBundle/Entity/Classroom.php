@@ -1,7 +1,9 @@
 <?php
 namespace MasterPeace\Bundle\UserBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Classroom
  *
@@ -36,10 +38,12 @@ class Classroom
      * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent", mappedBy="classroom")
      */
     private $students;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
     }
+
     /**
      * @return integer
      */
@@ -47,6 +51,7 @@ class Classroom
     {
         return $this->id;
     }
+
     /**
      * @return string
      */
@@ -54,6 +59,7 @@ class Classroom
     {
         return $this->title;
     }
+
     /**
      * @param string $title
      *
@@ -62,8 +68,10 @@ class Classroom
     public function setTitle(string $title)
     {
         $this->title = $title;
+
         return $this;
     }
+
     /**
      * @return User
      */
@@ -71,6 +79,7 @@ class Classroom
     {
         return $this->teacher;
     }
+
     /**
      * @param User $teacher
      *
@@ -79,7 +88,10 @@ class Classroom
     public function setTeacher(User $teacher)
     {
         $this->teacher = $teacher;
+
+        return $this;
     }
+
     /**
      * @param User $student
      *
@@ -90,8 +102,10 @@ class Classroom
         if (false === $this->students->contains($student)) {
             $this->students->add($student);
         }
+
         return $this;
     }
+
     /**
      * @param User $student
      *
@@ -102,6 +116,7 @@ class Classroom
         if ($this->students->contains($student)) {
             $this->students->removeElement($student);
         }
+
         return $this;
     }
 }
