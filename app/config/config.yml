@@ -87,16 +87,23 @@ easy_admin:
             form:
                 fields:
                     - username
+                    - name
+                    - surname
                     - email
                     - enabled
                     - lastLogin
                     - { property: 'plainPassword', type: 'text', type_options: { required: false } }
-                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Studentas': 'ROLE_STUDEN', 'Mokytojas': 'ROLE_TEACHER', 'Administratorius': 'ROLE_ADMIN' } } }
             label: 'User'
             list:
                 title: 'User manager'
         Classroom:
             class: MasterPeace\Bundle\UserBundle\Entity\Classroom
+            form:
+                fields:
+                    - title
+                    - teacher
+                    - students
             label: 'Classroom'
             list:
                 title: 'Classroom manager'
