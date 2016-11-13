@@ -36,25 +36,32 @@
                                                 class="text-primary">UpRead</span></h2></div>
                             </div>
                             <div class="panel-body">
-                                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                                <form id="loginform" class="form-horizontal" role="form">
+                                {% if error %}
+                                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                                <form action="{{ path("fos_user_security_check") }}" method="post" id="loginform"
+                                      class="form-horizontal" role="form">
+                                    {% if csrf_token %}
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                                    {% endif %}
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                         <input id="login-username" type="text" class="form-control" name="username"
-                                               value="" placeholder="vartotojo vardas">
+                                               value="" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                                         <input id="login-password" type="password" class="form-control" name="password"
-                                               placeholder="slaptažodis">
+                                               placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}">
                                     </div>
                                     <div class="input-group col-xs-12 text-center login-action">
                                         <div class="checkbox">
                                             <label>
                                                 <input id="login-remember" type="checkbox" name="remember" value="1"
-                                                       style="margin-top: 10px;"> Prisiminti mane &nbsp;
+                                                       style="margin-top: 10px;"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                                &nbsp;
                                                 <span id="btn-login"><a href="#"
-                                                                        class="btn btn-success">Prisijungi  </a></span>
+                                                                        class="btn btn-success">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}  </a></span>
                                             </label>
                                         </div>
                                     </div>
@@ -73,7 +80,8 @@
                 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                     <div class="container text-center">
                         <div class="footer-content">
-                            Dar nesi UpRead platformos narys? &nbsp; <a href="#" class="btn btn-primary"> Registruokis ČIA </a>
+                            Dar nesi UpRead platformos narys? &nbsp; <a href="#" class="btn btn-primary"> Registruokis
+                                ČIA </a>
                         </div>
                     </div>
                 </nav>
