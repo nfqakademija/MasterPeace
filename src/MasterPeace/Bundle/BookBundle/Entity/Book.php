@@ -207,4 +207,12 @@ class Book
     {
         return $this->isbnCode;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }

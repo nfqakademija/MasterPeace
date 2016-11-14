@@ -62,6 +62,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# FOS USER BUNDLE CONFIGURATIONS #
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -76,6 +77,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
 
+# EASY ADMIN CONFIGURATIONS #
 easy_admin:
     site_name: 'UpRead-Admin'
     design:
@@ -106,56 +108,121 @@ easy_admin:
                 title: 'User manager'
         Classroom:
             class: MasterPeace\Bundle\UserBundle\Entity\Classroom
-            #TODO: finish form field Students! how to pass an array from session
             form:
                 fields:
-                    - title
-                    - teacher
+                    - { property: 'title', label: 'Klasės pavadinimas' }
+                    - { property: 'teacher', label: 'Mokytojas' }
                     - { property: 'students', label: 'Studentai' }
             label: 'Classroom'
             list:
                 title: 'Classroom manager'
+                fields:
+                    - { property: 'title', label: 'Klasės pavadinimas' }
+                    - { property: 'teacher', label: 'Mokytojas' }
+                    - { property: 'students', label: 'Studentai' }
         ClassroomStudent:
             class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
-            #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'classroom', label: 'Klasė' }
+                    - { property: 'student', label: 'Mokinys' }
             label: 'Classroom Student'
             list:
                 title: 'Classroom Student manager'
+                fields:
+                    - { property: 'classroom', label: 'Klasės ID' }
+                    - { property: 'student', label: 'Priskitas Mokinys' }
         Book:
             class: MasterPeace\Bundle\BookBundle\Entity\Book
-            #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'title', label: 'Knygos pavadinimas' }
+                    - { property: 'author', label: 'Autorius' }
+                    - { property: 'year', label: 'Metai' }
+                    - { property: 'publisher', label: 'Leidėjas' }
+                    - { property: 'cover', label: 'Viršelis' }
+                    - { property: 'isbnCode', label: 'ISBN' }
             label: 'Book'
             list:
                 title: 'Book manager'
+                fields:
+                    - { property: 'title', label: 'Knygos pavadinimas' }
+                    - { property: 'author', label: 'Autorius' }
+                    - { property: 'year', label: 'Metai' }
+                    - { property: 'publisher', label: 'Leidėjas' }
+                    - { property: 'cover', label: 'Viršelis' }
+                    - { property: 'isbnCode', label: 'ISBN' }
         Quiz:
             class: MasterPeace\Bundle\QuizBundle\Entity\Quiz
-            #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'title', label: 'Pavadinimas' }
+                    - { property: 'teacher', label: 'Mokytojas' }
+                    - { property: 'book', label: 'Knyga' }
+                    - { property: 'questions', label: 'Klausimai' }
             label: 'Quiz'
             list:
                 title: 'Quiz manager'
+                fields:
+                    - { property: 'title', label: 'Pavadinimas' }
+                    - { property: 'teacher', label: 'Mokytojas' }
+                    - { property: 'book', label: 'Knyga' }
+                    - { property: 'questions', label: 'Klausimai' }
         Question:
             class: MasterPeace\Bundle\BookBundle\Entity\Question
-            #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'title', label: 'Pavadinimas' }
+                    - { property: 'book', label: 'Knyga' }
+                    - { property: 'answers', label: 'Atsakymai' }
+
             label: 'Question'
             list:
                 title: 'Question manager'
+                fields:
+                    - { property: 'title', label: 'Pavadinimas' }
+                    - { property: 'book', label: 'Knyga' }
+                    - { property: 'answers', label: 'Atsakymai' }
         Answer:
             class: MasterPeace\Bundle\BookBundle\Entity\Answer
+            form:
+                fields:
+                    - { property: 'title', label: 'Klausimo pavadinimas' }
+                    - { property: 'question', label: 'Klausimas' }
+                    - { property: 'correct', label: 'Teisingas' }
             label: 'Answer'
             list:
                 title: 'Answer manager'
+                fields:
+                    - { property: 'question', label: 'Klausimo ID' }
+                    - { property: 'title', label: 'Klausimo pavadinimas' }
+                    - { property: 'correct', label: 'Teisingas' }
         QuizResult:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResult
-            #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'student', label: 'Mokinys' }
+                    - { property: 'quiz', label: 'Klausimyno ID' }
             label: 'Quiz Result'
             list:
                 title: 'Quiz result manager'
+                fields:
+                    - { property: 'student', label: 'Mokinys' }
+                    - { property: 'quiz', label: 'Klausimyno ID' }
         QuizResultAnswer:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
-           #TODO: finish form and list fields
+            form:
+                fields:
+                    - { property: 'quizResult', label: 'Rezultato ID' }
+                    - { property: 'answer', label: 'Atsakymas' }
+                    - { property: 'question', label: 'Klausimas' }
             label: 'Quiz Result Answer'
             list:
                 title: 'Quiz result answer manager'
+                fields:
+                    - { property: 'quizResult', label: 'Rezultato ID' }
+                    - { property: 'answer', label: 'Atsakymas' }
+                    - { property: 'question', label: 'Klausimas' }
     edit:
         actions: ['show']
     list:
