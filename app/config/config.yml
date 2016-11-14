@@ -84,6 +84,14 @@ easy_admin:
     entities:
         User:
             class: MasterPeace\Bundle\UserBundle\Entity\User
+            list:
+                fields:
+                    - { property: 'username', label: 'Vartotojo vardas' }
+                    - { property: 'name', label: 'Vardas' }
+                    - { property: 'surname', label: 'Pavardė' }
+                    - { property: 'email', label: 'El. paštas' }
+                    - { property: 'lastLogin', label: 'Paskutinis prisijungimas' }
+                    - { property: 'roles', label: 'Rolės' }
             form:
                 fields:
                     - { property: 'username', label: 'Vartotojo vardas' }
@@ -109,25 +117,25 @@ easy_admin:
                 title: 'Classroom manager'
         ClassroomStudent:
             class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
-            #TODO: finish form fields
+            #TODO: finish form and list fields
             label: 'Classroom Student'
             list:
                 title: 'Classroom Student manager'
         Book:
             class: MasterPeace\Bundle\BookBundle\Entity\Book
-            #TODO: finish form fields
+            #TODO: finish form and list fields
             label: 'Book'
             list:
                 title: 'Book manager'
         Quiz:
             class: MasterPeace\Bundle\QuizBundle\Entity\Quiz
-            #TODO: finish form fields
+            #TODO: finish form and list fields
             label: 'Quiz'
             list:
                 title: 'Quiz manager'
         Question:
             class: MasterPeace\Bundle\BookBundle\Entity\Question
-            #TODO: finish form fields
+            #TODO: finish form and list fields
             label: 'Question'
             list:
                 title: 'Question manager'
@@ -138,13 +146,13 @@ easy_admin:
                 title: 'Answer manager'
         QuizResult:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResult
-            #TODO: finish form fields
+            #TODO: finish form and list fields
             label: 'Quiz Result'
             list:
                 title: 'Quiz result manager'
         QuizResultAnswer:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
-            #TODO: finish form fields
+           #TODO: finish form and list fields
             label: 'Quiz Result Answer'
             list:
                 title: 'Quiz result answer manager'
