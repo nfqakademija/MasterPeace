@@ -86,44 +86,48 @@ easy_admin:
             class: MasterPeace\Bundle\UserBundle\Entity\User
             form:
                 fields:
-                    - username
-                    - name
-                    - surname
-                    - email
-                    - enabled
-                    - lastLogin
-                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
-                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Studentas': 'ROLE_STUDEN', 'Mokytojas': 'ROLE_TEACHER', 'Administratorius': 'ROLE_ADMIN' } } }
+                    - { property: 'username', label: 'Vartotojo vardas' }
+                    - { property: 'name', label: 'Vardas' }
+                    - { property: 'surname', label: 'Pavardė' }
+                    - { property: 'email', label: 'El. paštas' }
+                    - { property: 'lastLogin', label: 'Paskutinis prisijungimas'}
+                    - { property: 'plainPassword', type: 'text', type_options: { required: false }, label: 'Slaptažodis' }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Studentas': 'ROLE_STUDEN', 'Mokytojas': 'ROLE_TEACHER', 'Administratorius': 'ROLE_ADMIN' } }, label: 'Rolė' }
             label: 'User'
             list:
                 title: 'User manager'
         Classroom:
             class: MasterPeace\Bundle\UserBundle\Entity\Classroom
+            #TODO: finish form field Students! how to pass an array from session
             form:
                 fields:
                     - title
                     - teacher
-                    - students
+                    - { property: 'students', label: 'Studentai' }
             label: 'Classroom'
             list:
                 title: 'Classroom manager'
         ClassroomStudent:
             class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
+            #TODO: finish form fields
             label: 'Classroom Student'
             list:
                 title: 'Classroom Student manager'
         Book:
             class: MasterPeace\Bundle\BookBundle\Entity\Book
+            #TODO: finish form fields
             label: 'Book'
             list:
                 title: 'Book manager'
         Quiz:
             class: MasterPeace\Bundle\QuizBundle\Entity\Quiz
+            #TODO: finish form fields
             label: 'Quiz'
             list:
                 title: 'Quiz manager'
         Question:
             class: MasterPeace\Bundle\BookBundle\Entity\Question
+            #TODO: finish form fields
             label: 'Question'
             list:
                 title: 'Question manager'
@@ -134,11 +138,13 @@ easy_admin:
                 title: 'Answer manager'
         QuizResult:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResult
+            #TODO: finish form fields
             label: 'Quiz Result'
             list:
                 title: 'Quiz result manager'
         QuizResultAnswer:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
+            #TODO: finish form fields
             label: 'Quiz Result Answer'
             list:
                 title: 'Quiz result answer manager'
