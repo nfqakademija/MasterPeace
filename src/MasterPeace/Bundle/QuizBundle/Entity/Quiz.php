@@ -164,4 +164,12 @@ class Quiz
     {
         return $this->questions;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }
