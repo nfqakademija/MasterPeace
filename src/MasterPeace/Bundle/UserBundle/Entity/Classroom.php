@@ -129,4 +129,22 @@ class Classroom
     {
         return $this->students;
     }
+
+    /**
+     * @param ArrayCollection $students
+     *
+     * @return ArrayCollection
+     */
+    public function setStudents(ArrayCollection $students)
+    {
+        $this->students = $students;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->id);
+    }
 }
