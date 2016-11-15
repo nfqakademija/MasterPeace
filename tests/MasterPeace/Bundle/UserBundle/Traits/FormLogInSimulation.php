@@ -12,7 +12,7 @@ trait FormLogInSimulation
      * @param string $password
      * @param string $route
      *
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @return Crawler
      */
     public function formLogIn(Client $client, $username, $password, $route)
     {
@@ -25,8 +25,7 @@ trait FormLogInSimulation
         ]);
 
         $client->submit($form);
-        $crawler = $client->followRedirect();
 
-        return $crawler;
+        return $client->followRedirect();
     }
 }

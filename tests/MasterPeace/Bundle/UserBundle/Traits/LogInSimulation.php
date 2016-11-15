@@ -12,7 +12,7 @@ trait LogInSimulation
      * @param Client $client
      * @param array $roles
      * @param string $username
-     * @param null $password
+     * @param string|null $password
      */
     public function logIn(Client $client, array $roles, $username = 'admin', $password = null)
     {

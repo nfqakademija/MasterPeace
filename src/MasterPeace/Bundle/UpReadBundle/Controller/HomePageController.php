@@ -15,16 +15,10 @@ class HomePageController extends Controller
      */
     public function redirectAction()
     {
-        $response = null;
-
-        if ($this->getUser()->isTeacher()) {
-            $response = $this->render('MasterPeaceUpReadBundle:HomePage:teacher.html.twig');
-        }
-
         if ($this->getUser()->isStudent()) {
-            $response = $this->render('MasterPeaceUpReadBundle:HomePage:student.html.twig');
+            return $this->render('MasterPeaceUpReadBundle:HomePage:student.html.twig');
         }
 
-        return $response;
+        return $this->render('MasterPeaceUpReadBundle:HomePage:teacher.html.twig');
     }
 }
