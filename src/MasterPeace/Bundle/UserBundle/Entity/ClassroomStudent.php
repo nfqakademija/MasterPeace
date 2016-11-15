@@ -88,6 +88,6 @@ class ClassroomStudent
      */
     public function __toString()
     {
-        return strval($this->classroom);
+        return strval($this->classroom).$this->student;
     }
 }
