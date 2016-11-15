@@ -10,7 +10,7 @@ class AdminController extends BaseAdminController
     /**
      * @return \FOS\UserBundle\Model\UserInterface|mixed
      */
-    public function NewUserEntityAction()
+    public function newUserEntityAction()
     {
         return $this->get('fos_user.user_manager')->createUser();
     }
