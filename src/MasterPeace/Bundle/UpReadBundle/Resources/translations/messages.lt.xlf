@@ -289,7 +289,6 @@
                 <source>form.answer.correct</source>
                 <target>Teisingas</target>
             </trans-unit>
-
             <trans-unit id="list.answer.title">
                 <source>list.answer.title</source>
                 <target>Klausimo pavadinimas</target>
@@ -325,7 +324,6 @@
                 <source>form.question.answer</source>
                 <target>Atsakymas</target>
             </trans-unit>
-
             <trans-unit id="list.question.tile">
                 <source>list.question.tile</source>
                 <target>Klausimo pavadinimas</target>
@@ -380,8 +378,6 @@
                 <source>list.quizresultanswer.question</source>
                 <target>Klausimas</target>
             </trans-unit>
-
-
 
             <!-- forms -->
             <trans-unit id="form.label.collections">
