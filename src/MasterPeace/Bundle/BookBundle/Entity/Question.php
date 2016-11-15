@@ -154,6 +154,6 @@ class Question
      */
     public function __toString()
     {
-        return strval($this->id);
+        return strval($this->title);
     }
 }
