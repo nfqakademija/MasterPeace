@@ -87,142 +87,131 @@ easy_admin:
         User:
             class: MasterPeace\Bundle\UserBundle\Entity\User
             list:
+                title: 'title.user'
                 fields:
-                    - { property: 'username', label: 'Vartotojo vardas' }
-                    - { property: 'name', label: 'Vardas' }
-                    - { property: 'surname', label: 'Pavardė' }
-                    - { property: 'email', label: 'El. paštas' }
-                    - { property: 'lastLogin', label: 'Paskutinis prisijungimas' }
-                    - { property: 'roles', label: 'Rolės' }
+                    - { property: 'username', label: 'form.user.username' }
+                    - { property: 'name', label: 'form.user.name' }
+                    - { property: 'surname', label: 'form.user.surname' }
+                    - { property: 'email', label: 'form.user.email' }
+                    - { property: 'lastLogin', label: 'form.user.lastLogin' }
+                    - { property: 'roles', label: 'form.user.roles' }
             form:
                 fields:
-                    - { property: 'username', label: 'Vartotojo vardas' }
-                    - { property: 'name', label: 'Vardas' }
-                    - { property: 'surname', label: 'Pavardė' }
-                    - { property: 'email', label: 'El. paštas' }
-                    - { property: 'lastLogin', label: 'Paskutinis prisijungimas'}
+                    - { property: 'username', label: 'list.user.username' }
+                    - { property: 'name', label: 'list.user.name' }
+                    - { property: 'surname', label: 'list.user.surname' }
+                    - { property: 'email', label: 'list.user.email' }
                     - { property: 'plainPassword', type: 'text', type_options: { required: false }, label: 'Slaptažodis' }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Studentas': 'ROLE_STUDEN', 'Mokytojas': 'ROLE_TEACHER', 'Administratorius': 'ROLE_ADMIN' } }, label: 'Rolė' }
-            label: 'User'
-            list:
-                title: 'User manager'
+            label: 'label.user'
         Classroom:
             class: MasterPeace\Bundle\UserBundle\Entity\Classroom
             form:
                 fields:
-                    - { property: 'title', label: 'Klasės pavadinimas' }
-                    - { property: 'teacher', label: 'Mokytojas' }
-                    - { property: 'students', label: 'Studentai' }
-            label: 'Classroom'
+                    - { property: 'title', label: 'form.classroom.title' }
+                    - { property: 'teacher', label: 'form.classroom.teacher' }
+                    - { property: 'students', label: 'form.classroom.students' }
+            label: 'label.classroom'
             list:
-                title: 'Classroom manager'
+                title: 'title.classroom'
                 fields:
-                    - { property: 'title', label: 'Klasės pavadinimas' }
-                    - { property: 'teacher', label: 'Mokytojas' }
-                    - { property: 'students', label: 'Studentai' }
+                    - { property: 'title', label: 'list.classroom.title' }
+                    - { property: 'teacher', label: 'list.classroom.teacher' }
+                    - { property: 'students', label: 'list.classroom.students' }
         ClassroomStudent:
             class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
             form:
                 fields:
-                    - { property: 'classroom', label: 'Klasė' }
-                    - { property: 'student', label: 'Mokinys' }
-            label: 'Classroom Student'
+                    - { property: 'classroom', label: 'form.classroomstudent.classroom' }
+                    - { property: 'student', label: 'form.classroomstudent.student' }
+            label: 'label.classroomstudent'
             list:
-                title: 'Classroom Student manager'
+                title: 'title.classroomstudent'
                 fields:
-                    - { property: 'classroom', label: 'Klasės ID' }
-                    - { property: 'student', label: 'Priskitas Mokinys' }
+                    - { property: 'classroom', label: 'list.classroomstudent.classroom' }
+                    - { property: 'student', label: 'list.classroomstudent.student' }
         Book:
             class: MasterPeace\Bundle\BookBundle\Entity\Book
             form:
                 fields:
-                    - { property: 'title', label: 'Knygos pavadinimas' }
-                    - { property: 'author', label: 'Autorius' }
-                    - { property: 'year', label: 'Metai' }
-                    - { property: 'publisher', label: 'Leidėjas' }
-                    - { property: 'cover', label: 'Viršelis' }
-                    - { property: 'isbnCode', label: 'ISBN' }
-            label: 'Book'
+                    - { property: 'title', label: 'form.book.title' }
+                    - { property: 'author', label: 'form.book.author' }
+                    - { property: 'year', label: 'form.book.year' }
+                    - { property: 'publisher', label: 'form.book.publisher' }
+                    - { property: 'cover', label: 'form.book.cover' }
+                    - { property: 'isbnCode', label: 'form.book.isbncode' }
+            label: 'label.book'
             list:
-                title: 'Book manager'
+                title: 'title.book'
                 fields:
-                    - { property: 'title', label: 'Knygos pavadinimas' }
-                    - { property: 'author', label: 'Autorius' }
-                    - { property: 'year', label: 'Metai' }
-                    - { property: 'publisher', label: 'Leidėjas' }
-                    - { property: 'cover', label: 'Viršelis' }
-                    - { property: 'isbnCode', label: 'ISBN' }
+                    - { property: 'title', label: 'list.book.title' }
+                    - { property: 'author', label: 'list.book.author' }
+                    - { property: 'year', label: 'list.book.year' }
+                    - { property: 'publisher', label: 'list.book.publisher' }
+                    - { property: 'cover', label: 'list.book.cover' }
+                    - { property: 'isbnCode', label: 'list.book.isbncode' }
         Quiz:
             class: MasterPeace\Bundle\QuizBundle\Entity\Quiz
             form:
                 fields:
-                    - { property: 'title', label: 'Pavadinimas' }
-                    - { property: 'teacher', label: 'Mokytojas' }
-                    - { property: 'book', label: 'Knyga' }
-                    - { property: 'questions', label: 'Klausimai' }
-            label: 'Quiz'
+                    - { property: 'title', label: 'form.quiz.title' }
+                    - { property: 'teacher', label: 'form.quiz.teacher' }
+                    - { property: 'book', label: 'form.quiz.book' }
+                    - { property: 'questions', label: 'form.quiz.questions' }
+            label: 'label.quiz'
             list:
-                title: 'Quiz manager'
+                title: 'title.quiz'
                 fields:
-                    - { property: 'title', label: 'Pavadinimas' }
-                    - { property: 'teacher', label: 'Mokytojas' }
-                    - { property: 'book', label: 'Knyga' }
-                    - { property: 'questions', label: 'Klausimai' }
+                    - { property: 'title', label: 'list.quiz.title' }
+                    - { property: 'teacher', label: 'list.quiz.teacher' }
+                    - { property: 'book', label: 'list.quiz.book' }
+                    - { property: 'questions', label: 'list.quiz.questions' }
         Question:
             class: MasterPeace\Bundle\BookBundle\Entity\Question
             form:
                 fields:
-                    - { property: 'title', label: 'Pavadinimas' }
-                    - { property: 'book', label: 'Knyga' }
-                    - { property: 'answers', label: 'Atsakymai' }
+                    - { property: 'title', label: 'form.question.title' }
+                    - { property: 'book', label: 'form.question.book' }
+                    - { property: 'answers', label: 'form.question.answers' }
 
-            label: 'Question'
+            label: 'label.question'
             list:
-                title: 'Question manager'
+                title: 'title.question'
                 fields:
-                    - { property: 'title', label: 'Pavadinimas' }
-                    - { property: 'book', label: 'Knyga' }
-                    - { property: 'answers', label: 'Atsakymai' }
+                    - { property: 'title', label: 'list.question.title' }
+                    - { property: 'book', label: 'list.question.book' }
+                    - { property: 'answers', label: 'list.question.answers' }
         Answer:
             class: MasterPeace\Bundle\BookBundle\Entity\Answer
             form:
                 fields:
-                    - { property: 'title', label: 'Klausimo pavadinimas' }
-                    - { property: 'question', label: 'Klausimas' }
-                    - { property: 'correct', label: 'Teisingas' }
-            label: 'Answer'
+                    - { property: 'title', label: 'form.answer.title' }
+                    - { property: 'question', label: 'form.answer.question' }
+                    - { property: 'correct', label: 'form.answer.correct' }
+            label: 'label.answer'
             list:
-                title: 'Answer manager'
+                title: 'title.answer'
                 fields:
-                    - { property: 'question', label: 'Klausimo ID' }
-                    - { property: 'title', label: 'Klausimo pavadinimas' }
-                    - { property: 'correct', label: 'Teisingas' }
+                    - { property: 'title', label: 'list.answer.title' }
+                    - { property: 'question', label: 'list.answer.question' }
+                    - { property: 'correct', label: 'list.answer.correct' }
         QuizResult:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResult
-            form:
-                fields:
-                    - { property: 'student', label: 'Mokinys' }
-                    - { property: 'quiz', label: 'Klausimyno ID' }
-            label: 'Quiz Result'
+            label: 'label.quizresult'
             list:
-                title: 'Quiz result manager'
+                title: 'title.quizresult'
                 fields:
-                    - { property: 'student', label: 'Mokinys' }
-                    - { property: 'quiz', label: 'Klausimyno ID' }
+                    - { property: 'student', label: 'list.quizresult.student' }
+                    - { property: 'quiz', label: 'list.quizresult.quiz' }
         QuizResultAnswer:
             class: MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer
-            form:
-                fields:
-                    - { property: 'quizResult', label: 'Rezultato ID' }
-                    - { property: 'answer', label: 'Atsakymas' }
-                    - { property: 'question', label: 'Klausimas' }
-            label: 'Quiz Result Answer'
+            label: 'label.quizresultanswer'
             list:
-                title: 'Quiz result answer manager'
+                title: 'title.quizresultanswer'
                 fields:
-                    - { property: 'quizResult', label: 'Rezultato ID' }
-                    - { property: 'answer', label: 'Atsakymas' }
-                    - { property: 'question', label: 'Klausimas' }
+                    - { property: 'quizResult', label: 'list.quizresultanswer.quizresult' }
+                    - { property: 'answer', label: 'list.quizresultanswer.answer' }
+                    - { property: 'question', label: 'list.quizresultanswer.question' }
     edit:
         actions: ['show']
     list:
