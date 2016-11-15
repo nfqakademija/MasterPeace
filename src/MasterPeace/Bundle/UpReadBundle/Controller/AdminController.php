@@ -7,21 +7,25 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends BaseAdminController
 {
-    public function createNewUserEntity()
+    /**
+     * @return \FOS\UserBundle\Model\UserInterface|mixed
+     */
+    public function NewUserEntityAction()
     {
         return $this->get('fos_user.user_manager')->createUser();
     }
 
+    /**
+     * @param $user
+     */
     public function prePersistUserEntity($user)
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
     }
 
-    public function preUpdateUserEntity($user)
-    {
-        $this->get('fos_user.user_manager')->updateUser($user, false);
-    }
-
+    /**
+     * @param Request $request
+     */
     protected function initialize(Request $request)
     {
         $this->get('translator')->setLocale('en');

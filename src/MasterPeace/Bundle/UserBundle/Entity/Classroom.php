@@ -122,8 +122,6 @@ class Classroom
 
     /**
      * @return ArrayCollection
-     *
-     * @return ArrayCollection
      */
     public function getStudents()
     {
@@ -133,11 +131,12 @@ class Classroom
     /**
      * @param ArrayCollection $students
      *
-     * @return ArrayCollection
+     * @return Classroom
      */
     public function setStudents(ArrayCollection $students)
     {
         $this->students = $students;
+        return $this;
     }
 
     /**

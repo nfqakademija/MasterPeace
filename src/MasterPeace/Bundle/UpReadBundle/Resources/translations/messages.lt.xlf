@@ -114,7 +114,7 @@
                 <target>Klasė</target>
             </trans-unit>
             <trans-unit id="form.classroom.title">
-                <source>form.clsasroom.title</source>
+                <source>form.classroom.title</source>
                 <target>Klasės pavadinimas</target>
             </trans-unit>
             <trans-unit id="form.classroom.teacher">
