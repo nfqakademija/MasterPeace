@@ -22,13 +22,4 @@ class AdminController extends BaseAdminController
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
     }
-
-    /**
-     * @param Request $request
-     */
-    protected function initialize(Request $request)
-    {
-        $this->get('translator')->setLocale('en');
-        parent::initialize($request);
-    }
 }
