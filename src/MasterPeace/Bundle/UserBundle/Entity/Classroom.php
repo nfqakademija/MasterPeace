@@ -136,6 +136,7 @@ class Classroom
     public function setStudents(ArrayCollection $students)
     {
         $this->students = $students;
+
         return $this;
     }
 
