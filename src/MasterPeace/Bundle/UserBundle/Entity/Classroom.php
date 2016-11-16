@@ -119,4 +119,32 @@ class Classroom
 
         return $this;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStudents()
+    {
+        return $this->students;
+    }
+
+    /**
+     * @param ArrayCollection $students
+     *
+     * @return Classroom
+     */
+    public function setStudents(ArrayCollection $students)
+    {
+        $this->students = $students;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->title);
+    }
 }
