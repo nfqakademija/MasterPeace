@@ -18,17 +18,19 @@ class ClassroomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, [
+                'label' => 'classroom.title.label',
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'classroom.save.button',
             ]);
     }
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $resolver->setDefaults([
             'data_class' => Classroom::class,
         ]);

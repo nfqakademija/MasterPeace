@@ -25,7 +25,7 @@ class ClassroomController extends Controller
             ->getRepository('MasterPeaceUserBundle:Classroom')
             ->findAll();
 
-        return $this->render('MasterPeaceUserBundle::classroom_list.html.twig', [
+        return $this->render('MasterPeaceUserBundle:classroom:classroom_list.html.twig', [
             'classrooms' => $classrooms,
         ]);
     }
@@ -54,7 +54,7 @@ class ClassroomController extends Controller
             return $this->redirectToRoute('classroom_list');
         }
 
-        return $this->render('MasterPeaceUserBundle::classroom_create.html.twig', [
+        return $this->render('MasterPeaceUserBundle:classroom:classroom_create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
