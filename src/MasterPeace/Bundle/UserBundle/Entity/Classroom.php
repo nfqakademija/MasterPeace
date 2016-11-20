@@ -85,35 +85,39 @@ class Classroom
 
     /**
      * @param User $teacher
+     *
+     * @return Classroom
      */
     public function setTeacher(User $teacher)
     {
         $this->teacher = $teacher;
+
+        return $this;
     }
 
     /**
-     * @param User $user
+     * @param User $student
      *
      * @return Classroom
      */
-    public function addStudent(User $user)
+    public function addStudent(User $student)
     {
-        if (false === $this->students->contains($user)) {
-            $this->students->add($user);
+        if (false === $this->students->contains($student)) {
+            $this->students->add($student);
         }
 
         return $this;
     }
 
     /**
-     * @param User $user
+     * @param User $student
      *
      * @return Classroom
      */
-    public function removeStudent(User $user)
+    public function removeStudent(User $student)
     {
-        if ($this->students->contains($user)) {
-            $this->students->removeElement($user);
+        if ($this->students->contains($student)) {
+            $this->students->removeElement($student);
         }
 
         return $this;

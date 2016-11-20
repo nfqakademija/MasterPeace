@@ -36,13 +36,6 @@ class ClassroomStudent
     private $classroom;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="join", type="datetime")
-     */
-    private $join;
-
-    /**
      * @return integer
      */
     public function getId()
@@ -51,11 +44,11 @@ class ClassroomStudent
     }
 
     /**
-     * @param integer $student
+     * @param User $student
      *
-     * @return ClassroomStudent
+     * @return $this
      */
-    public function setStudent(integer $student)
+    public function setStudent(User $student)
     {
         $this->student = $student;
 
@@ -88,25 +81,5 @@ class ClassroomStudent
     public function getClassroom()
     {
         return $this->classroom;
-    }
-
-    /**
-     * @param \DateTime $join
-     *
-     * @return ClassroomStudent
-     */
-    public function setJoin($join)
-    {
-        $this->join = $join;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getJoin()
-    {
-        return $this->join;
     }
 }
