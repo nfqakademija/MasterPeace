@@ -26,11 +26,6 @@ class Classroom
      * @ORM\Column(name="title", type="string")
      */
     private $title;
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
-     */
-    private $teacher;
 
     /**
      * @var User
@@ -38,12 +33,6 @@ class Classroom
      */
     private $teacher;
 
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
-     */
-    private $teacher;
     /**
      * @var ArrayCollection
      *
@@ -96,46 +85,6 @@ class Classroom
      * @param User $teacher
      *
      * @return Classroom
-     */
-    public function setTeacher(User $teacher)
-    {
-        $this->teacher = $teacher;
-
-        return $this;
-    }
-
-    /**
-     * @param User $student
-     *
-     * @return Classroom
-     */
-    public function getTeacher()
-    {
-        return $this->teacher;
-    }
-
-    /**
-     * @param User $teacher
-     */
-    public function setTeacher(User $teacher)
-    {
-        $this->teacher = $teacher;
-    }
-
-    /**
-     * @param User $user
-     *
-     * @return Classroom
-     */
-    public function getTeacher()
-    {
-        return $this->teacher;
-    }
-
-    /**
-     * @param User $teacher
-     *
-     * @return $this
      */
     public function setTeacher(User $teacher)
     {

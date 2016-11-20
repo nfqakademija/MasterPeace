@@ -22,7 +22,7 @@ class ClassroomStudent
     private $id;
 
     /**
-     * @var User,
+     * @var User
      *
      * @ORM\OneToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
      */
