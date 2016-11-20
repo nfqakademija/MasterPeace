@@ -4,14 +4,12 @@
     {{ parent() }}
     <link href="{{ asset('css/login/theme.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login/animate.css') }}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400|Open+Sans+Condensed:300' rel='stylesheet'
           type='text/css'>
-    <link href="{{ asset('css/login/theme-loading-bar.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
-    <div class="container" id="container" style="display:none;">
+    <div class="container" id="container">
         {% block container %}
             <header>
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +71,6 @@
                                     </div>
                                     <div style="margin-top:10px" class="form-group">
                                         <div class="col-sm-12 controls">
-
                                         </div>
                                     </div>
                                 </form>
@@ -86,8 +83,7 @@
                 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                     <div class="container text-center">
                         <div class="footer-content">
-                            Dar nesi UpRead platformos narys? &nbsp; <a href="#" class="btn btn-primary"> Registruokis
-                                ČIA </a>
+
                         </div>
                     </div>
                 </nav>
@@ -96,17 +92,13 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('js/login/pace.js') }}"></script>
-    <script>
-        Pace.on('hide', function () {
-            $('#container').fadeIn('1000');
-            $.backstretch([
-                "images/upread1.jpg",
-                "images/upread2.jpg",
-                "images/upread3.jpg"
-            ], {duration: 3000, fade: 1000});
-        });
-    </script>
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch([
+            "{{ asset('images/upread1.jpg') }}",
+            "{{ asset('images/upread2.jpg') }}",
+            "{{ asset('images/upread3.jpg') }}"
+        ], {duration: 3000, fade: 1000});
+    </script>
 {% endblock %}
