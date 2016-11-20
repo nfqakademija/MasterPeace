@@ -94,14 +94,18 @@ class Classroom
 
     /**
      * @param User $teacher
+     *
+     * @return Classroom
      */
     public function setTeacher(User $teacher)
     {
         $this->teacher = $teacher;
+
+        return $this;
     }
 
     /**
-     * @param User $user
+     * @param User $student
      *
      * @return Classroom
      */
