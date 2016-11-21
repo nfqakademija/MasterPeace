@@ -18,12 +18,8 @@ class ClassroomController extends Controller
      */
     public function listAction()
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $classrooms = $em
-            ->getRepository('MasterPeaceUserBundle:Classroom')
-            ->findAll();
+        $repo = $this->get('masterpeace_user.repository.classroom');
+        $classrooms = $repo->findAll();
 
         return $this->render('MasterPeaceUserBundle:classroom:classroom_list.html.twig', [
             'classrooms' => $classrooms,
@@ -47,7 +43,7 @@ class ClassroomController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->get('masterpeace_user.repository.classroom');
             $em->persist($classroom);
             $em->flush();
 

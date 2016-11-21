@@ -1,0 +1,7 @@
+services:
+    masterpeace_user.repository.classroom:
+        lazy: true
+        class: MasterPeace\Bundle\UserBundle\Repository\ClassroomRepository
+        factory: ["@doctrine.orm.default_entity_manager", getRepository]
+        arguments:
+            - MasterPeace\Bundle\UserBundle\Entity\Classroom
