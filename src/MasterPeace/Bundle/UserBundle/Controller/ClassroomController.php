@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\UserBundle\Controller;
 
 use MasterPeace\Bundle\UserBundle\Entity\Classroom;
 use MasterPeace\Bundle\UserBundle\Form\ClassroomType;
+use MasterPeace\Bundle\UserBundle\Repository\ClassroomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,8 +44,7 @@ class ClassroomController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $repo = $this->getClassroomRepository();
-            $repo->add($classroom);
+            $this->getClassroomRepository()->add($classroom);
 
             return $this->redirectToRoute('classroom_list');
         }
@@ -54,6 +54,9 @@ class ClassroomController extends Controller
         ]);
     }
 
+    /**
+     * @return ClassroomRepository|object
+     */
     private function getClassroomRepository()
     {
         return $this->get('masterpeace_user.repository.classroom');

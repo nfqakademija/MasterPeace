@@ -7,6 +7,9 @@ use MasterPeace\Bundle\UserBundle\Entity\Classroom;
 
 class ClassroomRepository extends EntityRepository
 {
+    /**
+     * @param Classroom $classroom
+     */
     public function add(Classroom $classroom)
     {
         $this->_em->persist($classroom);
