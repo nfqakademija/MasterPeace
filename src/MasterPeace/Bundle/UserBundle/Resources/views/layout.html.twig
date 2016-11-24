@@ -1,34 +1,104 @@
 {% extends 'base.html.twig' %}
 
-{% block container %}
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-2">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
-    </div>
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/login/theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login/font-awesome.css') }}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400|Open+Sans+Condensed:300' rel='stylesheet'
+          type='text/css'>
+{% endblock %}
 
-    {% if app.request.hasPreviousSession %}
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
+{% block body %}
+    <div class="container" id="container">
+        {% block container %}
+            <header>
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand top-navbar-brand" href="#">UpRead</a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right bigger-130 hidden-xs">
+                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <section id="form" class="animated fadeInDown">
+                <div class="container">
+                    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel white-alpha-90">
+                            <div class="panel-heading">
+                                <div class="panel-title text-center"><h2>{{ 'login.form.signin.title'|trans }}<span
+                                                class="text-primary">UpRead</span></h2></div>
+                            </div>
+                            <div class="panel-body">
+                                {% if error %}
+                                    <div id="login-alert"
+                                         class="alert alert-danger col-sm-12">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                                <form action="{{ path("fos_user_security_check") }}" method="post" id="loginform"
+                                      class="form-horizontal" role="form">
+                                    {% if csrf_token %}
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                                    {% endif %}
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input id="login-username" type="text" class="form-control" name="_username"
+                                               value=""
+                                               placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input id="login-password" type="password" class="form-control" name="_password"
+                                               placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}">
+                                    </div>
+                                    <div class="input-group col-xs-12 text-center login-action">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="login-remember" type="checkbox" name="_remember_me"
+                                                       value="on"
+                                                       style="margin-top: 10px;"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                                &nbsp;
+                                                <span id="btn-login">
+                                                    <input type="submit" id="_submit" name="_submit"
+                                                           class="btn btn-success"
+                                                           value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}  "/>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top:10px" class="form-group">
+                                        <div class="col-sm-12 controls">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
+            </section>
+            <footer>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container text-center">
+                        <div class="footer-content">
 
-    <div calss="row">
-        <div class="col-lg-10 col-lg-offset-2">
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div>
+                        </div>
+                    </div>
+                </nav>
+            </footer>
+        {% endblock %}
     </div>
-
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch([
+            "{{ asset('images/upread1.jpg') }}",
+            "{{ asset('images/upread2.jpg') }}",
+            "{{ asset('images/upread3.jpg') }}"
+        ], {duration: 3000, fade: 1000});
+    </script>
 {% endblock %}
