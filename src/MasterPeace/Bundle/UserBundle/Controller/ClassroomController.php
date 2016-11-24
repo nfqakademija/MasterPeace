@@ -18,7 +18,7 @@ class ClassroomController extends Controller
      */
     public function listAction()
     {
-        $repo = $this->get('masterpeace_user.repository.classroom');
+        $repo = $this->getClassroomRepository();
         $classrooms = $repo->findAll();
 
         return $this->render('MasterPeaceUserBundle:classroom:classroom_list.html.twig', [
@@ -43,9 +43,8 @@ class ClassroomController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->get('masterpeace_user.repository.classroom');
-            $em->persist($classroom);
-            $em->flush();
+            $repo = $this->getClassroomRepository();
+            $repo->add($classroom);
 
             return $this->redirectToRoute('classroom_list');
         }
@@ -53,5 +52,10 @@ class ClassroomController extends Controller
         return $this->render('MasterPeaceUserBundle:classroom:classroom_create.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    private function getClassroomRepository()
+    {
+        return $this->get('masterpeace_user.repository.classroom');
     }
 }
