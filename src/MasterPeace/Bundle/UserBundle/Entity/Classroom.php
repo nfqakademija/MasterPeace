@@ -26,12 +26,14 @@ class Classroom
      * @ORM\Column(name="title", type="string")
      */
     private $title;
+
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
      */
     private $teacher;
+
     /**
      * @var ArrayCollection
      *
@@ -83,7 +85,7 @@ class Classroom
     /**
      * @param User $teacher
      *
-     * @return $this
+     * @return Classroom
      */
     public function setTeacher(User $teacher)
     {
