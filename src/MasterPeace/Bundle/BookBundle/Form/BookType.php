@@ -24,9 +24,7 @@ class BookType extends AbstractType
             ->add('author', TextType::class)
             ->add('year', IntegerType::class)
             ->add('publisher', TextType::class)
-            ->add('cover', FileType::class, [
-                'required' => false,
-            ])
+            ->add('cover', FileType::class)
             ->add('isbnCode', TextType::class)
             ->add('save', SubmitType::class, [
                 'label' => 'book.save.button',
