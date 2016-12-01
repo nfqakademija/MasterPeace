@@ -1,1 +1,7 @@
-book.save.button: "Pridėti naują knygą"
+book.create.title: "Knygos pavadinimas"
+book.create.author: "Knygos autorius"
+book.create.year: "Išleidimo data"
+book.create.publisher: "Leidyklos pavadinimas"
+book.create.cover: "Viršelis"
+book.create.isbn_code: "ISBN kodas"
+book.save.button: "Išsaugoti"
