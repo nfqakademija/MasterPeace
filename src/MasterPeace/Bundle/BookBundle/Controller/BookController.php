@@ -11,6 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends Controller
 {
+
+    /**
+     * @Route ("/")
+     *
+     * @return Response
+     */
+    public function indexAction()
+    {
+        return $this->redirect('/book/list');
+    }
+
     /**
      * @Route ("/list", name="book_list")
      *
