@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends Controller
 {
     /**
-     * @Route ("/", name="book_list")
+     * @Route ("/list", name="book_list")
      *
      * @return Response
      */
@@ -25,7 +25,7 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->findAll();
 
-        return $this->render('MasterPeaceBookBundle:Book:list.html.twig', [
+        return $this->render('@MasterPeaceBook/Book/book_list.html.twig', [
             'books' => $books,
         ]);
     }
@@ -53,7 +53,7 @@ class BookController extends Controller
             return $this->redirectToRoute('book_list');
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:create.html.twig', [
+        return $this->render('@MasterPeaceBook/Book/book_create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
