@@ -3,6 +3,7 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Classroom
@@ -24,6 +25,8 @@ class Classroom
      * @var string
      *
      * @ORM\Column(name="title", type="string")
+     *
+     * @Assert\NotBlank()
      */
     private $title;
 
