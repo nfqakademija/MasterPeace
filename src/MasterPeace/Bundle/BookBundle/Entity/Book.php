@@ -29,6 +29,8 @@ class Book
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -55,6 +57,8 @@ class Book
      * @var string
      *
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $publisher;
 
