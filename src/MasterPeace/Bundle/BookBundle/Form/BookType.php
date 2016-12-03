@@ -21,25 +21,25 @@ class BookType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'book.create.title',
+                'label' => 'book.create.title.label',
             ])
             ->add('author', TextType::class, [
-                'label' => 'book.create.author',
+                'label' => 'book.create.author.label',
             ])
             ->add('year', IntegerType::class, [
-                'label' => 'book.create.year',
+                'label' => 'book.create.year.label',
             ])
             ->add('publisher', TextType::class, [
-                'label' => 'book.create.publisher',
+                'label' => 'book.create.publisher.label',
             ])
             ->add('cover', FileType::class, [
-                'label' => 'book.create.cover',
+                'label' => 'book.create.cover.label',
             ])
             ->add('isbnCode', TextType::class, [
-                'label' => 'book.create.isbn_code',
+                'label' => 'book.create.isbn_code.label',
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'book.save.button',
+                'label' => 'book.save.button.label',
             ]);
     }
 
