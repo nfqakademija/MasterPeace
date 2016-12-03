@@ -27,6 +27,7 @@ class Classroom
      * @ORM\Column(name="title", type="string")
      *
      * @Assert\NotBlank()
+     * @Assert\Length(max="20")
      */
     private $title;
 
