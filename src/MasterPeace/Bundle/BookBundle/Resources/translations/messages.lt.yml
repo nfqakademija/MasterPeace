@@ -1,7 +1,13 @@
-book.create.title: "Knygos pavadinimas"
-book.create.author: "Knygos autorius"
-book.create.year: "Išleidimo data"
-book.create.publisher: "Leidyklos pavadinimas"
-book.create.cover: "Viršelis"
-book.create.isbn_code: "ISBN kodas"
-book.save.button: "Išsaugoti"
+book.create.title: "Sukurti naują knygą"
+book.create.title.label: "Knygos pavadinimas"
+book.create.author.label: "Knygos autorius"
+book.create.year.label: "Išleidimo data"
+book.create.publisher.label: "Leidyklos pavadinimas"
+book.create.cover.label: "Viršelis"
+book.create.isbn_code.label: "ISBN kodas"
+
+book.list.title: "Knygų sąrašas"
+book.list.create.button: "Sukurti naują knygą"
+
+
+book.save.button.label: "Išsaugoti knygą"
