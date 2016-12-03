@@ -1,23 +1,20 @@
 language: php
-
 php:
-    - 7.0
-
+- 7.0
 before_script:
-  - cp app/config/parameters.yml.dist app/config/parameters.yml
-  - composer install
-  - composer require satooshi/php-coveralls
-  - php bin/console doctrine:database:create
-  - php bin/console doctrine:schema:drop --force
-  - php bin/console doctrine:schema:create
-  - php bin/console doctrine:schema:validate
-  - php bin/console doctrine:fixtures:load --no-interaction
-
+- cp app/config/parameters.yml.dist app/config/parameters.yml
+- composer install
+- composer require satooshi/php-coveralls
+- php bin/console doctrine:database:create
+- php bin/console doctrine:schema:drop --force
+- php bin/console doctrine:schema:create
+- php bin/console doctrine:schema:validate
+- php bin/console doctrine:fixtures:load --no-interaction
 script:
-  - vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
-
+- vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text --coverage-clover
+  build/logs/clover.xml
 after_script:
-  - php vendor/bin/coveralls -v
-
+- php vendor/bin/coveralls -v
 notifications:
-  slack: nfqakademija:79ZFHa5rDxOqUtKplVDOcfnS
+  slack:
+    secure: XeN6OTtfQS3e2SaMCzVYikyqmZjiZHN9xhVxZ+ZRMPykLdLKAvvVa5gqH+APdGCs4CNkQOm3ShYV0t2q4wJ98RO64iDC4guE4dt6BHuSiIILErki0tyXm7M9aG7Tgbtk7h8OHVemTCjFZN6SWdjRz4ceMScCH25QLivRdPbOtxneSO2pFBRhiwbm9Kj6KqfKj98zVWpfUo+OPEhB9+O8s9CBS3Za50XE2enpTtbNeDNlkeJ2/2JLsc3VNGXgE8wWTqsCQ+5YVIj2boGcpjsVIT9RdBxOl7oMh1+6CFB6URNgyLyOGvQBgr4o3RqGubA6YxHh+boZ2q+9QQOCoPe+5D5XFCyUZrq3UgFUNSd1DtRotgmLDUFffhd9aziKQvvr5PiyWIYnrA3Hq6a29iAypj+tbxN3Rj7iuEzHxEfUR9OcW4D3/1I58ChWALkQEimonIz8tS6qbtmOvjCnXArr4QbXIjQGv8LYoM5ndNliMTFQK7x8z3Mb5AQQ6JOSZRzqJ2ewPqup9FW2qHS60QhuL3KcodhLr20bq2+a16AMalPwrEmgWWvJxUroKnTD7b0zgkin2D5fkAoWq4mYTsMcq+8117Jdx3KeaeJ55KUdjolZ60QLushxNKvdFic2aRlOcOJEGP7u/BxD91I/KvG7v1ztdAR2YHU+CzbVXHIs4CA=
