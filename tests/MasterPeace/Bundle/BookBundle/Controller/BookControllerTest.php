@@ -16,10 +16,8 @@ class BookControllerTest extends WebTestCase
     {
         $client = $this->getLoggedClient();
 
-        $crawler = $client->request('GET', '/book/');
-        $this->assertCount(LoadBookData::getBookCount(), $crawler->filter('td'));
-        $this->assertGreaterThan(0, $crawler->filter('td')->count());
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("Prisukamo paukščio kronikos")')->count());
+        $crawler = $client->request('GET', '/book/list');
+        $this->assertGreaterThan(0, $crawler->filter('div:contains("Smaragdo akies paslaptis")')->count());
     }
 
     /**
