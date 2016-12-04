@@ -19,7 +19,7 @@ class BookController extends Controller
      */
     public function indexAction()
     {
-        return $this->redirect('/book/list');
+        return $this->redirect($this->generateUrl('book_list'));
     }
 
     /**
