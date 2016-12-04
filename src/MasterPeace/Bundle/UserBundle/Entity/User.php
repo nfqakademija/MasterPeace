@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -58,7 +59,7 @@ class User extends BaseUser
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", mappedBy="teacher")
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\Classroom", mappedBy="teacher")
      */
     protected $classrooms;
 

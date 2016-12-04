@@ -1,12 +1,17 @@
+classroom:
+    resource: "@MasterPeaceClassroomBundle/Controller/"
+    type:     annotation
+    prefix:   /classroom
+
 book:
     resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
-    prefix:   /book/
+    prefix:   /book
 
-classroom:
-    resource: "@MasterPeaceUserBundle/Controller/ClassroomController.php"
+quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/"
     type:     annotation
-    prefix:   /classroom/
+    prefix:   /quiz
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

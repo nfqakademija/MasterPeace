@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Entity\Question;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
 {

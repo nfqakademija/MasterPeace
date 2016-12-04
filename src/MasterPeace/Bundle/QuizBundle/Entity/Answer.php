@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Entity;
+namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
@@ -41,7 +41,8 @@ class Answer
     /**
      * @var Question
      *
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Question", inversedBy="answers")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $question;
 

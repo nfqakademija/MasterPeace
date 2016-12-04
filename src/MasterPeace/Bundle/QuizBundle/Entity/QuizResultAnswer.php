@@ -3,8 +3,6 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
 
 /**
  * QuizResultAnswer
@@ -33,14 +31,14 @@ class QuizResultAnswer
     /**
      * @var Answer
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Answer")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Answer")
      */
     private $answer;
 
     /**
      * @var Question
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Question")
      */
     private $question;
 

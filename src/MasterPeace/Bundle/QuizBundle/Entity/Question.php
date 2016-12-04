@@ -1,9 +1,10 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Entity;
+namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 
 /**
@@ -37,14 +38,14 @@ class Question
     /**
      * @var Book
      *
-     * @ORM\ManyToOne(targetEntity="Book")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
      */
     private $book;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
      */
     private $answers;
 
@@ -109,6 +110,7 @@ class Question
     public function addAnswer(Answer $answer)
     {
         if (false === $this->answers->contains($answer)) {
+            $answer->setQuestion($this);
             $this->answers->add($answer);
         }
 

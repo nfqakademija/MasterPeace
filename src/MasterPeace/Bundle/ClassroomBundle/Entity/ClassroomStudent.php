@@ -1,14 +1,15 @@
 <?php
 
-namespace MasterPeace\Bundle\UserBundle\Entity;
+namespace MasterPeace\Bundle\ClassroomBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 
 /**
  * ClassroomStudent
  *
  * @ORM\Table(name="classroom_student")
- * @ORM\Entity(repositoryClass="MasterPeace\Bundle\UserBundle\Repository\ClassroomStudentRepository")
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository")
  */
 class ClassroomStudent
 {
@@ -31,7 +32,7 @@ class ClassroomStudent
     /**
      * @var Classroom
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\Classroom", inversedBy="students")
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\Classroom", inversedBy="students")
      */
     private $classroom;
 
