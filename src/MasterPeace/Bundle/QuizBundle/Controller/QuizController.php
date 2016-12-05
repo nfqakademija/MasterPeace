@@ -22,12 +22,12 @@ class QuizController extends Controller
         $em = $this
             ->getDoctrine()
             ->getManager();
-        $books = $em
+        $quizes = $em
             ->getRepository('MasterPeaceQuizBundle:Quiz')
             ->findAll();
 
         return $this->render('MasterPeaceQuizBundle:Quiz:list.html.twig', [
-            'books' => $books,
+            'quizes' => $quizes,
         ]);
     }
 
@@ -60,13 +60,13 @@ class QuizController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * 
+     *
      * @return Response
      */
     public function editAction(Request $request, int $id)
     {
         $quiz = $this->getQuizOr404($id);
-     //var_dump($quiz->getQuestions()->toArray()[0]->getAnswers()->toArray()); die;
+        //var_dump($quiz->getQuestions()->toArray()[0]->getAnswers()->toArray()); die;
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 

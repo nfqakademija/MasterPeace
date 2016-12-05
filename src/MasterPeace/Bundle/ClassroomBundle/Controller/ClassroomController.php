@@ -22,7 +22,7 @@ class ClassroomController extends Controller
         $repo = $this->getClassroomRepository();
         $classrooms = $repo->findAll();
 
-        return $this->render('MasterPeaceClassroomBundle::list.html.twig', [
+        return $this->render('MasterPeaceClassroomBundle:Classroom:list.html.twig', [
             'classrooms' => $classrooms,
         ]);
     }
@@ -49,7 +49,7 @@ class ClassroomController extends Controller
             return $this->redirectToRoute('classroom_list');
         }
 
-        return $this->render('MasterPeaceClassroomBundle::create.html.twig', [
+        return $this->render('MasterPeaceClassroomBundle:Classroom:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
