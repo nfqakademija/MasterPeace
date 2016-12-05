@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\UserBundle\Repository;
+namespace MasterPeace\Bundle\ClassroomBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
