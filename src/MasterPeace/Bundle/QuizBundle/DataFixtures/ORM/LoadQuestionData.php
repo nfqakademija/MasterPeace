@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Entity\Question;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -30,8 +30,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
 
             $question = new Question();
             $question
-                ->setTitle('Klausimas nr. ' . $questionReference)
-                ->setBook($book);
+                ->setTitle('Klausimas nr. ' . $questionReference);
 
             // TODO Add teacher
 

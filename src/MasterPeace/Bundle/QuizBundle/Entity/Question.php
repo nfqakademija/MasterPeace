@@ -1,9 +1,10 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Entity;
+namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 
 /**
@@ -35,16 +36,16 @@ class Question
     private $title;
 
     /**
-     * @var Book
+     * @var Quiz
      *
-     * @ORM\ManyToOne(targetEntity="Book")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="questions")
      */
-    private $book;
+    private $quiz;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
      */
     private $answers;
 
@@ -82,21 +83,21 @@ class Question
     }
 
     /**
-     * @return Book
+     * @return Quiz
      */
-    public function getBook()
+    public function getQuiz()
     {
-        return $this->book;
+        return $this->quiz;
     }
 
     /**
-     * @param Book $book
+     * @param Quiz
      *
      * @return Question
      */
-    public function setBook(Book $book)
+    public function setTeacher(Quiz $quiz)
     {
-        $this->book = $book;
+        $this->quiz = $quiz;
 
         return $this;
     }
@@ -109,6 +110,7 @@ class Question
     public function addAnswer(Answer $answer)
     {
         if (false === $this->answers->contains($answer)) {
+            $answer->setQuestion($this);
             $this->answers->add($answer);
         }
 

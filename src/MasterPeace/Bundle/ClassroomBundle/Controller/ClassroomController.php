@@ -1,10 +1,10 @@
 <?php
 
-namespace MasterPeace\Bundle\UserBundle\Controller;
+namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
-use MasterPeace\Bundle\UserBundle\Entity\Classroom;
-use MasterPeace\Bundle\UserBundle\Form\ClassroomType;
-use MasterPeace\Bundle\UserBundle\Repository\ClassroomRepository;
+use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
+use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
+use MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +22,7 @@ class ClassroomController extends Controller
         $repo = $this->getClassroomRepository();
         $classrooms = $repo->findAll();
 
-        return $this->render('MasterPeaceUserBundle:classroom:classroom_list.html.twig', [
+        return $this->render('MasterPeaceClassroomBundle:Classroom:list.html.twig', [
             'classrooms' => $classrooms,
         ]);
     }
@@ -49,7 +49,7 @@ class ClassroomController extends Controller
             return $this->redirectToRoute('classroom_list');
         }
 
-        return $this->render('MasterPeaceUserBundle:classroom:classroom_create.html.twig', [
+        return $this->render('MasterPeaceClassroomBundle:Classroom:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -59,6 +59,6 @@ class ClassroomController extends Controller
      */
     private function getClassroomRepository()
     {
-        return $this->get('masterpeace_user.repository.classroom');
+        return $this->get('masterpeace.classroom.repository');
     }
 }

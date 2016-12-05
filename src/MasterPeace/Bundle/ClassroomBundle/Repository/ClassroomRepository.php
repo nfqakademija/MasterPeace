@@ -1,9 +1,9 @@
 <?php
 
-namespace MasterPeace\Bundle\UserBundle\Repository;
+namespace MasterPeace\Bundle\ClassroomBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use MasterPeace\Bundle\UserBundle\Entity\Classroom;
+use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 
 class ClassroomRepository extends EntityRepository
 {

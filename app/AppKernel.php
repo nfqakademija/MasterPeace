@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new MasterPeace\Bundle\UserBundle\MasterPeaceUserBundle(),
             new MasterPeace\Bundle\QuizBundle\MasterPeaceQuizBundle(),
             new MasterPeace\Bundle\UpReadBundle\MasterPeaceUpReadBundle(),
+            new MasterPeace\Bundle\ClassroomBundle\MasterPeaceClassroomBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -107,7 +107,7 @@ easy_admin:
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'Studentas': 'ROLE_STUDEN', 'Mokytojas': 'ROLE_TEACHER', 'Administratorius': 'ROLE_ADMIN' } }, label: 'Rolė' }
             label: 'label.user'
         Classroom:
-            class: MasterPeace\Bundle\UserBundle\Entity\Classroom
+            class: MasterPeace\Bundle\ClassroomBundle\Entity\Classroom
             form:
                 fields:
                     - { property: 'title', label: 'form.classroom.title' }
@@ -121,7 +121,7 @@ easy_admin:
                     - { property: 'teacher', label: 'list.classroom.teacher' }
                     - { property: 'students', label: 'list.classroom.students' }
         ClassroomStudent:
-            class: MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent
+            class: MasterPeace\Bundle\ClassroomBundle\Entity\ClassroomStudent
             form:
                 fields:
                     - { property: 'classroom', label: 'form.classroomstudent.classroom' }
@@ -169,7 +169,7 @@ easy_admin:
                     - { property: 'book', label: 'list.quiz.book' }
                     - { property: 'questions', label: 'list.quiz.questions' }
         Question:
-            class: MasterPeace\Bundle\BookBundle\Entity\Question
+            class: MasterPeace\Bundle\QuizBundle\Entity\Question
             form:
                 fields:
                     - { property: 'title', label: 'form.question.title' }
@@ -184,7 +184,7 @@ easy_admin:
                     - { property: 'book', label: 'list.question.book' }
                     - { property: 'answers', label: 'list.question.answers' }
         Answer:
-            class: MasterPeace\Bundle\BookBundle\Entity\Answer
+            class: MasterPeace\Bundle\QuizBundle\Entity\Answer
             form:
                 fields:
                     - { property: 'title', label: 'form.answer.title' }

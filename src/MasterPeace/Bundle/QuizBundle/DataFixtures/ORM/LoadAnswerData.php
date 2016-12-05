@@ -5,8 +5,8 @@ namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Entity\Answer;
+use MasterPeace\Bundle\QuizBundle\Entity\Question;
 
 class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
 {

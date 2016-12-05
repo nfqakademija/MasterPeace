@@ -36,7 +36,7 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->findAll();
 
-        return $this->render('@MasterPeaceBook/Book/book_list.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book:list.html.twig', [
             'books' => $books,
         ]);
     }
@@ -64,7 +64,7 @@ class BookController extends Controller
             return $this->redirectToRoute('book_list');
         }
 
-        return $this->render('@MasterPeaceBook/Book/book_create.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }

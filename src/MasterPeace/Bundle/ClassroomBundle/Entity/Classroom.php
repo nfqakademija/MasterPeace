@@ -1,15 +1,16 @@
 <?php
-namespace MasterPeace\Bundle\UserBundle\Entity;
+namespace MasterPeace\Bundle\ClassroomBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Classroom
  *
  * @ORM\Table(name="classroom")
- * @ORM\Entity(repositoryClass="MasterPeace\Bundle\UserBundle\Repository\ClassroomRepository")
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository")
  */
 class Classroom
 {
@@ -41,7 +42,7 @@ class Classroom
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\ClassroomStudent", mappedBy="classroom")
+     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\ClassroomStudent", mappedBy="classroom")
      */
     private $students;
 

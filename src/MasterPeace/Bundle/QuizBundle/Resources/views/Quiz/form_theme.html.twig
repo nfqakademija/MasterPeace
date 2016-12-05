@@ -1,0 +1,9 @@
+{% block _quiz_questions_entry_widget %}
+    {{ form_row(form.title) }}
+    <ul>
+        {% for answer in form.answers %}
+            <li>{{ form_row(answer) }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

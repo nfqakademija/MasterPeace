@@ -1,8 +1,8 @@
 <?php
 
-namespace MasterPeace\Bundle\UserBundle\Form;
+namespace MasterPeace\Bundle\ClassroomBundle\Form;
 
-use MasterPeace\Bundle\UserBundle\Entity\Classroom;
+use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

@@ -5,7 +5,6 @@ namespace MasterPeace\Bundle\QuizBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 
@@ -13,7 +12,7 @@ use MasterPeace\Bundle\UserBundle\Entity\User;
  * Quiz
  *
  * @ORM\Table(name="quiz")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\QuizBundle\Repository\QuizRepository")
  */
 class Quiz
 {
@@ -52,7 +51,7 @@ class Quiz
     /**
      * @var ArrayCollection|Question[]
      *
-     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Question")
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"})
      */
     private $questions;
 
