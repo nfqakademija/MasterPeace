@@ -1,13 +1,24 @@
 book.create.title: "Sukurti naują knygą"
 book.create.title.label: "Knygos pavadinimas"
 book.create.author.label: "Knygos autorius"
-book.create.year.label: "Išleidimo data"
+book.create.year.label: "Išleidimo metai"
 book.create.publisher.label: "Leidyklos pavadinimas"
 book.create.cover.label: "Viršelis"
 book.create.isbn_code.label: "ISBN kodas"
 
 book.list.title: "Knygų sąrašas"
 book.list.create.button: "Sukurti naują knygą"
+book.list.table.isbn.label: "ISBN kodas"
+book.list.table.title.label: "Knygos pavadinimas (metai)"
+book.list.table.author.label: "Autorius"
+book.list.table.publisher.label: "Leidykla"
+book.list.table.control.label: "Valdymas"
+book.list.table.control.view.label: "Peržiūrėti"
+book.list.table.control.edit.label: "Redaguoti"
+book.list.table.control.delete.label: "Ištrinti"
 
+book.edit.title: "Redaguoti knygą"
+
+book.view.title: "Knygos peržiūra"
 
 book.save.button.label: "Išsaugoti knygą"
