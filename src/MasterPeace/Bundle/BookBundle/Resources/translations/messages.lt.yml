@@ -5,6 +5,7 @@ book.create.year.label: "Išleidimo metai"
 book.create.publisher.label: "Leidyklos pavadinimas"
 book.create.cover.label: "Viršelis"
 book.create.isbn_code.label: "ISBN kodas"
+book.create.list.button: "Grįžti į knygų sąrašą"
 
 book.list.title: "Knygų sąrašas"
 book.list.create.button: "Sukurti naują knygą"
@@ -18,7 +19,14 @@ book.list.table.control.edit.label: "Redaguoti"
 book.list.table.control.delete.label: "Ištrinti"
 
 book.edit.title: "Redaguoti knygą"
+book.edit.list.button: "Grįžti į knygų sąrašą"
+book.edit.create.button: "Sukurti naują knygą"
+book.edit.delete.button: "Ištrinti šią knygą"
 
 book.view.title: "Knygos peržiūra"
+book.view.list.button: "Grįžti į knygų sąrašą"
+book.view.create.button: "Sukurti naują knygą"
+book.view.edit.button: "Redaguoti šią knygą"
+book.view.delete.button: "Ištrinti šią knygą"
 
 book.save.button.label: "Išsaugoti knygą"

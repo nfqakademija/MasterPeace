@@ -56,9 +56,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $publisher;
 
@@ -210,13 +208,5 @@ class Book
     public function getIsbnCode()
     {
         return $this->isbnCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return strval($this->title);
     }
 }

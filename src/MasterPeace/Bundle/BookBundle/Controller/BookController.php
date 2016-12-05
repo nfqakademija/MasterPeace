@@ -116,6 +116,7 @@ class BookController extends Controller
 
         return $this->render('MasterPeaceBookBundle:Book:edit.html.twig', [
             'form' => $form->createView(),
+            'book' => $book,
         ]);
     }
 
