@@ -71,7 +71,7 @@ class BookController extends Controller
     public function createAction(Request $request)
     {
         $book = new Book();
-
+        $book->setTeacher($this->getUser());
         $form = $this->createForm(BookType::class, $book);
         $form->setData($book);
         $form->handleRequest($request);

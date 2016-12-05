@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,6 +25,13 @@ class Book
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     */
+    private $teacher;
 
     /**
      * @var string
@@ -88,6 +96,26 @@ class Book
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
+
+    /**
+     * @param User $teacher
+     *
+     * @return Book
+     */
+    public function setTeacher(User $teacher)
+    {
+        $this->teacher = $teacher;
+
+        return $this;
     }
 
     /**
