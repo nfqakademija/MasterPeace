@@ -1,9 +1,9 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Factory;
+namespace MasterPeace\Bundle\QuizBundle\Factory;
 
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Entity\Answer;
+use MasterPeace\Bundle\QuizBundle\Entity\Question;
 
 class QuestionFactory
 {

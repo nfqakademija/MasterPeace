@@ -1,8 +1,8 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Form;
+namespace MasterPeace\Bundle\QuizBundle\Form;
 
-use MasterPeace\Bundle\BookBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +23,7 @@ class QuestionType extends AbstractType
             ->add('answers', CollectionType::class, [
                 'entry_type' => AnswerType::class,
                 'allow_add' => true,
-//                'allow_delete' => true,
+                'allow_delete' => true,
             ]);
     }
 

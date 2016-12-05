@@ -36,14 +36,14 @@ class QuizResult
     /**
      * @var Quiz
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz")
+     * @ORM\ManyToOne(targetEntity="Quiz")
      */
     private $quiz;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer", mappedBy="quizResult")
+     * @ORM\OneToMany(targetEntity="QuizResultAnswer", mappedBy="quizResult")
      */
     private $quizResultAnswers;
 

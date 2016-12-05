@@ -51,9 +51,7 @@ class Quiz
     /**
      * @var ArrayCollection|Question[]
      *
-     * TODO: OneToMany
-     *
-     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Question", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"})
      */
     private $questions;
 

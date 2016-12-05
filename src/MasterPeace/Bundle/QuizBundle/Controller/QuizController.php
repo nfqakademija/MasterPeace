@@ -59,13 +59,14 @@ class QuizController extends Controller
      * @Route("/edit/{id}", name="quiz_edit")
      *
      * @param Request $request
-     *
+     * @param int $id
+     * 
      * @return Response
      */
-    public function editAction(Request $request, $id)
+    public function editAction(Request $request, int $id)
     {
         $quiz = $this->getQuizOr404($id);
-     var_dump($quiz->getQuestions()->toArray()[0]->getAnswers()->toArray()); die;
+     //var_dump($quiz->getQuestions()->toArray()[0]->getAnswers()->toArray()); die;
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 
@@ -81,11 +82,11 @@ class QuizController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      *
      * @return Quiz
      */
-    private function getQuizOr404($id)
+    private function getQuizOr404(int $id)
     {
         $quiz = $this->getDoctrine()->getRepository('MasterPeaceQuizBundle:Quiz')->findFull($id);
 

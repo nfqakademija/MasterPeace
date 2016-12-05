@@ -36,11 +36,11 @@ class Question
     private $title;
 
     /**
-     * @var Book
+     * @var Quiz
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="questions")
      */
-    private $book;
+    private $quiz;
 
     /**
      * @var ArrayCollection
@@ -83,21 +83,21 @@ class Question
     }
 
     /**
-     * @return Book
+     * @return Quiz
      */
-    public function getBook()
+    public function getQuiz()
     {
-        return $this->book;
+        return $this->quiz;
     }
 
     /**
-     * @param Book $book
+     * @param Quiz
      *
      * @return Question
      */
-    public function setBook(Book $book)
+    public function setTeacher(Quiz $quiz)
     {
-        $this->book = $book;
+        $this->quiz = $quiz;
 
         return $this;
     }

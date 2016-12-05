@@ -2,8 +2,8 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Form;
 
-use MasterPeace\Bundle\BookBundle\Factory\QuestionFactory;
-use MasterPeace\Bundle\BookBundle\Form\QuestionType;
+use MasterPeace\Bundle\QuizBundle\Factory\QuestionFactory;
+use MasterPeace\Bundle\QuizBundle\Form\QuestionType;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

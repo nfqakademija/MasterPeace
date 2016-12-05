@@ -24,21 +24,21 @@ class QuizResultAnswer
     /**
      * @var QuizResult
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\QuizResult", inversedBy="quizResultAnswers")
+     * @ORM\ManyToOne(targetEntity="QuizResult", inversedBy="quizResultAnswers")
      */
     private $quizResult;
 
     /**
      * @var Answer
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Answer")
+     * @ORM\ManyToOne(targetEntity="Answer")
      */
     private $answer;
 
     /**
      * @var Question
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="Question")
      */
     private $question;
 

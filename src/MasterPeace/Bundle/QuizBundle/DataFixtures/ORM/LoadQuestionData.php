@@ -30,8 +30,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
 
             $question = new Question();
             $question
-                ->setTitle('Klausimas nr. ' . $questionReference)
-                ->setBook($book);
+                ->setTitle('Klausimas nr. ' . $questionReference);
 
             // TODO Add teacher
 

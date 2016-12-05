@@ -1,8 +1,8 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\Form;
+namespace MasterPeace\Bundle\QuizBundle\Form;
 
-use MasterPeace\Bundle\BookBundle\Entity\Answer;
+use MasterPeace\Bundle\QuizBundle\Entity\Answer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
