@@ -5,9 +5,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">{{ 'classroom.list.title'|trans }}</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
             <a href="{{ path('classroom_create') }}" class="btn btn-success">{{ 'classroom.create.title'|trans }}</a>
@@ -24,12 +22,12 @@
                                 <i class="fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{ classroom.title }}</div>
+                                <div class="huge">{{ classroom.title }} <a href="{{ path('classroom_delete', {'id':classroom.id}) }}">DEL</a></div>
                                 <div>{{ 'classroom.list.students'|trans }}: 9&nbsp;&nbsp;&nbsp;{{ 'classroom.list.quizes'|trans }}: 2</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{ path('classroom_view', {'id':classroom.id}) }}">
                         <div class="panel-footer">
                             <span class="pull-left">{{ 'classroom.list.details'|trans }}</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -39,7 +37,5 @@
                 </div>
             </div>
         {% endfor %}
-        <!-- /.row -->
-        <!-- /#page-wrapper -->
     </div>
 {% endblock %}
