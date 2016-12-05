@@ -23,7 +23,10 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{ classroom.title }} <a href="{{ path('classroom_delete', {'id':classroom.id}) }}">DEL</a></div>
-                                <div>{{ 'classroom.list.students'|trans }}: 9&nbsp;&nbsp;&nbsp;{{ 'classroom.list.quizes'|trans }}: 2</div>
+                                <div style="text-align: right">
+                                    {{ 'classroom.list.students'|trans }}: <b>9</b><br />
+                                    {{ 'classroom.list.quizes'|trans }}: <b>2</b>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 classroom.list.title: "Mokinių klasės"
-classroom.list.students: "mokiniai"
-classroom.list.quizes: "klausimynai"
+classroom.list.students: "priskirti mokiniai"
+classroom.list.quizes: "priskirti klausimynai"
 classroom.list.details: "Peržiūrėti detaliau"
 
 classroom.create.title: "Naujos klasės kurimas"
-classroom.create.title.label: "Knygos pavadinimas"
+classroom.create.title.label: "Klasės pavadinimas"
 classroom.create.save.button: "Sukurti mokinių klasę"
 classroom.create.title.label: "Naujos klasės pavadinimas"
 classroom.create.list.button: "Grįžti į klasių sąrašą"
