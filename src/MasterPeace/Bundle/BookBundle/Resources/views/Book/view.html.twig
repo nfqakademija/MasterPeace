@@ -1,5 +1,48 @@
 {% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
 
 {% block page_wrapper %}
-VIEW BOOK
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'book.view.title'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ path('book_list') }}" class="btn btn-primary">{{ 'book.view.list.button'|trans }}</a>
+            <a href="{{ path('book_edit', {'id': book.id}) }}"
+               class="btn btn-info">{{ 'book.view.edit.button'|trans }}</a>
+            <a href="{{ path('book_create') }}" class="btn btn-success">{{ 'book.view.create.button'|trans }}</a>
+            <a href="{{ path('book_delete', {'id': book.id}) }}"
+               class="btn btn-danger">{{ 'book.view.delete.button'|trans }}</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>{{ 'book.create.title.label'|trans }}</td>
+                    <td>{{ book.title }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'book.create.author.label'|trans }}</td>
+                    <td>{{ book.author }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'book.create.year.label'|trans }}</td>
+                    <td>{{ book.year }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'book.create.cover.label'|trans }}</td>
+                    <td>{{ book.cover }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'book.create.isbn_code.label'|trans }}</td>
+                    <td>{{ book.isbnCode }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

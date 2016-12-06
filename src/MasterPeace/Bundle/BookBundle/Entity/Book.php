@@ -4,13 +4,14 @@ namespace MasterPeace\Bundle\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Book
  *
  * @ORM\Table(name="book")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\BookBundle\Repository\BookRepository")
  */
 class Book
 {
@@ -24,6 +25,13 @@ class Book
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User")
+     */
+    private $teacher;
 
     /**
      * @var string
@@ -56,9 +64,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $publisher;
 
@@ -90,6 +96,26 @@ class Book
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return User
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
+
+    /**
+     * @param User $teacher
+     *
+     * @return Book
+     */
+    public function setTeacher(User $teacher)
+    {
+        $this->teacher = $teacher;
+
+        return $this;
     }
 
     /**
@@ -210,13 +236,5 @@ class Book
     public function getIsbnCode()
     {
         return $this->isbnCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return strval($this->title);
     }
 }

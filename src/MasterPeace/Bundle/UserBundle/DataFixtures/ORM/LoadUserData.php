@@ -1,13 +1,14 @@
 <?php
 namespace MasterPeace\Bundle\UserBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -29,7 +30,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
     {
 
         $userManager = $this->container->get('fos_user.user_manager');
-
+        $i = (int) 0;
         foreach ($this->getUserData() as $userDetail) {
             $user = $userManager->createUser();
             $user
@@ -41,6 +42,8 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
                 ->setEnabled($userDetail['enable'])
                 ->setRoles($userDetail['role']);
             $userManager->updateUser($user, true);
+            $i++;
+            $this->addReference('user' . $i, $user);
         }
     }
 
