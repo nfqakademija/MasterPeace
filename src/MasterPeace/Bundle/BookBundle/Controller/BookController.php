@@ -71,7 +71,7 @@ class BookController extends Controller
     public function createAction(Request $request)
     {
         $book = new Book();
-
+        $book->setTeacher($this->getUser());
         $form = $this->createForm(BookType::class, $book);
         $form->setData($book);
         $form->handleRequest($request);
@@ -116,6 +116,7 @@ class BookController extends Controller
 
         return $this->render('MasterPeaceBookBundle:Book:edit.html.twig', [
             'form' => $form->createView(),
+            'book' => $book,
         ]);
     }
 

@@ -8,58 +8,50 @@
 {% endblock %}
 
 {% block body %}
-<div id="wrapper">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Navigacija</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">UpRead</a>
-        </div>
-        <!-- /.navbar-header -->
-        <ul class="nav navbar-top-links navbar-right">
-            <span style="color: #006699">&nbsp;&nbsp;&nbsp;{{ app.user.name }} {{ app.user.surname }} (mokytojas)&nbsp;&nbsp;&nbsp;</span>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Atsijungti</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="{{ path('classroom_list') }}"><i class="fa fa-tasks fa-fw"></i> Mokinių klasės</a>
-                    </li>
-
-                    <li>
-                        <a href="{{ path('quiz_list') }}"><i class="fa fa-check fa-fw"></i> Klausimynai</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('book_list') }}"><i class="fa fa-book fa-fw"></i> Knygų sąrašas</a>
-                    </li>
-                </ul>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">{{ 'teacher.menu.navigation.label'|trans }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">UpRead</a>
             </div>
-            <!-- /.sidebar-collapse -->
+            <ul class="nav navbar-top-links navbar-right">
+                <span style="color: #006699">&nbsp;&nbsp;&nbsp;{{ app.user.name }} {{ app.user.surname }} ({{ 'teacher.menu.role.label'|trans }})&nbsp;&nbsp;&nbsp;</span>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out fa-fw"></i> {{ 'teacher.menu.logout.label'|trans }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="{{ path('classroom_list') }}"><i class="fa fa-tasks fa-fw"></i> {{ 'teacher.menu.classrooms.label'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('quiz_list') }}"><i class="fa fa-check fa-fw"></i> {{ 'teacher.menu.quizes.label'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('book_list') }}"><i class="fa fa-book fa-fw"></i> {{ 'teacher.menu.books.label'|trans }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            {% block page_wrapper %}{% endblock %}
         </div>
-        <!-- /.navbar-static-side -->
-    </nav>
-    <div id="page-wrapper">
-        {% block page_wrapper %}{% endblock %}
+        <!-- /#wrapper -->
     </div>
-    <!-- /#wrapper -->
-</div>
 {% endblock %}
 
 {% block javascripts %}
