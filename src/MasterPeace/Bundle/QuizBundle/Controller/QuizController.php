@@ -32,6 +32,27 @@ class QuizController extends Controller
     }
 
     /**
+     * @Route ("/view/{id}", name="quiz_view")
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function viewAction(int $id)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $quiz = $em
+            ->getRepository('MasterPeaceQuizBundle:Quiz')
+            ->find($id);
+
+        return $this->render('MasterPeaceQuizBundle:Quiz:view.html.twig', [
+            'quiz' => $quiz,
+        ]);
+    }
+
+    /**
      * @Route("/create", name="quiz_create")
      *
      * @param Request $request
@@ -41,6 +62,7 @@ class QuizController extends Controller
     public function createAction(Request $request)
     {
         $quiz = new Quiz();
+        $quiz->setTeacher($this->getUser());
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 
@@ -79,6 +101,23 @@ class QuizController extends Controller
         return $this->render('@MasterPeaceQuiz/Quiz/create.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route ("/delete/{id}", name="quiz_delete")
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function deleteAction(int $id)
+    {
+        $quiz = $this->getQuizOr404($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($quiz);
+        $em->flush();
+
+        return $this->redirectToRoute('quiz_list');
     }
 
     /**
