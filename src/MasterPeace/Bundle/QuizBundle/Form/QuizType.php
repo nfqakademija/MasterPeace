@@ -21,7 +21,7 @@ class QuizType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Quiz Title',
+                'label' => 'quiz.create.title.label',
             ])
             ->add('questions', CollectionType::class, [
                 'entry_type' => QuestionType::class,
@@ -29,7 +29,9 @@ class QuizType extends AbstractType
                 'allow_delete' => true,
                 'prototype_data' => QuestionFactory::create(),
             ])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, [
+                'label' => 'quiz.create.save.button',
+            ]);
     }
 
     /**
