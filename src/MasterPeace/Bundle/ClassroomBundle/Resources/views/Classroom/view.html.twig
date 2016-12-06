@@ -1,0 +1,87 @@
+{% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
+
+{% block page_wrapper %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'classroom.view.title'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ path('classroom_list') }}" class="btn btn-primary">{{ 'classroom.view.list.button'|trans }}</a>
+            <a href="{{ path('classroom_edit', {'id': classroom.id}) }}"
+               class="btn btn-info">{{ 'classroom.view.edit.button'|trans }}</a>
+            <a href="{{ path('classroom_create') }}"
+               class="btn btn-success">{{ 'classroom.view.create.button'|trans }}</a>
+            <a href="{{ path('classroom_delete', {'id': classroom.id}) }}"
+               class="btn btn-danger">{{ 'classroom.view.delete.button'|trans }}</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ classroom.title }}
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>test</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Priskirti mokiniai
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>Jolanta Metaciute</td>
+                            </tr>
+                            <tr>
+                                <td>Arnas Grigonis</td>
+                            </tr>
+                            <tr>
+                                <td>Martynas Artelis</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Priskirti klausimynai
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>Knygos supratimas 1</td>
+                            </tr>
+                            <tr>
+                                <td>Knygos supratimas 2</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
