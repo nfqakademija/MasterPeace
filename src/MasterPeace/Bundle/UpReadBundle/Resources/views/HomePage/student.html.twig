@@ -1,3 +1,45 @@
+{% extends 'admin_layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/admin/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login/font-awesome.css') }}" rel="stylesheet">
+{% endblock %}
 
-student
+{% block body %}
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">{{ 'menu.navigation.label'|trans }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">UpRead</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <span style="color: #006699">&nbsp;&nbsp;&nbsp;{{ app.user.name }} {{ app.user.surname }} ({{ 'student.menu.role.label'|trans }})&nbsp;&nbsp;&nbsp;</span>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out fa-fw"></i> {{ 'menu.logout.label'|trans }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="page-wrapper-student">
+            {% block page_wrapper %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('js/admin/sb-admin-2.js') }}"></script>
+{% endblock %}

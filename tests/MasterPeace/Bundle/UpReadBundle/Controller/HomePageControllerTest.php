@@ -24,6 +24,6 @@ class HomePageControllerTest extends WebTestCase
         $crawler = $this->formLogIn($client, 'student', 'password', '/');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("student")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("mokinys")')->count());
     }
 }

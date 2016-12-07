@@ -3,6 +3,7 @@
 namespace Tests\MasterPeace\Bundle\UserBundle\Traits;
 
 use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 trait FormLogInSimulation
 {

@@ -38,11 +38,18 @@ class ClassroomController extends Controller
     }
 
     /**
-     * @return ClassroomRepository|object
+     * @Route ("/student/list", name="classroom_student_list")
+     *
+     * @return Response
      */
-    private function getClassroomRepository()
+    public function studentListAction()
     {
-        return $this->get('masterpeace.classroom.repository');
+        $repo = $this->getClassroomRepository();
+        $classrooms = $repo->findAll();
+
+        return $this->render('MasterPeaceClassroomBundle:Classroom:studentList.html.twig', [
+            'classrooms' => $classrooms,
+        ]);
     }
 
     /**
@@ -155,5 +162,13 @@ class ClassroomController extends Controller
         }
 
         return $classroom;
+    }
+
+    /**
+     * @return ClassroomRepository|object
+     */
+    private function getClassroomRepository()
+    {
+        return $this->get('masterpeace.classroom.repository');
     }
 }
