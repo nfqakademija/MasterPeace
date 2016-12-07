@@ -19,6 +19,8 @@ quiz.edit.title: "Klausimyno redagavimas"
 
 quiz.create.title: "Klausimyno kurimas"
 quiz.create.list.button: "Grįžti į klausimynų sąrašą"
+quiz.create.book.label: "Knyga"
+quiz.create.book.placeholder: "Pasirinkite knygą"
 quiz.create.title.label: "Klausimyno pavadinimas"
 quiz.create.questions.label: "Klausimai"
 quiz.create.question.label: "Klausimas"

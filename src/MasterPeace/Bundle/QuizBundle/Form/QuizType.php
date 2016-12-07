@@ -2,9 +2,11 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use MasterPeace\Bundle\QuizBundle\Factory\QuestionFactory;
 use MasterPeace\Bundle\QuizBundle\Form\QuestionType;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -22,6 +24,17 @@ class QuizType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.title.label',
+            ])
+            ->add('book', EntityType::class, [
+                'class' => 'Book::class',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('b')
+                        ->orderBy('b.title', 'ASC');
+                },
+                'choice_label' => 'title',
+                'choice_value' => 'id',
+                'placeholder' => 'quiz.create.book.placeholder',
+                'label' => 'quiz.create.book.label',
             ])
             ->add('questions', CollectionType::class, [
                 'entry_type' => QuestionType::class,
