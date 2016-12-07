@@ -19,11 +19,11 @@ class ClassroomType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'classroom.form.title.label',
+                'label' => 'classroom.create.title.label',
                 'required' => false,
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'classroom.form.save.button',
+                'label' => 'classroom.save.button.label',
             ]);
     }
 
