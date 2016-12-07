@@ -28,6 +28,7 @@ class QuizType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype_data' => QuestionFactory::create(),
+                'label' => 'quiz.create.questions.label',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'quiz.create.save.button',
