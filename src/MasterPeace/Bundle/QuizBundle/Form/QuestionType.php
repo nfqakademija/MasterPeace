@@ -34,6 +34,7 @@ class QuestionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Question::class,
+            'label' => false,
         ]);
     }
 }

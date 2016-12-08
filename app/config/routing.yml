@@ -1,14 +1,14 @@
-classroom:
+mp_classroom:
     resource: "@MasterPeaceClassroomBundle/Controller/"
     type:     annotation
     prefix:   /classroom
 
-book:
+mp_book:
     resource: "@MasterPeaceBookBundle/Controller/"
     type:     annotation
     prefix:   /book
 
-quiz:
+mp_quiz:
     resource: "@MasterPeaceQuizBundle/Controller/"
     type:     annotation
     prefix:   /quiz
@@ -16,12 +16,31 @@ quiz:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-home:
-    resource: "@MasterPeaceUpReadBundle/Controller/"
+mp_upread_student:
+    resource: "@MasterPeaceUpReadBundle/Controller/StudentController.php"
     type:     annotation
-    prefix:   /
+    prefix:   /student
+
+mp_upread_teacher:
+    resource: "@MasterPeaceUpReadBundle/Controller/TeacherController.php"
+    type:     annotation
+    prefix:   /teacher
 
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+
+student_security_login:
+    path:      /student/login
+    defaults:  { _controller: FOSUserBundle:Security:login }
+
+student_security_check:
+    path:      /student/login_check
+    defaults:  { _controller: FOSUserBundle:Security:check }
+
+
+teacher_security_logout:
+    path:      /teacher/logout
+    defaults:  { _controller: FOSUserBundle:Security:logout }

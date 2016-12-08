@@ -4,7 +4,7 @@ namespace MasterPeace\Bundle\QuizBundle\Form;
 
 use MasterPeace\Bundle\QuizBundle\Entity\Answer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +20,7 @@ class AnswerType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.answer.label',
             ])
-            ->add('correct', RadioType::class, [
+            ->add('correct', CheckBoxType::class, [
                 'label' => 'quiz.create.correct.label',
             ]);
     }
@@ -32,6 +32,7 @@ class AnswerType extends AbstractType
     {
         $resolver->setDefaults([
            'data_class' => Answer::class,
+           'label' => false,
         ]);
     }
 }

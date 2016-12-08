@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\QuizBundle\Form;
 
+use MasterPeace\Bundle\BookBundle\Entity\Book;
 use Doctrine\ORM\EntityRepository;
 use MasterPeace\Bundle\QuizBundle\Factory\QuestionFactory;
 use MasterPeace\Bundle\QuizBundle\Form\QuestionType;
@@ -21,18 +22,17 @@ class QuizType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.title.label',
             ])
             ->add('book', EntityType::class, [
-                'class' => 'Book::class',
+                'class' => Book::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('b')
                         ->orderBy('b.title', 'ASC');
                 },
-                'choice_label' => 'title',
-                'choice_value' => 'id',
                 'placeholder' => 'quiz.create.book.placeholder',
                 'label' => 'quiz.create.book.label',
             ])
@@ -40,8 +40,8 @@ class QuizType extends AbstractType
                 'entry_type' => QuestionType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'prototype_data' => QuestionFactory::create(),
-                'label' => 'quiz.create.questions.label',
+                'prototype_data' => QuestionFactory::create($builder->getData()),
+                'label' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'quiz.create.save.button',

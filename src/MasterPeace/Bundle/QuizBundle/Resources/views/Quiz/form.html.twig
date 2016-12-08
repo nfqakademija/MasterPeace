@@ -4,7 +4,11 @@
         {{ form_row(form.title) }}
         {{ form_row(form.book) }}
         <ul class="questions" data-prototype="{{ form_widget(form.questions.vars.prototype)|e('html_attr') }}">
-            {{ form_row(form.questions) }}
+            {% for question in form.questions %}
+                <li>
+                    {{ form_row(question) }}
+                </li>
+            {% endfor %}
         </ul>
         {{ form_end(form) }}
     </div>

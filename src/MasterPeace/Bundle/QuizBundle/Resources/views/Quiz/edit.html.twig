@@ -20,7 +20,8 @@
             // Get the ul that holds the collection of tags
             $collectionHolder = $('ul.questions');
 
-            $collectionHolder.find('li').each(function() {
+            $('ul.questions > li').each(function() {
+                console.log($(this));
                 addTagFormDeleteLink($(this));
             });
 

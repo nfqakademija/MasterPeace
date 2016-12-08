@@ -54,7 +54,7 @@ class Quiz
     /**
      * @var ArrayCollection|Question[]
      *
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"}, orphanRemoval=true)
      */
     private $questions;
 
@@ -139,6 +139,7 @@ class Quiz
     public function addQuestion(Question $question)
     {
         if (false === $this->questions->contains($question)) {
+            $question->setQuiz($this);
             $this->questions->add($question);
         }
 
@@ -166,6 +167,19 @@ class Quiz
     {
         return $this->questions;
     }
+
+    /**
+     * @param ArrayCollection|Question[] $questions
+     *
+     * @return $this
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+
+        return $this;
+    }
+
 
     /**
      * @return string

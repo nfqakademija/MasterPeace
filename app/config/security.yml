@@ -3,11 +3,6 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
-    role_hierarchy:
-        ROLE_STUDENT:     ROLE_STUDENT
-        ROLE_TEACHER:     [ROLE_STUDENT, ROLE_TEACHER]
-        ROLE_ADMIN:       [ROLE_STUDENT, ROLE_TEACHER, ROLE_ADMIN]
-
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
@@ -20,29 +15,47 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        secure_area:
-            pattern:  ^/
-            anonymous: ~
-            form_login:
-                check_path: /login_check
-                login_path: /login
+#        secure_area:
+#            pattern:  ^/
+#            anonymous: ~
+#            form_login:
+#                check_path: /login_check
+#                login_path: /login
+#
+#            logout:
+#                path:   /logout
+#                target: /login
 
-            logout:
-                path:   /logout
-                target: /login
-
-        main:
-            pattern: ^/
+        student_area:
+            anonymous: true
+            pattern: ^/student
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                check_path: student_security_check
+                login_path: student_security_login
+                default_target_path: student_homepage
+            logout:
+                path: fos_user_security_logout
 
-            logout:       true
-            anonymous:    true
+        teacher_area:
+            anonymous: true
+            pattern: ^/teacher
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                check_path: fos_user_security_check
+                login_path: fos_user_security_login
+                default_target_path: teacher_homepage
+            logout:
+                path: teacher_security_logout
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/student/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/$, role: [ROLE_STUDENT] }
-        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/logout, role: [ROLE_TEACHER, ROLE_STUDENT] }
+        - { path: ^/teacher, role: [ROLE_TEACHER, ROLE_ADMIN] }
+        - { path: ^/student, role: [ROLE_STUDENT, ROLE_ADMIN] }
+

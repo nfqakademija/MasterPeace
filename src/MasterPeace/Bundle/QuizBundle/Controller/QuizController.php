@@ -68,7 +68,13 @@ class QuizController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $om = $this->getDoctrine()->getManager();
-            $om->persist($form->getData());
+
+            foreach ($quiz->getQuestions() as $question) {
+                $question->setQuiz($quiz);
+                $om->persist($question);
+            }
+
+            $om->persist($quiz);
             $om->flush();
         }
 
@@ -88,17 +94,24 @@ class QuizController extends Controller
     public function editAction(Request $request, int $id)
     {
         $quiz = $this->getQuizOr404($id);
-        //var_dump($quiz->getQuestions()->toArray()[0]->getAnswers()->toArray()); die;
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $om = $this->getDoctrine()->getManager();
-            $om->persist($form->getData());
+
+            foreach ($quiz->getQuestions() as $question) {
+                $question->setQuiz($quiz);
+                $om->persist($question);
+            }
+
+            $om->persist($quiz);
             $om->flush();
+
+            return $this->redirectToRoute('quiz_list');
         }
 
-        return $this->render('@MasterPeaceQuiz/Quiz/create.html.twig', [
+        return $this->render('@MasterPeaceQuiz/Quiz/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
