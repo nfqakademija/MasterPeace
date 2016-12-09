@@ -11,7 +11,8 @@
             <a href="{{ path('teacher_quiz_list') }}" class="btn btn-primary">{{ 'quiz.view.list.button'|trans }}</a>
             <a href="{{ path('teacher_quiz_edit', {'id': quiz.id}) }}"
                class="btn btn-info">{{ 'quiz.view.edit.button'|trans }}</a>
-            <a href="{{ path('teacher_quiz_create') }}" class="btn btn-success">{{ 'quiz.view.create.button'|trans }}</a>
+            <a href="{{ path('teacher_quiz_create') }}"
+               class="btn btn-success">{{ 'quiz.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_quiz_delete', {'id': quiz.id}) }}"
                class="btn btn-danger">{{ 'quiz.view.delete.button'|trans }}</a>
         </div>
@@ -31,6 +32,13 @@
                 </tr>
                 </tbody>
             </table>
+            {% for question in quiz.questions %}
+                {{ question.title }}<br/>
+                {% for answer in question.answers %}
+                    {{ answer.title }} [ {{ answer.correct }} ]<br/>
+                {% endfor %}
+                <br/>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
