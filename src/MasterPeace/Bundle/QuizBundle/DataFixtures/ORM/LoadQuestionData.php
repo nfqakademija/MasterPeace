@@ -25,12 +25,12 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             $bookReference = $i % $bookCount;
             $questionReference = $i % $questionAmount + 1;
 
-            /** @var Book $book */
-            $book = $this->getReference('book' . $bookReference);
+            $quiz = $this->getReference('quiz0');
 
             $question = new Question();
             $question
-                ->setTitle('Klausimas nr. ' . $questionReference);
+                ->setTitle('Klausimas nr. ' . $questionReference)
+                ->setQuiz($quiz);
 
             // TODO Add teacher
 
@@ -54,6 +54,6 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }
