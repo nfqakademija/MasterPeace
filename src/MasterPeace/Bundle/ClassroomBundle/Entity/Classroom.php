@@ -3,6 +3,7 @@ namespace MasterPeace\Bundle\ClassroomBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -46,9 +47,17 @@ class Classroom
      */
     private $students;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\QuizBundle\Entity\Quiz", inversedBy="classrooms")
+     */
+    private $quizzes; // TODO: add $quizzes methods
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->quizzes = new ArrayCollection();
     }
 
     /**
@@ -143,6 +152,52 @@ class Classroom
     public function setStudents(ArrayCollection $students)
     {
         $this->students = $students;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getQuizzes(): ArrayCollection
+    {
+        return $this->quizzes;
+    }
+
+    /**
+     * @param ArrayCollection $quizzes
+     */
+    public function setQuizzes(ArrayCollection $quizzes)
+    {
+        $this->quizzes = $quizzes;
+    }
+
+    /**
+     * @param Quiz $quiz
+     *
+     * @return Classroom
+     *
+     */
+    public function addQuiz(Quiz $quiz)
+    {
+        if (false === $this->quizzes->contains($quiz)) {
+            $this->quizzes->add($quiz);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Quiz $quiz
+     *
+     * @return Classroom
+     *
+     */
+    public function removeQuiz(Quiz $quiz)
+    {
+        if ($this->quizzes->contains($quiz)) {
+            $this->quizzes->removeElement($quiz);
+        }
 
         return $this;
     }

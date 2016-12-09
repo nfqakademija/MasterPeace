@@ -3,6 +3,9 @@
 namespace MasterPeace\Bundle\QuizBundle\Controller;
 
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
+use MasterPeace\Bundle\QuizBundle\Entity\QuizResult;
+use MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer;
+use MasterPeace\Bundle\QuizBundle\Form\QuizResultType;
 use MasterPeace\Bundle\QuizBundle\Form\QuizType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,12 +34,50 @@ class QuizStudentController extends Controller
         $em = $this
             ->getDoctrine()
             ->getManager();
-        $quizes = $em
+        $quizzes = $em
             ->getRepository('MasterPeaceQuizBundle:Quiz')
             ->findAll();
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Student:list.html.twig', [
-            'quizes' => $quizes,
+            'quizzes' => $quizzes,
+        ]);
+    }
+
+    /**
+     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer")
+     *
+     * @param Quiz $quiz
+     *
+     * @return Response
+     */
+    public function answerAction(Request $request, Quiz $quiz)
+    {
+        $result = new QuizResult();
+        $result
+            ->setStudent($this->getUser())
+            ->setQuiz($quiz);
+
+
+        foreach ($quiz->getQuestions() as $question) {
+            $answer = new QuizResultAnswer();
+            $answer->setQuestion($question);
+
+            $result->addAnswer($answer);
+        }
+
+        $form = $this->createForm(QuizResultType::class, $result);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+//            var_dump($result->getAnswers()->toArray()); die;
+            $om = $this->getDoctrine()->getManager();
+            $om->persist($result);
+            $om->flush();
+        }
+
+        return $this->render('@MasterPeaceQuiz/Quiz/Student/answer.html.twig', [
+            'form' => $form->createView(),
+            'quiz' => $quiz,
         ]);
     }
 }

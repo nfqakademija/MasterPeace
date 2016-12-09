@@ -134,7 +134,7 @@ class Question
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|Answer[]
      */
     public function getAnswers()
     {
