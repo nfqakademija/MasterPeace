@@ -30,7 +30,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     {
 
         $userManager = $this->container->get('fos_user.user_manager');
-        $i = (int) 0;
+        $i = 0;
         foreach ($this->getUserData() as $userDetail) {
             $user = $userManager->createUser();
             $user
@@ -50,62 +50,35 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     /**
      * @return array
      */
-    public function getUserData()
+    public function getUserData(): array
     {
         return [
             [
-            'username' => 'KarolisM',
-            'email' => 'karois@domain.com',
-            'name' => 'Karolis',
-            'surname' => 'Matjosaitis',
-            'pass' => 'password',
-            'enable' => true,
-            'role' => [User::ROLE_ADMIN],
+                'username' => 'sergej',
+                'email'    => 'sergej@domain.com',
+                'name'     => 'Sergej',
+                'surname'  => 'Voronov',
+                'pass'     => 'sergej',
+                'enable'   => true,
+                'role'     => [User::ROLE_TEACHER],
             ],
             [
-            'username' => 'SergejV',
-            'email' => 'sergej@domain.com',
-            'name' => 'Sergej',
-            'surname' => 'Voronov',
-            'pass' => 'password',
-            'enable' => true,
-            'role' => [User::ROLE_ADMIN],
+                'username' => 'teacher',
+                'email'    => 'mokytojo@domain.com',
+                'name'     => 'Mokytojas',
+                'surname'  => 'Mokytojauskas',
+                'pass'     => 'teacher',
+                'enable'   => true,
+                'role'     => [User::ROLE_TEACHER],
             ],
             [
-            'username' => 'LukasL',
-            'email' => 'lukas@domain.com',
-            'name' => 'Lukas',
-            'surname' => 'Laurutis',
-            'pass' => 'password',
-            'enable' => true,
-            'role' => [User::ROLE_ADMIN],
-            ],
-            [
-            'username' => 'teacher',
-            'email' => 'mokytojo@domain.com',
-            'name' => 'Petraitis',
-            'surname' => 'Stuobrys',
-            'pass' => 'password',
-            'enable' => true,
-            'role' => [User::ROLE_TEACHER],
-            ],
-            [
-            'username' => 'student',
-            'email' => 'studento@domain.com',
-            'name' => 'Kovas',
-            'surname' => 'Balandaitis',
-            'pass' => 'password',
-            'enable' => true,
-            'role' => [User::ROLE_STUDENT],
-            ],
-            [
-                'username' => 'admin',
-                'email' => 'admin@domain.com',
-                'name' => 'Admin',
-                'surname' => 'Admin',
-                'pass' => 'admin',
-                'enable' => true,
-                'role' => [User::ROLE_ADMIN],
+                'username' => 'student',
+                'email'    => 'studento@domain.com',
+                'name'     => 'Studentas',
+                'surname'  => 'Studentauskas',
+                'pass'     => 'student',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
             ],
         ];
     }
