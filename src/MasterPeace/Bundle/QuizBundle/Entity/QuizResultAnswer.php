@@ -24,7 +24,7 @@ class QuizResultAnswer
     /**
      * @var QuizResult
      *
-     * @ORM\ManyToOne(targetEntity="QuizResult", inversedBy="quizResultAnswers")
+     * @ORM\ManyToOne(targetEntity="QuizResult", inversedBy="answers")
      */
     private $quizResult;
 
@@ -41,6 +41,22 @@ class QuizResultAnswer
      * @ORM\ManyToOne(targetEntity="Question")
      */
     private $question;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $correct;
+
+    /**
+     * QuizResultAnswer constructor.
+     */
+    public function __construct()
+    {
+        $this->correct = false;
+    }
+
 
     /**
      * @return int
@@ -109,4 +125,21 @@ class QuizResultAnswer
 
         return $this;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isCorrect(): bool
+    {
+        return $this->correct;
+    }
+
+    /**
+     * @param boolean $correct
+     */
+    public function setCorrect(bool $correct)
+    {
+        $this->correct = $correct;
+    }
 }
+

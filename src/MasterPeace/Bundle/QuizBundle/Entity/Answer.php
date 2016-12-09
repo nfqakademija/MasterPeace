@@ -77,7 +77,7 @@ class Answer
     /**
      * @return bool
      */
-    public function getCorrect()
+    public function isCorrect()
     {
         return $this->correct;
     }
