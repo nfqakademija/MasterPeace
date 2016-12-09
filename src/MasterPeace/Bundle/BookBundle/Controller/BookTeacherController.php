@@ -4,29 +4,30 @@ namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\BookBundle\Form\BookType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BookController extends Controller
+class BookTeacherController extends Controller
 {
     /**
-     * @Route ("/")
+     * @Route ("/book")
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
-        return $this->redirectToRoute('book_list');
+        return $this->redirectToRoute('teacher_book_list');
     }
 
     /**
-     * @Route ("/list", name="book_list")
+     * @Route ("/book/list", name="teacher_book_list")
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $em = $this
             ->getDoctrine()
@@ -35,19 +36,19 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->findAll();
 
-        return $this->render('MasterPeaceBookBundle:Book:list.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:list.html.twig', [
             'books' => $books,
         ]);
     }
 
     /**
-     * @Route ("/view/{id}", name="book_view")
+     * @Route ("/book/view/{id}", name="teacher_book_view")
      *
      * @param int $id
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()
@@ -56,24 +57,23 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->find($id);
 
-        return $this->render('MasterPeaceBookBundle:Book:view.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:view.html.twig', [
             'book' => $book,
         ]);
     }
 
     /**
-     * @Route ("/create", name="book_create")
+     * @Route ("/book/create", name="teacher_book_create")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request): Response
     {
         $book = new Book();
         $book->setTeacher($this->getUser());
         $form = $this->createForm(BookType::class, $book);
-        $form->setData($book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,23 +81,23 @@ class BookController extends Controller
             $em->persist($book);
             $em->flush();
 
-            return $this->redirectToRoute('book_list');
+            return $this->redirectToRoute('teacher_book_list');
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:create.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route ("/edit/{id}", name="book_edit")
+     * @Route ("/book/edit/{id}", name="teacher_book_edit")
      *
      * @param int $id
      * @param Request $request
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id)
+    public function editAction(Request $request, int $id): Response
     {
         $book = $this->getBookOr404($id);
 
@@ -109,32 +109,32 @@ class BookController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            return $this->redirectToRoute('book_view', [
+            return $this->redirectToRoute('teacher_book_view', [
                 'id' => $id,
             ]);
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:edit.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:edit.html.twig', [
             'form' => $form->createView(),
             'book' => $book,
         ]);
     }
 
     /**
-     * @Route ("/delete/{id}", name="book_delete")
+     * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
      * @param int $id
      *
      * @return Response
      */
-    public function deleteAction(int $id)
+    public function deleteAction(int $id): Response
     {
         $book = $this->getBookOr404($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);
         $em->flush();
 
-        return $this->redirectToRoute('book_list');
+        return $this->redirectToRoute('teacher_book_list');
     }
 
     /**
@@ -142,7 +142,7 @@ class BookController extends Controller
      *
      * @return Book
      */
-    private function getBookOr404(int $id)
+    private function getBookOr404(int $id): Book
     {
         $book = $this->getDoctrine()->getRepository('MasterPeaceBookBundle:Book')->find($id);
 

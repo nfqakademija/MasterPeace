@@ -1,8 +1,9 @@
-teacher.menu.navigation.label: "Navigacija"
+menu.navigation.label: "Navigacija"
+menu.logout.label: "Atsijungti"
 
 teacher.menu.classrooms.label: "Mokinių klasės"
 teacher.menu.quizes.label: "Klausimynai"
 teacher.menu.books.label: "Knygų sąrašas"
 teacher.menu.role.label: "mokytojas"
 
-teacher.menu.logout.label: "Atsijungti"
+student.menu.role.label: "mokinys"

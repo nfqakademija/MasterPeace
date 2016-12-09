@@ -1,9 +1,20 @@
 {% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
 
-{% form_theme form 'MasterPeaceQuizBundle:Quiz:form_theme.html.twig' %}
+{% form_theme form 'MasterPeaceQuizBundle:Quiz/Teacher:form_theme.html.twig' %}
 
 {% block page_wrapper %}
-    {{ include('MasterPeaceQuizBundle:Quiz:form.html.twig', {form: form}) }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'quiz.create.title'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ path('teacher_quiz_list') }}" class="btn btn-primary">{{ 'quiz.create.list.button'|trans }}</a>
+        </div>
+    </div>
+    <br/>
+    {{ include('MasterPeaceQuizBundle:Quiz/Teacher:form.html.twig', {form: form}) }}
 {% endblock %}
 
 {% block javascripts %}
@@ -13,7 +24,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addQuestionLink = $('<a href="#" class="add-question-link">Add Question</a>');
+        var $addQuestionLink = $('<a href="#" class="add-question-link">{{ 'quiz.create.add_question.label'|trans }}</a>');
         var $newLinkLi = $('<li></li>').append($addQuestionLink);
 
         jQuery(document).ready(function () {
@@ -60,7 +71,7 @@
         }
 
         function addTagFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<a href="#">delete this tag</a>');
+            var $removeFormA = $('<a href="#">{{ 'quiz.create.del_question.label'|trans }}</a>');
             $tagFormLi.append($removeFormA);
 
             $removeFormA.on('click', function(e) {

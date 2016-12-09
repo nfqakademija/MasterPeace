@@ -10,27 +10,20 @@ use MasterPeace\Bundle\QuizBundle\Entity\Question;
 
 class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterface
 {
-    const QUESTIONS_COUNT = 4;
+    const QUESTIONS_COUNT = 10;
 
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        $bookCount = LoadBookData::getBookCount();
-        $questionAmount = self::QUESTIONS_COUNT;
-        $bookQuestions = $bookCount * $questionAmount;
-
-        for ($i = 0; $i < $bookQuestions; $i++) {
-            $bookReference = $i % $bookCount;
-            $questionReference = $i % $questionAmount + 1;
-
-            /** @var Book $book */
-            $book = $this->getReference('book' . $bookReference);
+        for ($i = 0; $i < self::QUESTIONS_COUNT; $i++) {
+            $quiz = $this->getReference('quiz0');
 
             $question = new Question();
             $question
-                ->setTitle('Klausimas nr. ' . $questionReference);
+                ->setTitle('Klausimas nr. ' . $i)
+                ->setQuiz($quiz);
 
             // TODO Add teacher
 
@@ -46,7 +39,7 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public static function getQuestionTotalCount()
     {
-        return self::QUESTIONS_COUNT * LoadBookData::getBookCount();
+        return self::QUESTIONS_COUNT;
     }
 
     /**
@@ -54,6 +47,6 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }

@@ -34,7 +34,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @return array
      */
-    private static function getBookDetails()
+    private static function getBookDetails(): array
     {
         return [
             [
@@ -67,7 +67,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @return int
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }
@@ -75,7 +75,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @return int
      */
-    public static function getBookCount()
+    public static function getBookCount(): int
     {
         return count(self::getBookDetails());
     }

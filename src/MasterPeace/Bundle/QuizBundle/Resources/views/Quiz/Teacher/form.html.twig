@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-12">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.book) }}
+        <ul class="questions" data-prototype="{{ form_widget(form.questions.vars.prototype)|e('html_attr') }}">
+            {% for question in form.questions %}
+                <li>
+                    {{ form_row(question) }}
+                </li>
+            {% endfor %}
+        </ul>
+        <br />
+        <button type="submit" class="btn btn-info">{{ 'quiz.create.save.button'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>

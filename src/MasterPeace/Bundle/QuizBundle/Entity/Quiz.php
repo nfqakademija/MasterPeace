@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Quiz
@@ -30,7 +31,8 @@ class Quiz
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -45,13 +47,14 @@ class Quiz
      * @var Book
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
+     * @Assert\NotBlank()
      */
     private $book;
 
     /**
      * @var ArrayCollection|Question[]
      *
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"}, orphanRemoval=true)
      */
     private $questions;
 
@@ -136,6 +139,7 @@ class Quiz
     public function addQuestion(Question $question)
     {
         if (false === $this->questions->contains($question)) {
+            $question->setQuiz($this);
             $this->questions->add($question);
         }
 
@@ -165,10 +169,14 @@ class Quiz
     }
 
     /**
-     * @return string
+     * @param ArrayCollection|Question[] $questions
+     *
+     * @return $this
      */
-    public function __toString()
+    public function setQuestions($questions)
     {
-        return strval($this->title);
+        $this->questions = $questions;
+
+        return $this;
     }
 }

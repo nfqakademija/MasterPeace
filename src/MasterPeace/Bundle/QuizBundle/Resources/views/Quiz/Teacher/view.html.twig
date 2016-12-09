@@ -1,0 +1,44 @@
+{% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
+
+{% block page_wrapper %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'quiz.view.title'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ path('teacher_quiz_list') }}" class="btn btn-primary">{{ 'quiz.view.list.button'|trans }}</a>
+            <a href="{{ path('teacher_quiz_edit', {'id': quiz.id}) }}"
+               class="btn btn-info">{{ 'quiz.view.edit.button'|trans }}</a>
+            <a href="{{ path('teacher_quiz_create') }}"
+               class="btn btn-success">{{ 'quiz.view.create.button'|trans }}</a>
+            <a href="{{ path('teacher_quiz_delete', {'id': quiz.id}) }}"
+               class="btn btn-danger">{{ 'quiz.view.delete.button'|trans }}</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>{{ 'quiz.view.title.label'|trans }}</td>
+                    <td>{{ quiz.title }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'quiz.view.book.label'|trans }}</td>
+                    <td>{{ quiz.book.title }} ({{ quiz.book.year }})</td>
+                </tr>
+                </tbody>
+            </table>
+            {% for question in quiz.questions %}
+                {{ question.title }}<br/>
+                {% for answer in question.answers %}
+                    {{ answer.title }} [ {{ answer.correct }} ]<br/>
+                {% endfor %}
+                <br/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

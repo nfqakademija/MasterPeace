@@ -16,25 +16,14 @@ class BookControllerTest extends WebTestCase
     {
         $client = $this->getLoggedClient();
 
-        $crawler = $client->request('GET', '/book/list');
+        $crawler = $client->request('GET', '/teacher/book/list');
         $this->assertGreaterThan(0, $crawler->filter('div:contains("Smaragdo akies paslaptis")')->count());
-    }
-
-    /**
-     * @return Client
-     */
-    private function getLoggedClient()
-    {
-        $client = static::createClient();
-        $this->logIn($client, [User::ROLE_ADMIN]);
-
-        return $client;
     }
 
     public function testCreateAction()
     {
         $client = $this->getLoggedClient();
-        $crawler = $client->request('GET', '/book/create');
+        $crawler = $client->request('GET', '/teacher/book/create');
         $form = $crawler->filter('form[name=book]')->form();
 
         $form['book[title]'] = 'Naujas Pavadinimas';
@@ -51,5 +40,16 @@ class BookControllerTest extends WebTestCase
             'Naujas Pavadinimas',
             $client->getResponse()->getContent()
         );
+    }
+
+    /**
+     * @return Client
+     */
+    private function getLoggedClient()
+    {
+        $client = static::createClient();
+        $this->logIn($client, [User::ROLE_TEACHER]);
+
+        return $client;
     }
 }

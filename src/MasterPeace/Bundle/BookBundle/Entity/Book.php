@@ -119,6 +119,14 @@ class Book
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * @param string $title
      *
      * @return $this
@@ -133,9 +141,9 @@ class Book
     /**
      * @return string
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
@@ -151,11 +159,11 @@ class Book
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAuthor()
+    public function getYear()
     {
-        return $this->author;
+        return $this->year;
     }
 
     /**
@@ -171,11 +179,11 @@ class Book
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getYear()
+    public function getPublisher()
     {
-        return $this->year;
+        return $this->publisher;
     }
 
     /**
@@ -193,9 +201,9 @@ class Book
     /**
      * @return string
      */
-    public function getPublisher()
+    public function getCover()
     {
-        return $this->publisher;
+        return $this->cover;
     }
 
     /**
@@ -213,9 +221,9 @@ class Book
     /**
      * @return string
      */
-    public function getCover()
+    public function getIsbnCode()
     {
-        return $this->cover;
+        return $this->isbnCode;
     }
 
     /**
@@ -230,11 +238,8 @@ class Book
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getIsbnCode()
+    public function __toString()
     {
-        return $this->isbnCode;
+        return $this->title . " (" . $this->year . ")";
     }
 }

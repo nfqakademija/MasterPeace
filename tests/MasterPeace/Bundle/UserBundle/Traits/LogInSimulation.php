@@ -12,9 +12,9 @@ trait LogInSimulation
      * @param Client $client
      * @param array $roles
      * @param string $username
-     * @param string|null $password
+     * @param string $password
      */
-    public function logIn(Client $client, array $roles, $username = 'admin', $password = null)
+    public function logIn(Client $client, array $roles, $username = 'teacher', $password = 'password')
     {
         $session = $client->getContainer()->get('session');
 

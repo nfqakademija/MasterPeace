@@ -18,7 +18,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Question',
+                'label' => 'quiz.create.question.label',
             ])
             ->add('answers', CollectionType::class, [
                 'entry_type' => AnswerType::class,
@@ -34,6 +34,7 @@ class QuestionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Question::class,
+            'label' => false,
         ]);
     }
 }

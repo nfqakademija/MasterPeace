@@ -1,8 +1,0 @@
-<div class="row">
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-        {{ form_row(form.title) }}
-        <ul class="questions" data-prototype="{{ form_widget(form.questions.vars.prototype)|e('html_attr') }}">
-            {{ form_row(form.questions) }}
-        </ul>
-    {{ form_end(form) }}
-</div>

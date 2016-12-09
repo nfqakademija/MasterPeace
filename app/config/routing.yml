@@ -1,27 +1,36 @@
-classroom:
-    resource: "@MasterPeaceClassroomBundle/Controller/"
+mp_teacher_classroom:
+    resource: "@MasterPeaceClassroomBundle/Controller/ClassroomTeacherController.php"
     type:     annotation
-    prefix:   /classroom
+    prefix:   /teacher
 
-book:
-    resource: "@MasterPeaceBookBundle/Controller/"
+mp_teacher_book:
+    resource: "@MasterPeaceBookBundle/Controller/BookTeacherController.php"
     type:     annotation
-    prefix:   /book
+    prefix:   /teacher
 
-quiz:
-    resource: "@MasterPeaceQuizBundle/Controller/"
+mp_teacher_quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/QuizTeacherController.php"
     type:     annotation
-    prefix:   /quiz
+    prefix:   /teacher
+
+mp_student_classroom:
+    resource: "@MasterPeaceClassroomBundle/Controller/ClassroomStudentController.php"
+    type:     annotation
+    prefix:   /student
+
+mp_student_book:
+    resource: "@MasterPeaceBookBundle/Controller/BookStudentController.php"
+    type:     annotation
+    prefix:   /student
+
+mp_student_quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/QuizStudentController.php"
+    type:     annotation
+    prefix:   /student
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-home:
-    resource: "@MasterPeaceUpReadBundle/Controller/"
+mp_upread_home:
+    resource: "@MasterPeaceUpReadBundle/Controller/HomeController.php"
     type:     annotation
-    prefix:   /
-
-easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /admin

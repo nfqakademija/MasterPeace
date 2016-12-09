@@ -39,6 +39,7 @@ class Question
      * @var Quiz
      *
      * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="questions")
+     * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $quiz;
 
@@ -52,6 +53,7 @@ class Question
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -95,7 +97,7 @@ class Question
      *
      * @return Question
      */
-    public function setTeacher(Quiz $quiz)
+    public function setQuiz(Quiz $quiz)
     {
         $this->quiz = $quiz;
 
@@ -149,13 +151,5 @@ class Question
         $this->answers = $answers;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return strval($this->title);
     }
 }

@@ -18,10 +18,10 @@ class AnswerType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Answer',
+                'label' => 'quiz.create.answer.label',
             ])
             ->add('correct', CheckboxType::class, [
-                'required' => false,
+                'label' => 'quiz.create.correct.label',
             ]);
     }
 
@@ -32,6 +32,7 @@ class AnswerType extends AbstractType
     {
         $resolver->setDefaults([
            'data_class' => Answer::class,
+           'label' => false,
         ]);
     }
 }

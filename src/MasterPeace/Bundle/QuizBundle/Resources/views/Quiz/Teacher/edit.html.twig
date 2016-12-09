@@ -1,9 +1,9 @@
 {% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
 
-{% form_theme form 'MasterPeaceQuizBundle:Quiz:form_theme.html.twig' %}
+{% form_theme form 'MasterPeaceQuizBundle:Quiz/Teacher:form_theme.html.twig' %}
 
 {% block page_wrapper %}
-    {{ include('MasterPeaceQuizBundle:Quiz:form.html.twig', {form: form}) }}
+    {{ include('MasterPeaceQuizBundle:Quiz/Teacher:form.html.twig', {form: form}) }}
 {% endblock %}
 
 {% block javascripts %}
@@ -20,7 +20,8 @@
             // Get the ul that holds the collection of tags
             $collectionHolder = $('ul.questions');
 
-            $collectionHolder.find('li').each(function() {
+            $('ul.questions > li').each(function() {
+                console.log($(this));
                 addTagFormDeleteLink($(this));
             });
 
