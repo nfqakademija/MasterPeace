@@ -21,9 +21,6 @@ class ClassroomType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'classroom.create.title.label',
                 'required' => false,
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'classroom.save.button.label',
             ]);
     }
 

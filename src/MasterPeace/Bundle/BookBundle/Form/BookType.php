@@ -37,9 +37,6 @@ class BookType extends AbstractType
 //            ])
             ->add('isbnCode', TextType::class, [
                 'label' => 'book.create.isbn_code.label',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'book.save.button.label',
             ]);
     }
 

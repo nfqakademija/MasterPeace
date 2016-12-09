@@ -117,7 +117,7 @@ class QuizTeacherController extends Controller
             $om->persist($quiz);
             $om->flush();
 
-            return $this->redirectToRoute('quiz_list');
+            return $this->redirectToRoute('teacher_quiz_list');
         }
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:edit.html.twig', [
