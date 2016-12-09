@@ -17,7 +17,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('teacher_book_list');
     }
@@ -27,7 +27,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $em = $this
             ->getDoctrine()
@@ -48,7 +48,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()
@@ -69,7 +69,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request): Response
     {
         $book = new Book();
         $book->setTeacher($this->getUser());
@@ -98,7 +98,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id)
+    public function editAction(Request $request, int $id): Response
     {
         $book = $this->getBookOr404($id);
 
@@ -128,7 +128,7 @@ class BookTeacherController extends Controller
      *
      * @return Response
      */
-    public function deleteAction(int $id)
+    public function deleteAction(int $id): Response
     {
         $book = $this->getBookOr404($id);
         $em = $this->getDoctrine()->getManager();
@@ -143,7 +143,7 @@ class BookTeacherController extends Controller
      *
      * @return Book
      */
-    private function getBookOr404(int $id)
+    private function getBookOr404(int $id): Book
     {
         $book = $this->getDoctrine()->getRepository('MasterPeaceBookBundle:Book')->find($id);
 

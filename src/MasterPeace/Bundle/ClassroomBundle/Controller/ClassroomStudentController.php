@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository;
+use phpDocumentor\Reflection\Types\Object_;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class ClassroomStudentController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('student_classroom_list');
     }
@@ -29,7 +30,7 @@ class ClassroomStudentController extends Controller
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $repo = $this->getClassroomRepository();
         $classrooms = $repo->findAll();
@@ -46,7 +47,7 @@ class ClassroomStudentController extends Controller
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()
@@ -67,7 +68,7 @@ class ClassroomStudentController extends Controller
      *
      * @return Response
      */
-    public function deleteAction(int $id)
+    public function deleteAction(int $id): Response
     {
         $classroom = $this->getClassroomOr404($id);
         $em = $this->getDoctrine()->getManager();
@@ -82,7 +83,7 @@ class ClassroomStudentController extends Controller
      *
      * @return Classroom
      */
-    private function getClassroomOr404(int $id)
+    private function getClassroomOr404(int $id): Classroom
     {
         $classroom = $this->getDoctrine()->getRepository('MasterPeaceClassroomBundle:Classroom')->find($id);
 

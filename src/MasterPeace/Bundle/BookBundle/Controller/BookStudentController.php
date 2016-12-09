@@ -17,7 +17,7 @@ class BookStudentController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('student_book_view');
     }
@@ -29,7 +29,7 @@ class BookStudentController extends Controller
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()

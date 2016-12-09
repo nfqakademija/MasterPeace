@@ -13,7 +13,7 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function redirectAction()
+    public function redirectAction(): Response
     {
         return $this->redirect('/login');
     }
@@ -23,7 +23,7 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function userCheckAction()
+    public function userCheckAction(): Response
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
             return $this->redirect('/student/classroom/list');

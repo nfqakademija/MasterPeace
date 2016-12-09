@@ -21,7 +21,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('teacher_classroom_list');
     }
@@ -31,7 +31,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $repo = $this->getClassroomRepository();
         $classrooms = $repo->findAll();
@@ -48,7 +48,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()
@@ -69,7 +69,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request): Response
     {
         $classroom = new Classroom();
         $classroom->setTeacher($this->getUser());
@@ -97,7 +97,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id)
+    public function editAction(Request $request, int $id): Response
     {
         $classroom = $this->getClassroomOr404($id);
 
@@ -127,7 +127,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Response
      */
-    public function deleteAction(int $id)
+    public function deleteAction(int $id): Response
     {
         $classroom = $this->getClassroomOr404($id);
         $em = $this->getDoctrine()->getManager();
@@ -142,7 +142,7 @@ class ClassroomTeacherController extends Controller
      *
      * @return Classroom
      */
-    private function getClassroomOr404(int $id)
+    private function getClassroomOr404(int $id): Classroom
     {
         $classroom = $this->getDoctrine()->getRepository('MasterPeaceClassroomBundle:Classroom')->find($id);
 

@@ -16,7 +16,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('teacher_quiz_list');
     }
@@ -26,7 +26,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $em = $this
             ->getDoctrine()
@@ -47,7 +47,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function viewAction(int $id)
+    public function viewAction(int $id): Response
     {
         $em = $this
             ->getDoctrine()
@@ -68,7 +68,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request): Response
     {
         $quiz = new Quiz();
         $quiz->setTeacher($this->getUser());
@@ -100,7 +100,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id)
+    public function editAction(Request $request, int $id): Response
     {
         $quiz = $this->getQuizOr404($id);
         $form = $this->createForm(QuizType::class, $quiz);
@@ -132,7 +132,7 @@ class QuizTeacherController extends Controller
      *
      * @return Response
      */
-    public function deleteAction(int $id)
+    public function deleteAction(int $id): Response
     {
         $quiz = $this->getQuizOr404($id);
         $em = $this->getDoctrine()->getManager();
@@ -147,7 +147,7 @@ class QuizTeacherController extends Controller
      *
      * @return Quiz
      */
-    private function getQuizOr404(int $id)
+    private function getQuizOr404(int $id): Quiz
     {
         $quiz = $this->getDoctrine()->getRepository('MasterPeaceQuizBundle:Quiz')->findFull($id);
 

@@ -16,7 +16,7 @@ class QuizStudentController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('student_quiz_list');
     }
@@ -26,7 +26,7 @@ class QuizStudentController extends Controller
      *
      * @return Response
      */
-    public function listAction()
+    public function listAction(): Response
     {
         $em = $this
             ->getDoctrine()
