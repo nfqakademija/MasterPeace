@@ -15,10 +15,9 @@ trait FormLogInSimulation
      *
      * @return Crawler
      */
-    public function formLogIn(Client $client, $username, $password, $route)
+    public function formLogin(Client $client, $username, $password, $route)
     {
         $crawler = $client->request('GET', $route);
-        $crawler = $client->followRedirect();
 
         $form = $crawler->selectButton('_submit')->form([
             '_username' => $username,

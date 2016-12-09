@@ -19,7 +19,6 @@ class User extends BaseUser
 
     const ROLE_STUDENT = 'ROLE_STUDENT';
     const ROLE_TEACHER = 'ROLE_TEACHER';
-    const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -116,14 +115,6 @@ class User extends BaseUser
         $this->surname = $surname;
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return in_array(self::ROLE_ADMIN, $this->getRoles(), true);
     }
 
     /**

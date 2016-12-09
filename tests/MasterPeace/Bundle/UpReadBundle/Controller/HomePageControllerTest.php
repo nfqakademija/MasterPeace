@@ -12,18 +12,18 @@ class HomePageControllerTest extends WebTestCase
     public function testTeacherAction()
     {
         $client = static::createClient();
-        $crawler = $this->formLogIn($client, 'teacher', 'password', '/');
+        $crawler = $this->formLogin($client, 'teacher', 'password', '/login');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("mokytojas")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains(mokytojas)')->count());
     }
 
     public function testStudentAction()
     {
         $client = static::createClient();
-        $crawler = $this->formLogIn($client, 'student', 'password', '/');
+        $crawler = $this->formLogin($client, 'student', 'password', '/login');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("mokinys")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains(mokinys)')->count());
     }
 }
