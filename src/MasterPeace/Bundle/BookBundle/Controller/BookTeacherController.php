@@ -10,23 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Security("has_role('ROLE_TEACHER')")
- */
-class BookController extends Controller
+class BookTeacherController extends Controller
 {
     /**
-     * @Route ("/")
+     * @Route ("/book")
      *
      * @return Response
      */
     public function indexAction()
     {
-        return $this->redirectToRoute('book_list');
+        return $this->redirectToRoute('teacher_book_list');
     }
 
     /**
-     * @Route ("/list", name="book_list")
+     * @Route ("/book/list", name="teacher_book_list")
      *
      * @return Response
      */
@@ -39,13 +36,13 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->findAll();
 
-        return $this->render('MasterPeaceBookBundle:Book:list.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:list.html.twig', [
             'books' => $books,
         ]);
     }
 
     /**
-     * @Route ("/view/{id}", name="book_view")
+     * @Route ("/book/view/{id}", name="teacher_book_view")
      *
      * @param int $id
      *
@@ -60,13 +57,13 @@ class BookController extends Controller
             ->getRepository('MasterPeaceBookBundle:Book')
             ->find($id);
 
-        return $this->render('MasterPeaceBookBundle:Book:view.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:view.html.twig', [
             'book' => $book,
         ]);
     }
 
     /**
-     * @Route ("/create", name="book_create")
+     * @Route ("/book/create", name="teacher_book_create")
      *
      * @param Request $request
      *
@@ -85,16 +82,16 @@ class BookController extends Controller
             $em->persist($book);
             $em->flush();
 
-            return $this->redirectToRoute('book_list');
+            return $this->redirectToRoute('teacher_book_list');
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:create.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route ("/edit/{id}", name="book_edit")
+     * @Route ("/book/edit/{id}", name="teacher_book_edit")
      *
      * @param int $id
      * @param Request $request
@@ -113,19 +110,19 @@ class BookController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            return $this->redirectToRoute('book_view', [
+            return $this->redirectToRoute('teacher_book_view', [
                 'id' => $id,
             ]);
         }
 
-        return $this->render('MasterPeaceBookBundle:Book:edit.html.twig', [
+        return $this->render('MasterPeaceBookBundle:Book/Teacher:edit.html.twig', [
             'form' => $form->createView(),
             'book' => $book,
         ]);
     }
 
     /**
-     * @Route ("/delete/{id}", name="book_delete")
+     * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
      * @param int $id
      *
@@ -138,7 +135,7 @@ class BookController extends Controller
         $em->remove($book);
         $em->flush();
 
-        return $this->redirectToRoute('book_list');
+        return $this->redirectToRoute('teacher_book_list');
     }
 
     /**

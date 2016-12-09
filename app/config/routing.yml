@@ -1,46 +1,36 @@
-mp_classroom:
-    resource: "@MasterPeaceClassroomBundle/Controller/"
+mp_teacher_classroom:
+    resource: "@MasterPeaceClassroomBundle/Controller/ClassroomTeacherController.php"
     type:     annotation
-    prefix:   /classroom
+    prefix:   /teacher
 
-mp_book:
-    resource: "@MasterPeaceBookBundle/Controller/"
+mp_teacher_book:
+    resource: "@MasterPeaceBookBundle/Controller/BookTeacherController.php"
     type:     annotation
-    prefix:   /book
+    prefix:   /teacher
 
-mp_quiz:
-    resource: "@MasterPeaceQuizBundle/Controller/"
+mp_teacher_quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/QuizTeacherController.php"
     type:     annotation
-    prefix:   /quiz
+    prefix:   /teacher
+
+mp_student_classroom:
+    resource: "@MasterPeaceClassroomBundle/Controller/ClassroomStudentController.php"
+    type:     annotation
+    prefix:   /student
+
+mp_student_book:
+    resource: "@MasterPeaceBookBundle/Controller/BookStudentController.php"
+    type:     annotation
+    prefix:   /student
+
+mp_student_quiz:
+    resource: "@MasterPeaceQuizBundle/Controller/QuizStudentController.php"
+    type:     annotation
+    prefix:   /student
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-mp_upread_student:
-    resource: "@MasterPeaceUpReadBundle/Controller/StudentController.php"
+mp_upread_home:
+    resource: "@MasterPeaceUpReadBundle/Controller/HomeController.php"
     type:     annotation
-    prefix:   /student
-
-mp_upread_teacher:
-    resource: "@MasterPeaceUpReadBundle/Controller/TeacherController.php"
-    type:     annotation
-    prefix:   /teacher
-
-easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /admin
-
-
-student_security_login:
-    path:      /student/login
-    defaults:  { _controller: FOSUserBundle:Security:login }
-
-student_security_check:
-    path:      /student/login_check
-    defaults:  { _controller: FOSUserBundle:Security:check }
-
-
-teacher_security_logout:
-    path:      /teacher/logout
-    defaults:  { _controller: FOSUserBundle:Security:logout }

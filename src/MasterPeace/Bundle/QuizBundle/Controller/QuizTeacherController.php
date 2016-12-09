@@ -9,11 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class QuizController extends Controller
+class QuizTeacherController extends Controller
 {
+    /**
+     * @Route ("/quiz")
+     *
+     * @return Response
+     */
+    public function indexAction()
+    {
+        return $this->redirectToRoute('teacher_quiz_list');
+    }
 
     /**
-     * @Route ("/list", name="quiz_list")
+     * @Route ("/quiz/list", name="teacher_quiz_list")
      *
      * @return Response
      */
@@ -26,13 +35,13 @@ class QuizController extends Controller
             ->getRepository('MasterPeaceQuizBundle:Quiz')
             ->findAll();
 
-        return $this->render('MasterPeaceQuizBundle:Quiz:list.html.twig', [
+        return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:list.html.twig', [
             'quizes' => $quizes,
         ]);
     }
 
     /**
-     * @Route ("/view/{id}", name="quiz_view")
+     * @Route ("/quiz/view/{id}", name="teacher_quiz_view")
      *
      * @param int $id
      *
@@ -47,13 +56,13 @@ class QuizController extends Controller
             ->getRepository('MasterPeaceQuizBundle:Quiz')
             ->find($id);
 
-        return $this->render('MasterPeaceQuizBundle:Quiz:view.html.twig', [
+        return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:view.html.twig', [
             'quiz' => $quiz,
         ]);
     }
 
     /**
-     * @Route("/create", name="quiz_create")
+     * @Route("/quiz/create", name="teacher_quiz_create")
      *
      * @param Request $request
      *
@@ -78,13 +87,13 @@ class QuizController extends Controller
             $om->flush();
         }
 
-        return $this->render('@MasterPeaceQuiz/Quiz/create.html.twig', [
+        return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/edit/{id}", name="quiz_edit")
+     * @Route("/quiz/edit/{id}", name="teacher_quiz_edit")
      *
      * @param Request $request
      * @param int $id
@@ -111,13 +120,13 @@ class QuizController extends Controller
             return $this->redirectToRoute('quiz_list');
         }
 
-        return $this->render('@MasterPeaceQuiz/Quiz/edit.html.twig', [
+        return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route ("/delete/{id}", name="quiz_delete")
+     * @Route ("/quiz/delete/{id}", name="teacher_quiz_delete")
      *
      * @param int $id
      *
@@ -130,7 +139,7 @@ class QuizController extends Controller
         $em->remove($quiz);
         $em->flush();
 
-        return $this->redirectToRoute('quiz_list');
+        return $this->redirectToRoute('teacher_quiz_list');
     }
 
     /**

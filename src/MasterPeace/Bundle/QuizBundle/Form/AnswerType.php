@@ -20,7 +20,7 @@ class AnswerType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.answer.label',
             ])
-            ->add('correct', CheckBoxType::class, [
+            ->add('correct', CheckboxType::class, [
                 'label' => 'quiz.create.correct.label',
             ]);
     }
