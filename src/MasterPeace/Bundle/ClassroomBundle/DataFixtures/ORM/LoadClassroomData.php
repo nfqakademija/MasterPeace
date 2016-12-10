@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\Bundle\ClassroomBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

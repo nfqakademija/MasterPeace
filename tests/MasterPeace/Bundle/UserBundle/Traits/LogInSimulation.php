@@ -14,11 +14,11 @@ trait LogInSimulation
      * @param string $username
      * @param string $password
      */
-    public function logIn(Client $client, array $roles, $username = 'teacher', $password = 'password')
+    public function logIn(Client $client, array $roles, $username = 'teacher', $password = 'teacher')
     {
         $session = $client->getContainer()->get('session');
 
-        $firewall = 'secure_area';
+        $firewall = 'login_area';
 
         $token = new UsernamePasswordToken($username, $password, $firewall, $roles);
         $session->set('_security_' . $firewall, serialize($token));
