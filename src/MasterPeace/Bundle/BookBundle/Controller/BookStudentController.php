@@ -25,19 +25,12 @@ class BookStudentController extends Controller
     /**
      * @Route ("/book/view/{id}", name="student_book_view")
      *
-     * @param int $id
+     * @param Book $book
      *
      * @return Response
      */
-    public function viewAction(int $id): Response
+    public function viewAction(Book $book): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $book = $em
-            ->getRepository('MasterPeaceBookBundle:Book')
-            ->find($id);
-
         return $this->render('MasterPeaceBookBundle:Book/Student:view.html.twig', [
             'book' => $book,
         ]);

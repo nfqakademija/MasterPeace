@@ -31,31 +31,24 @@ class QuizTeacherController extends Controller
         $em = $this
             ->getDoctrine()
             ->getManager();
-        $quizes = $em
+        $quizzes = $em
             ->getRepository('MasterPeaceQuizBundle:Quiz')
             ->findAll();
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:list.html.twig', [
-            'quizes' => $quizes,
+            'quizzes' => $quizzes,
         ]);
     }
 
     /**
      * @Route ("/quiz/view/{id}", name="teacher_quiz_view")
      *
-     * @param int $id
+     * @param Quiz $quiz
      *
      * @return Response
      */
-    public function viewAction(int $id): Response
+    public function viewAction(Quiz $quiz): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $quiz = $em
-            ->getRepository('MasterPeaceQuizBundle:Quiz')
-            ->find($id);
-
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:view.html.twig', [
             'quiz' => $quiz,
         ]);
@@ -96,13 +89,12 @@ class QuizTeacherController extends Controller
      * @Route("/quiz/edit/{id}", name="teacher_quiz_edit")
      *
      * @param Request $request
-     * @param int $id
+     * @param Quiz $quiz
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id): Response
+    public function editAction(Request $request, Quiz $quiz): Response
     {
-        $quiz = $this->getQuizOr404($id);
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 
@@ -117,7 +109,9 @@ class QuizTeacherController extends Controller
             $om->persist($quiz);
             $om->flush();
 
-            return $this->redirectToRoute('teacher_quiz_list');
+            return $this->redirectToRoute('teacher_quiz_view', [
+                'id' => $quiz->getId(),
+            ]);
         }
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:edit.html.twig', [
@@ -128,33 +122,16 @@ class QuizTeacherController extends Controller
     /**
      * @Route ("/quiz/delete/{id}", name="teacher_quiz_delete")
      *
-     * @param int $id
+     * @param Quiz $quiz
      *
      * @return Response
      */
-    public function deleteAction(int $id): Response
+    public function deleteAction(Quiz $quiz): Response
     {
-        $quiz = $this->getQuizOr404($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($quiz);
         $em->flush();
 
         return $this->redirectToRoute('teacher_quiz_list');
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return Quiz
-     */
-    private function getQuizOr404(int $id): Quiz
-    {
-        $quiz = $this->getDoctrine()->getRepository('MasterPeaceQuizBundle:Quiz')->findFull($id);
-
-        if (null === $quiz) {
-            $this->createNotFoundException('Not found quiz');
-        }
-
-        return $quiz;
     }
 }

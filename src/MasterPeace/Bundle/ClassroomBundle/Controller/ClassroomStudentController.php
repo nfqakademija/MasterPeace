@@ -43,19 +43,12 @@ class ClassroomStudentController extends Controller
     /**
      * @Route ("/classroom/view/{id}", name="student_classroom_view")
      *
-     * @param int $id
+     * @param Classroom $classroom
      *
      * @return Response
      */
-    public function viewAction(int $id): Response
+    public function viewAction(Classroom $classroom): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $classroom = $em
-            ->getRepository('MasterPeaceClassroomBundle:Classroom')
-            ->find($id);
-
         return $this->render('MasterPeaceClassroomBundle:Classroom/Student:view.html.twig', [
             'classroom' => $classroom,
         ]);
@@ -64,34 +57,17 @@ class ClassroomStudentController extends Controller
     /**
      * @Route ("/classroom/delete/{id}", name="student_classroom_delete")
      *
-     * @param int $id
+     * @param Classroom $classroom
      *
      * @return Response
      */
-    public function deleteAction(int $id): Response
+    public function deleteAction(Classroom $classroom): Response
     {
-        $classroom = $this->getClassroomOr404($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
 
         return $this->redirectToRoute('student_classroom_list');
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return Classroom
-     */
-    private function getClassroomOr404(int $id): Classroom
-    {
-        $classroom = $this->getDoctrine()->getRepository('MasterPeaceClassroomBundle:Classroom')->find($id);
-
-        if (null === $classroom) {
-            $this->createNotFoundException('Classroom not found');
-        }
-
-        return $classroom;
     }
 
     /**

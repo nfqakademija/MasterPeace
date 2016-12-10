@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for quiz in quizes %}
+                    {% for quiz in quizzes %}
                         <tr>
                             <td>
                                 <a href="{{ path('teacher_quiz_view', {'id': quiz.id}) }}">{{ quiz.title }}</a>

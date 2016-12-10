@@ -44,19 +44,12 @@ class BookTeacherController extends Controller
     /**
      * @Route ("/book/view/{id}", name="teacher_book_view")
      *
-     * @param int $id
+     * @param Book $book
      *
      * @return Response
      */
-    public function viewAction(int $id): Response
+    public function viewAction(Book $book): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $book = $em
-            ->getRepository('MasterPeaceBookBundle:Book')
-            ->find($id);
-
         return $this->render('MasterPeaceBookBundle:Book/Teacher:view.html.twig', [
             'book' => $book,
         ]);
@@ -92,15 +85,13 @@ class BookTeacherController extends Controller
     /**
      * @Route ("/book/edit/{id}", name="teacher_book_edit")
      *
-     * @param int $id
+     * @param Book $book
      * @param Request $request
      *
      * @return Response
      */
-    public function editAction(Request $request, int $id): Response
+    public function editAction(Request $request, Book $book): Response
     {
-        $book = $this->getBookOr404($id);
-
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -110,7 +101,7 @@ class BookTeacherController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('teacher_book_view', [
-                'id' => $id,
+                'id' => $book->getId(),
             ]);
         }
 
@@ -123,33 +114,16 @@ class BookTeacherController extends Controller
     /**
      * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
-     * @param int $id
+     * @param Book $book
      *
      * @return Response
      */
-    public function deleteAction(int $id): Response
+    public function deleteAction(Book $book): Response
     {
-        $book = $this->getBookOr404($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);
         $em->flush();
 
         return $this->redirectToRoute('teacher_book_list');
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return Book
-     */
-    private function getBookOr404(int $id): Book
-    {
-        $book = $this->getDoctrine()->getRepository('MasterPeaceBookBundle:Book')->find($id);
-
-        if (null === $book) {
-            $this->createNotFoundException('Book not found');
-        }
-
-        return $book;
     }
 }

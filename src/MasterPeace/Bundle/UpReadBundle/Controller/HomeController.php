@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="homepage")
      *
      * @return Response
      */
@@ -19,15 +19,17 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/usercheck", name="user_check")
+     * @Route("/usercheck")
      *
      * @return Response
      */
     public function userCheckAction(): Response
     {
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_TEACHER')) {
+            return $this->redirect('/teacher/classroom/list');
+        } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
             return $this->redirect('/student/classroom/list');
         }
-        return $this->redirect('/teacher/classroom/list');
+        return $this->redirectToRoute('homepage');
     }
 }
