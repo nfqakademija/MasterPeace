@@ -213,7 +213,6 @@ class Quiz
     public function addClassroom(Classroom $classroom)
     {
         if (false === $this->classrooms->contains($classroom)) {
-            $classroom->addQuiz($this);
             $this->classrooms->add($classroom);
         }
 

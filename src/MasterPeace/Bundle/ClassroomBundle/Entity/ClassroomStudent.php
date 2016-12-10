@@ -32,7 +32,7 @@ class ClassroomStudent
     /**
      * @var Classroom
      *
-     * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\Classroom", inversedBy="students")
+     * @ORM\ManyToOne(targetEntity="Classroom", inversedBy="students")
      */
     private $classroom;
 

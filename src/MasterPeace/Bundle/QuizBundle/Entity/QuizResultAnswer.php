@@ -142,4 +142,3 @@ class QuizResultAnswer
         $this->correct = $correct;
     }
 }
-
