@@ -46,11 +46,12 @@ class QuizStudentController extends Controller
     /**
      * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer")
      *
+     * @param Request $request
      * @param Quiz $quiz
      *
      * @return Response
      */
-    public function answerAction(Request $request, Quiz $quiz)
+    public function answerAction(Request $request, Quiz $quiz) // TODO: extract answer creation to Factory
     {
         $result = new QuizResult();
         $result

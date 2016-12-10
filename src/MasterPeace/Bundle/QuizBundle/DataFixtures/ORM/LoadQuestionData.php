@@ -25,8 +25,6 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
                 ->setTitle('Klausimas nr. ' . $i)
                 ->setQuiz($quiz);
 
-            // TODO Add teacher
-
             $manager->persist($question);
 
             $this->addReference('question' . $i, $question);
