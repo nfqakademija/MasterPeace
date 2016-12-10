@@ -32,12 +32,10 @@ class BookTeacherController extends Controller
      */
     public function listAction(): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $books = $em
-            ->getRepository('MasterPeaceBookBundle:Book')
-            ->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $books = $em->getRepository('MasterPeaceBookBundle:Book')->findBy([
+            'teacher' => $this->getUser()->getId(),
+        ]);
 
         return $this->render('MasterPeaceBookBundle:Book/Teacher:list.html.twig', [
             'books' => $books,
@@ -53,6 +51,7 @@ class BookTeacherController extends Controller
      */
     public function viewAction(Book $book): Response
     {
+        $this->validateEntityCreator('View', $book);
         return $this->render('MasterPeaceBookBundle:Book/Teacher:view.html.twig', [
             'book' => $book,
         ]);
@@ -95,6 +94,7 @@ class BookTeacherController extends Controller
      */
     public function editAction(Request $request, Book $book): Response
     {
+        $this->validateEntityCreator('Edit', $book);
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -123,10 +123,22 @@ class BookTeacherController extends Controller
      */
     public function deleteAction(Book $book): Response
     {
+        $this->validateEntityCreator('Delete', $book);
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);
         $em->flush();
 
         return $this->redirectToRoute('teacher_book_list');
+    }
+
+    /**
+     * @param string $actionName
+     * @param Book $book
+     */
+    private function validateEntityCreator(string $actionName, Book $book)
+    {
+        if ($this->getUser() !== $book->getTeacher()) {
+            throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
     }
 }

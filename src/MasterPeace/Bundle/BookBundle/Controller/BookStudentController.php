@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\BookBundle\Form\BookType;
+use MasterPeace\Bundle\BookBundle\Repository\BookRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class BookStudentController extends Controller
     }
 
     /**
-     * @Route ("/book/view/{id}", name="student_book_view")
+     * @Route ("/book/view/{id}", name="student_book_view") // TODO: make VIEW only for attached Book to this student
      *
      * @param Book $book
      *

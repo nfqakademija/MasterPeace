@@ -4,7 +4,6 @@ namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
-use MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,8 +32,10 @@ class ClassroomTeacherController extends Controller
      */
     public function listAction(): Response
     {
-        $repo = $this->getClassroomRepository();
-        $classrooms = $repo->findAll();
+        $em = $this->getDoctrine()->getEntityManager();
+        $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findBy([
+            'teacher' => $this->getUser()->getId(),
+        ]);
 
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:list.html.twig', [
             'classrooms' => $classrooms,
@@ -50,6 +51,7 @@ class ClassroomTeacherController extends Controller
      */
     public function viewAction(Classroom $classroom): Response
     {
+        $this->validateEntityCreator('View', $classroom);
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:view.html.twig', [
             'classroom' => $classroom,
         ]);
@@ -71,8 +73,10 @@ class ClassroomTeacherController extends Controller
         $form->setData($classroom);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $this->getClassroomRepository()->add($classroom);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($classroom);
+            $em->flush();
 
             return $this->redirectToRoute('teacher_classroom_list');
         }
@@ -92,6 +96,7 @@ class ClassroomTeacherController extends Controller
      */
     public function editAction(Request $request, Classroom $classroom): Response
     {
+        $this->validateEntityCreator('Edit', $classroom);
         $form = $this->createForm(ClassroomType::class, $classroom);
         $form->handleRequest($request);
 
@@ -120,6 +125,7 @@ class ClassroomTeacherController extends Controller
      */
     public function deleteAction(Classroom $classroom): Response
     {
+        $this->validateEntityCreator('Delete', $classroom);
         $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
@@ -128,10 +134,13 @@ class ClassroomTeacherController extends Controller
     }
 
     /**
-     * @return ClassroomRepository|object
+     * @param string $actionName
+     * @param Classroom $classroom
      */
-    private function getClassroomRepository()
+    private function validateEntityCreator(string $actionName, Classroom $classroom)
     {
-        return $this->get('masterpeace.classroom.repository');
+        if ($this->getUser() !== $classroom->getTeacher()) {
+            throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
     }
 }

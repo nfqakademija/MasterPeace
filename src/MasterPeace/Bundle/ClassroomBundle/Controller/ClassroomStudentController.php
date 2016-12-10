@@ -31,8 +31,8 @@ class ClassroomStudentController extends Controller
      */
     public function listAction(): Response
     {
-        $repo = $this->getClassroomRepository();
-        $classrooms = $repo->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findAll();
 
         return $this->render('MasterPeaceClassroomBundle:Classroom/Student:list.html.twig', [
             'classrooms' => $classrooms,
@@ -40,7 +40,7 @@ class ClassroomStudentController extends Controller
     }
 
     /**
-     * @Route ("/classroom/view/{id}", name="student_classroom_view")
+     * @Route ("/classroom/view/{id}", name="student_classroom_view")  // TODO: make VIEW only for own Classroom
      *
      * @param Classroom $classroom
      *
@@ -54,26 +54,18 @@ class ClassroomStudentController extends Controller
     }
 
     /**
-     * @Route ("/classroom/delete/{id}", name="student_classroom_delete")
+     * @Route ("/classroom/delete/{id}", name="student_classroom_delete")  // TODO: make DELETE only for own Classroom
      *
      * @param Classroom $classroom
      *
      * @return Response
      */
-    public function deleteAction(Classroom $classroom): Response
+    public function deleteAction(Classroom $classroom): Response    // TODO: not DELETE, but LEAVE
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
 
         return $this->redirectToRoute('student_classroom_list');
-    }
-
-    /**
-     * @return ClassroomRepository|object
-     */
-    private function getClassroomRepository()
-    {
-        return $this->get('masterpeace.classroom.repository');
     }
 }

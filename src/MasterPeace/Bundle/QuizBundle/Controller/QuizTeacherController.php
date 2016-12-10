@@ -32,12 +32,10 @@ class QuizTeacherController extends Controller
      */
     public function listAction(): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $quizzes = $em
-            ->getRepository('MasterPeaceQuizBundle:Quiz')
-            ->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $quizzes = $em->getRepository('MasterPeaceQuizBundle:Quiz')->findBy([
+            'teacher' => $this->getUser()->getId(),
+        ]);
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:list.html.twig', [
             'quizzes' => $quizzes,
@@ -53,6 +51,7 @@ class QuizTeacherController extends Controller
      */
     public function viewAction(Quiz $quiz): Response
     {
+        $this->validateEntityCreator('View', $quiz);
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:view.html.twig', [
             'quiz' => $quiz,
         ]);
@@ -99,6 +98,7 @@ class QuizTeacherController extends Controller
      */
     public function editAction(Request $request, Quiz $quiz): Response
     {
+        $this->validateEntityCreator('Edit', $quiz);
         $form = $this->createForm(QuizType::class, $quiz);
         $form->handleRequest($request);
 
@@ -132,10 +132,22 @@ class QuizTeacherController extends Controller
      */
     public function deleteAction(Quiz $quiz): Response
     {
+        $this->validateEntityCreator('Delete', $quiz);
         $em = $this->getDoctrine()->getManager();
         $em->remove($quiz);
         $em->flush();
 
         return $this->redirectToRoute('teacher_quiz_list');
+    }
+
+    /**
+     * @param string $actionName
+     * @param Quiz $quiz
+     */
+    private function validateEntityCreator(string $actionName, Quiz $quiz)
+    {
+        if ($this->getUser() !== $quiz->getTeacher()) {
+            throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
     }
 }

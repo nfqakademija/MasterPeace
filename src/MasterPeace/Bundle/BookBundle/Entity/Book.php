@@ -161,7 +161,7 @@ class Book
     /**
      * @return int
      */
-    public function getYear(): int
+    public function getYear()
     {
         return $this->year;
     }

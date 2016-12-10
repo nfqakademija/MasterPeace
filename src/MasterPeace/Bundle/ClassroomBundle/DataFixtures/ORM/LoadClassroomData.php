@@ -17,7 +17,7 @@ class LoadClassroomData extends AbstractFixture implements OrderedFixtureInterfa
         foreach (self::getQuizDetails() as $id => $quizDetail) {
             $classroom = new Classroom();
             $classroom
-                ->setTeacher($this->getReference('user1'))
+                ->setTeacher($this->getReference('user0'))
                 ->setTitle($quizDetail['title'])
      //           ->addStudent($this->getReference('user2')) // TODO: Causes flush() type value error
                 ->addQuiz($this->getReference('quiz0'))

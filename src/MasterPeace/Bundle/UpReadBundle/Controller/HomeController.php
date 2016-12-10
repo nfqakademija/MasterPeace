@@ -29,7 +29,8 @@ class HomeController extends Controller
             return $this->redirect('/teacher/classroom/list');
         } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
             return $this->redirect('/student/classroom/list');
+        } else {
+            return $this->redirectToRoute('homepage');
         }
-        return $this->redirectToRoute('homepage');
     }
 }
