@@ -32,7 +32,7 @@ class ClassroomTeacherController extends Controller
      */
     public function listAction(): Response
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findBy([
             'teacher' => $this->getUser()->getId(),
         ]);

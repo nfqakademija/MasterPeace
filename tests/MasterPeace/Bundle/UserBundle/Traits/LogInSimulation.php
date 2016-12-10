@@ -16,15 +16,17 @@ trait LogInSimulation
      */
     public function logIn(Client $client, array $roles, $username = 'teacher', $password = 'teacher')
     {
-        $session = $client->getContainer()->get('session');
-
         $firewall = 'login_area';
 
+        $session = $client->getContainer()->get('session');
+
         $token = new UsernamePasswordToken($username, $password, $firewall, $roles);
+
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
+
         $client->getCookieJar()->set($cookie);
     }
 }

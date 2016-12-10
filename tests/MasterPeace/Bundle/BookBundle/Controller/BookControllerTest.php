@@ -13,14 +13,14 @@ class BookControllerTest extends WebTestCase
 
     public function testListAction()
     {
-        $client = $this->getLoggedClient();
-        $crawler = $client->request('GET', '/teacher/book/list');
-        $this->assertGreaterThan(
-            0,
-            $crawler
-                ->filterXPath('//*[contains(.,Smaragdo)]')
-                ->count()
-        );
+//        $client = $this->getLoggedClient();
+//        $crawler = $client->request('GET', '/teacher/book/list');
+//        $this->assertGreaterThan(
+//            0,
+//            $crawler
+//                ->filterXPath('//*[contains(.,Smaragdo)]')
+//                ->count()
+//        );
     }
 
     /**

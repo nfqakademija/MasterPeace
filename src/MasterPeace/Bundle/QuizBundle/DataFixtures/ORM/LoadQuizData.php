@@ -17,7 +17,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
         foreach (self::getQuizDetails() as $id => $bookDetail) {
             $quiz = new Quiz();
             $quiz
-                ->setTeacher($this->getReference('user2'))
+                ->setTeacher($this->getReference('user1'))
                 ->setTitle($bookDetail['title'])
                 ->setBook($this->getReference('book1'));
             $manager->persist($quiz);

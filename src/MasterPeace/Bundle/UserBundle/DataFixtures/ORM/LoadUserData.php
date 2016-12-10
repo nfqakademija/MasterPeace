@@ -42,8 +42,8 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
                 ->setEnabled($userDetail['enable'])
                 ->setRoles($userDetail['role']);
             $userManager->updateUser($user, true);
-            $this->addReference('user' . $i, $user);
             $i++;
+            $this->addReference('user' . $i, $user);
         }
     }
 

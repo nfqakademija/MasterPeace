@@ -17,7 +17,7 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
         foreach (self::getBookDetails() as $id => $bookDetail) {
             $book = new Book();
             $book
-                ->setTeacher($this->getReference('user2'))
+                ->setTeacher($this->getReference('user1'))
                 ->setTitle($bookDetail['title'])
                 ->setAuthor($bookDetail['author'])
                 ->setYear($bookDetail['year'])
