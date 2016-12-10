@@ -4915,6 +4915,9 @@ a.label:focus {
     background-color: #158cba;
     border-radius: 10px;
 }
+.badge-classroom {
+    font-weight: bold;
+}
 .badge:empty {
     display: none;
 }
