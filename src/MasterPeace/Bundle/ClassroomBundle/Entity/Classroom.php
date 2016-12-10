@@ -23,6 +23,7 @@ class Classroom
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
@@ -31,7 +32,7 @@ class Classroom
      * @Assert\NotBlank()
      * @Assert\Length(max="20")
      */
-    private $title = '';
+    private $title;
 
     /**
      * @var User
@@ -63,7 +64,7 @@ class Classroom
     /**
      * @return integer
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -71,7 +72,7 @@ class Classroom
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -81,7 +82,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function setTitle(string $title): Classroom
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -91,7 +92,7 @@ class Classroom
     /**
      * @return User
      */
-    public function getTeacher(): User
+    public function getTeacher()
     {
         return $this->teacher;
     }
@@ -101,7 +102,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function setTeacher(User $teacher): Classroom
+    public function setTeacher(User $teacher)
     {
         $this->teacher = $teacher;
 
@@ -113,7 +114,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function addStudent(User $student): Classroom
+    public function addStudent(User $student)
     {
         if (false === $this->students->contains($student)) {
             $this->students->add($student);
@@ -127,7 +128,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function removeStudent(User $student): Classroom
+    public function removeStudent(User $student)
     {
         if ($this->students->contains($student)) {
             $this->students->removeElement($student);
@@ -139,7 +140,7 @@ class Classroom
     /**
      * @return ArrayCollection
      */
-    public function getStudents(): ArrayCollection
+    public function getStudents()
     {
         return $this->students;
     }
@@ -149,7 +150,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function setStudents(ArrayCollection $students): Classroom
+    public function setStudents(ArrayCollection $students)
     {
         $this->students = $students;
 
@@ -159,7 +160,7 @@ class Classroom
     /**
      * @return ArrayCollection
      */
-    public function getQuizzes(): ArrayCollection
+    public function getQuizzes()
     {
         return $this->quizzes;
     }
@@ -178,7 +179,7 @@ class Classroom
      * @return Classroom
      *
      */
-    public function addQuiz(Quiz $quiz): Classroom
+    public function addQuiz(Quiz $quiz)
     {
         if (false === $this->quizzes->contains($quiz)) {
             $this->quizzes->add($quiz);
@@ -193,7 +194,7 @@ class Classroom
      * @return Classroom
      *
      */
-    public function removeQuiz(Quiz $quiz): Classroom
+    public function removeQuiz(Quiz $quiz)
     {
         if ($this->quizzes->contains($quiz)) {
             $this->quizzes->removeElement($quiz);

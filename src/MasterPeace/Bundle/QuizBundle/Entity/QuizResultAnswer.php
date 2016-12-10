@@ -129,7 +129,7 @@ class QuizResultAnswer
     /**
      * @return boolean
      */
-    public function isCorrect(): bool
+    public function isCorrect()
     {
         return $this->correct;
     }

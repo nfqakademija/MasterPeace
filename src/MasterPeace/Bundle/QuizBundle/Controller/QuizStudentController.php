@@ -6,7 +6,6 @@ use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResult;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer;
 use MasterPeace\Bundle\QuizBundle\Form\QuizResultType;
-use MasterPeace\Bundle\QuizBundle\Form\QuizType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

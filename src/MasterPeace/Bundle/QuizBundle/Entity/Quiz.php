@@ -192,7 +192,7 @@ class Quiz
     /**
      * @return ArrayCollection
      */
-    public function getClassrooms(): ArrayCollection
+    public function getClassrooms()
     {
         return $this->classrooms;
     }
