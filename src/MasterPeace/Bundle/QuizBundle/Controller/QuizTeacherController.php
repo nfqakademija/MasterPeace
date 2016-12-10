@@ -4,11 +4,15 @@ namespace MasterPeace\Bundle\QuizBundle\Controller;
 
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\QuizBundle\Form\QuizType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Security("has_role('ROLE_TEACHER')")
+ */
 class QuizTeacherController extends Controller
 {
     /**
