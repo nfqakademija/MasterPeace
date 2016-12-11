@@ -78,7 +78,9 @@ class ClassroomTeacherController extends Controller
             $em->persist($classroom);
             $em->flush();
 
-            return $this->redirectToRoute('teacher_classroom_list');
+            return $this->redirectToRoute('teacher_classroom_view', [
+                'id' => $classroom->getId(),
+            ]);
         }
 
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:create.html.twig', [

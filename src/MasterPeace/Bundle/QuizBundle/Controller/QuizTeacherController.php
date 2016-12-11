@@ -81,6 +81,10 @@ class QuizTeacherController extends Controller
 
             $om->persist($quiz);
             $om->flush();
+
+            return $this->redirectToRoute('teacher_quiz_view', [
+                'id' => $quiz->getId(),
+            ]);
         }
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:create.html.twig', [

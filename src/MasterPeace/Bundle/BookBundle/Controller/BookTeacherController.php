@@ -76,7 +76,9 @@ class BookTeacherController extends Controller
             $em->persist($book);
             $em->flush();
 
-            return $this->redirectToRoute('teacher_book_list');
+            return $this->redirectToRoute('teacher_book_view', [
+                'id' => $book->getId(),
+            ]);
         }
 
         return $this->render('MasterPeaceBookBundle:Book/Teacher:create.html.twig', [
