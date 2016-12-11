@@ -18,7 +18,6 @@ class ClassroomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('inviteCode', HiddenType::class)
             ->add('title', TextType::class, [
                 'label' => 'classroom.create.title.label',
                 'required' => false,

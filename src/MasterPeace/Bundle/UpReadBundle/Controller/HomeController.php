@@ -50,6 +50,8 @@ class HomeController extends Controller
 
                 return $this->redirectToRoute('student_classroom_list');
             }
+        } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_TEACHER')) {
+            return $this->redirectToRoute('teacher_classroom_list');
         }
 
         return $this->redirect('/login');
@@ -65,9 +67,9 @@ class HomeController extends Controller
     public function userCheckAction(): Response
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_TEACHER')) {
-            return $this->redirect('/teacher/classroom/list');
+            return $this->redirectToRoute('teacher_classroom_list');
         } elseif ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
-            return $this->redirect('/student/classroom/list');
+            return $this->redirectToRoute('student_classroom_list');
         } else {
             return $this->redirectToRoute('homepage');
         }

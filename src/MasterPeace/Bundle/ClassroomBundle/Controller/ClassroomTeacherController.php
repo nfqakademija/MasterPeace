@@ -78,7 +78,6 @@ class ClassroomTeacherController extends Controller
         $classroom->setTeacher($this->getUser());
         $form = $this->createForm(ClassroomType::class, $classroom);
 
-        $form->setData($classroom);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
