@@ -37,21 +37,25 @@
                     </div>
 
                     <div class="panel-footer">
-                        <input type="text" onclick="this.select()" class="form-control" style="cursor: pointer; text-align: center; background-color: beige"
-                               readonly="readonly"
-                               value="{{ url('homepage') }}invite/{{ classroom.inviteCode }}"
-                               name="invite-link">
+                        <div class="input-group">
+                            <span class="input-group-addon progress-bar-info" style="color: white; font-weight: bold">Invite</span>
+                            <input type="text" onclick="this.select()" class="form-control"
+                                   style="cursor: pointer; text-align: center; background-color: beige"
+                                   readonly="readonly"
+                                   value="{{ url('homepage') }}invite/{{ classroom.inviteCode }}"
+                                   name="invite-link">
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-footer">
                             <span class="pull-left">
                                 <a href="{{ path('teacher_classroom_view', {'id':classroom.id}) }}">
-                                    <button class="btn btn-xs btn-info"
+                                    <button class="btn btn-xs btn-primary"
                                             type="button">{{ 'classroom.list.details'|trans }}</button>
                                 </a>
                             </span>
                         <span class="pull-right">
-                                <a href="{{ path('teacher_classroom_delete', {'id':classroom.id}) }}">
+                                <a href="{{ path('teacher_classroom_delete', {'id':classroom.id}) }}" class="confirmDelete">
                                     <button class="btn btn-xs btn-danger"
                                             type="button">{{ 'classroom.list.delete'|trans }}</button>
                                 </a>

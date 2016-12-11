@@ -5,6 +5,7 @@
     <link href="{{ asset('css/admin/metisMenu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/sweetalert.min.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -58,4 +59,15 @@
     {{ parent() }}
     <script src="{{ asset('js/admin/metisMenu.min.js') }}"></script>
     <script src="{{ asset('js/admin/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('js/admin/sweetalert.min.js') }}"></script>
+    <script type="text/javascript">
+        var translations = {
+            'title': '{{ 'sweetAlert_title' | trans }}',
+            'confirmButtonText': '{{ 'sweetAlert_confirmButtonText' | trans }}',
+            'cancelButtonText': '{{ 'sweetAlert_cancelButtonText' | trans }}',
+            'deleted': '{{ 'sweetAlert_deleted' | trans }}',
+            'deletedText': '{{ 'sweetAlert_deletedText' | trans }}'
+        }
+    </script>
+    <script src="{{ asset('js/admin/masterpeace.js') }}"></script>
 {% endblock %}

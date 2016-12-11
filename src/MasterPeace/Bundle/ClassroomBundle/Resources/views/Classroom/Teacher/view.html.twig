@@ -14,7 +14,7 @@
             <a href="{{ path('teacher_classroom_create') }}"
                class="btn btn-success">{{ 'classroom.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_classroom_delete', {'id': classroom.id}) }}"
-               class="btn btn-danger">{{ 'classroom.view.delete.button'|trans }}</a>
+               class="btn btn-danger confirmDelete">{{ 'classroom.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
@@ -28,6 +28,7 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
+                            {# TODO: show student Name intead of ID #}
                             {% for student in classroom.students %}
                             <tr>
                                 <td>{{ student.id }}</td>
@@ -51,7 +52,7 @@
                             <tbody>
                             {% for quiz in classroom.quizzes %}
                                 <tr>
-                                    <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.id }}</a></td>
+                                    <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a></td>
                                 </tr>
                             {%  endfor %}
                             </tbody>
