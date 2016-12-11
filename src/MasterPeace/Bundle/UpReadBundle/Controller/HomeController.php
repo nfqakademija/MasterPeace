@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\UpReadBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
@@ -26,11 +27,12 @@ class HomeController extends Controller
      *
      * @Method("GET")
      *
+     * @param Request $request
      * @param $inviteCode
      *
      * @return Response
      */
-    public function inviteAction($inviteCode): Response
+    public function inviteAction(Request $request, $inviteCode): Response
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -44,9 +46,9 @@ class HomeController extends Controller
                 $em->persist($classroom);
                 $em->flush();
 
-                return $this->redirectToRoute('student_classroom_view', [
-                    'id' => $classroom->getId(),
-                ]);
+                $this->addFlash('invite_success', $classroom->getId());
+
+                return $this->redirectToRoute('student_classroom_list');
             }
         }
 

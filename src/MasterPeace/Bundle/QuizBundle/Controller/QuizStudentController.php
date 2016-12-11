@@ -36,7 +36,7 @@ class QuizStudentController extends Controller
     }
 
     /**
-     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer") // TODO: answer only your Quiz
+     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer") // TODO: answer only your Quiz and only ONE time
      *
      * @Method({"GET", "POST"})
      *
@@ -68,6 +68,10 @@ class QuizStudentController extends Controller
             $om = $this->getDoctrine()->getManager();
             $om->persist($result);
             $om->flush();
+
+            return $this->redirectToRoute('student_quiz_view', [
+                'id' => $quiz->getId(),
+            ]);
         }
 
         return $this->render('@MasterPeaceQuiz/Quiz/Student/answer.html.twig', [
