@@ -35,6 +35,13 @@ class Classroom
     private $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="invite_code", type="string", length=6)
+     */
+    private $inviteCode;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="classrooms")
@@ -57,6 +64,7 @@ class Classroom
 
     public function __construct()
     {
+        $this->inviteCode = substr(md5(uniqid(rand(), true)), 0, 6);
         $this->students = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
     }
@@ -85,6 +93,26 @@ class Classroom
     public function setTitle(string $title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInviteCode()
+    {
+        return $this->inviteCode;
+    }
+
+    /**
+     * @param string $inviteCode
+     *
+     * @return Classroom
+     */
+    public function setInviteCode(string $inviteCode)
+    {
+        $this->inviteCode = $inviteCode;
 
         return $this;
     }
