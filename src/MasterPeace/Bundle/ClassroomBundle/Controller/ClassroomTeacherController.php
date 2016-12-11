@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,8 @@ class ClassroomTeacherController extends Controller
     /**
      * @Route ("/classroom")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -27,6 +30,8 @@ class ClassroomTeacherController extends Controller
 
     /**
      * @Route ("/classroom/list", name="teacher_classroom_list")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -46,6 +51,8 @@ class ClassroomTeacherController extends Controller
      *
      * @param Classroom $classroom
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function viewAction(Classroom $classroom): Response
@@ -60,6 +67,8 @@ class ClassroomTeacherController extends Controller
      * @Route ("/classroom/create", name="teacher_classroom_create")
      *
      * @param Request $request
+     *
+     * @Method({"GET", "POST"})
      *
      * @return Response
      */
@@ -91,6 +100,8 @@ class ClassroomTeacherController extends Controller
      * @param Classroom $classroom
      * @param Request $request
      *
+     * @Method({"GET", "POST"})
+     *
      * @return Response
      */
     public function editAction(Request $request, Classroom $classroom): Response
@@ -119,6 +130,8 @@ class ClassroomTeacherController extends Controller
      * @Route ("/classroom/delete/{id}", name="teacher_classroom_delete")
      *
      * @param Classroom $classroom
+     *
+     * @Method("DELETE")
      *
      * @return Response
      */

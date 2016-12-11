@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\BookBundle\Controller;
 
 use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\BookBundle\Form\BookType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,8 @@ class BookTeacherController extends Controller
     /**
      * @Route ("/book")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -27,6 +30,8 @@ class BookTeacherController extends Controller
 
     /**
      * @Route ("/book/list", name="teacher_book_list")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -47,6 +52,8 @@ class BookTeacherController extends Controller
      *
      * @param Book $book
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function viewAction(Book $book): Response
@@ -61,6 +68,8 @@ class BookTeacherController extends Controller
      * @Route ("/book/create", name="teacher_book_create")
      *
      * @param Request $request
+     *
+     * @Method({"GET", "POST"})
      *
      * @return Response
      */
@@ -92,6 +101,8 @@ class BookTeacherController extends Controller
      * @param Book $book
      * @param Request $request
      *
+     * @Method({"GET", "POST"})
+     *
      * @return Response
      */
     public function editAction(Request $request, Book $book): Response
@@ -120,6 +131,8 @@ class BookTeacherController extends Controller
      * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
      * @param Book $book
+     *
+     * @Method("DELETE")
      *
      * @return Response
      */

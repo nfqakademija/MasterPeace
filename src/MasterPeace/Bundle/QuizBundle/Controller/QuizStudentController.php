@@ -6,6 +6,7 @@ use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResult;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer;
 use MasterPeace\Bundle\QuizBundle\Form\QuizResultType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,8 @@ class QuizStudentController extends Controller
     /**
      * @Route ("/quiz")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -29,6 +32,8 @@ class QuizStudentController extends Controller
 
     /**
      * @Route ("/quiz/list", name="student_quiz_list")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -48,6 +53,8 @@ class QuizStudentController extends Controller
 
     /**
      * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer")
+     *
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      * @param Quiz $quiz

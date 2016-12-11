@@ -2,6 +2,7 @@
 
 namespace MasterPeace\Bundle\UpReadBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +11,8 @@ class HomeController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -20,6 +23,8 @@ class HomeController extends Controller
 
     /**
      * @Route("/invite/{inviteCode}", name="invite")
+     *
+     * @Method("GET")
      *
      * @param $inviteCode
      *
@@ -35,6 +40,8 @@ class HomeController extends Controller
 
     /**
      * @Route("/usercheck")
+     *
+     * @Method("GET")
      *
      * @return Response
      */

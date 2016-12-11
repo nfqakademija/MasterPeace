@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,8 @@ class ClassroomStudentController extends Controller
     /**
      * @Route ("/classroom")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -25,6 +28,8 @@ class ClassroomStudentController extends Controller
 
     /**
      * @Route ("/classroom/list", name="student_classroom_list")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -43,6 +48,8 @@ class ClassroomStudentController extends Controller
      *
      * @param Classroom $classroom
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function viewAction(Classroom $classroom): Response
@@ -56,6 +63,8 @@ class ClassroomStudentController extends Controller
      * @Route ("/classroom/delete/{id}", name="student_classroom_delete")  // TODO: make DELETE only for own Classroom
      *
      * @param Classroom $classroom
+     *
+     * @Method("GET")
      *
      * @return Response
      */

@@ -4,6 +4,7 @@ namespace MasterPeace\Bundle\QuizBundle\Controller;
 
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\QuizBundle\Form\QuizType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,8 @@ class QuizTeacherController extends Controller
     /**
      * @Route ("/quiz")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -27,6 +30,8 @@ class QuizTeacherController extends Controller
 
     /**
      * @Route ("/quiz/list", name="teacher_quiz_list")
+     *
+     * @Method("GET")
      *
      * @return Response
      */
@@ -45,6 +50,8 @@ class QuizTeacherController extends Controller
     /**
      * @Route ("/quiz/view/{id}", name="teacher_quiz_view")
      *
+     * @Method("GET")
+     *
      * @param Quiz $quiz
      *
      * @return Response
@@ -59,6 +66,8 @@ class QuizTeacherController extends Controller
 
     /**
      * @Route("/quiz/create", name="teacher_quiz_create")
+     *
+     * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
@@ -95,6 +104,8 @@ class QuizTeacherController extends Controller
     /**
      * @Route("/quiz/edit/{id}", name="teacher_quiz_edit")
      *
+     * @Method({"GET", "POST"})
+     *
      * @param Request $request
      * @param Quiz $quiz
      *
@@ -130,6 +141,8 @@ class QuizTeacherController extends Controller
 
     /**
      * @Route ("/quiz/delete/{id}", name="teacher_quiz_delete")
+     *
+     * @Method("DELETE")
      *
      * @param Quiz $quiz
      *
