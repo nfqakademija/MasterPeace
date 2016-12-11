@@ -15,18 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookStudentController extends Controller
 {
     /**
-     * @Route ("/book")
-     *
-     * @Method("GET")
-     *
-     * @return Response
-     */
-    public function indexAction(): Response
-    {
-        return $this->redirectToRoute('student_book_view');
-    }
-
-    /**
      * @Route ("/book/view/{id}", name="student_book_view") // TODO: make VIEW only for attached Book to this student
      *
      * @param Book $book

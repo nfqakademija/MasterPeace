@@ -3,6 +3,8 @@ namespace MasterPeace\Bundle\ClassroomBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -51,7 +53,11 @@ class Classroom
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="ClassroomStudent", mappedBy="classroom")
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\UserBundle\Entity\User", inversedBy="studentClassrooms")
+     * @JoinTable(name="classroom_student",
+     *      joinColumns={@JoinColumn(name="classroom_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="student_id", referencedColumnName="id")}
+     *      )
      */
     private $students;
 

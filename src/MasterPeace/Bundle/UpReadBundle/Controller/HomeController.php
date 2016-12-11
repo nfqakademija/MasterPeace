@@ -33,8 +33,23 @@ class HomeController extends Controller
     public function inviteAction($inviteCode): Response
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
-            return $this->redirectToRoute('student_classroom_list'); // TODO: make invitation possible
+            $em = $this->getDoctrine()->getEntityManager();
+            $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->findOneBy([
+                'inviteCode' => $inviteCode,
+            ]);
+            if (is_null($classroom)) {
+                $this->createNotFoundException(strtoupper('Classroom not found'));
+            } else {
+                $classroom->addStudent($this->getUser());
+                $em->persist($classroom);
+                $em->flush();
+
+                return $this->redirectToRoute('student_classroom_view', [
+                    'id' => $classroom->getId(),
+                ]);
+            }
         }
+
         return $this->redirect('/login');
     }
 

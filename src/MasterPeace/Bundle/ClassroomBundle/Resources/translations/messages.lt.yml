@@ -3,6 +3,7 @@ classroom.list.students: "priskirti mokiniai"
 classroom.list.quizes: "priskirti klausimynai"
 classroom.list.details: "Peržiūrėti detaliau"
 classroom.list.delete: "Pašalinti klasę"
+classroom.list.leave: "Palikti klasę"
 
 student.classroom.list.title: "Mano klasės"
 student.classroom.list.quizes: "Klausimynai"

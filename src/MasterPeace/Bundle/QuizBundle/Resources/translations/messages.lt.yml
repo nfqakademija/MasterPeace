@@ -17,6 +17,8 @@ quiz.view.edit.button: "Redaguoti šį klausimyną"
 quiz.view.delete.button: "Ištrinti šį klausimyną"
 quiz.view.quiz_info.button: "Klausimyno duomenys"
 quiz.view.questions.button: "Klausimai"
+quiz.view.answer.button: "Atsakyti į šį klausimyną"
+quiz.view.results.title: "Rezultatas"
 
 quiz.edit.title: "Klausimyno redagavimas"
 quiz.edit.add_question.label: "Pridėti klausimą"

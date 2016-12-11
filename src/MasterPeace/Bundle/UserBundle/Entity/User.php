@@ -62,6 +62,13 @@ class User extends BaseUser
      */
     protected $classrooms;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\Classroom", mappedBy="students")
+     */
+    protected $studentClassrooms;
+
     public function __construct()
     {
         parent::__construct();
@@ -175,5 +182,49 @@ class User extends BaseUser
     public function setClassrooms(ArrayCollection $classrooms)
     {
         $this->classrooms = $classrooms;
+    }
+
+    /**
+     * @param Classroom $studentClassroom
+     *
+     * @return User
+     */
+    public function addStudentClassroom(Classroom $studentClassroom)
+    {
+        if (false === $this->classrooms->contains($studentClassroom)) {
+            $this->classrooms->add($studentClassroom);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Classroom $studentClassroom
+     *
+     * @return User
+     */
+    public function removeStudentClassroom(Classroom $studentClassroom)
+    {
+        if ($this->studentClassrooms->contains($studentClassroom)) {
+            $this->studentClassrooms->removeElement($studentClassroom);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStudentClassrooms()
+    {
+        return $this->studentClassrooms;
+    }
+
+    /**
+     * @param ArrayCollection $studentClassrooms
+     */
+    public function setStudentClassrooms(ArrayCollection $studentClassrooms)
+    {
+        $this->studentClassrooms = $studentClassrooms;
     }
 }

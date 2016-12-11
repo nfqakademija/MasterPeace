@@ -6,6 +6,7 @@ use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,7 +28,7 @@ class ClassroomStudentController extends Controller
     }
 
     /**
-     * @Route ("/classroom/list", name="student_classroom_list")
+     * @Route ("/classroom/list", name="student_classroom_list")  // TODO: make LIST only for own Classrooms
      *
      * @Method("GET")
      *
@@ -37,7 +38,6 @@ class ClassroomStudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findAll();
-
         return $this->render('MasterPeaceClassroomBundle:Classroom/Student:list.html.twig', [
             'classrooms' => $classrooms,
         ]);
@@ -60,18 +60,20 @@ class ClassroomStudentController extends Controller
     }
 
     /**
-     * @Route ("/classroom/delete/{id}", name="student_classroom_delete")  // TODO: make DELETE only for own Classroom
+     * @Route ("/classroom/leave/{id}", name="student_classroom_leave")  // TODO: make LEAVE only for own Classroom
      *
-     * @param Classroom $classroom
+     * @param Request $request
      *
-     * @Method("GET")
+     * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Classroom $classroom): Response    // TODO: not DELETE, but LEAVE
+    public function leaveAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($classroom);
+        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        $classroom->removeStudent($this->getUser());
+        $em->persist($classroom);
         $em->flush();
 
         return $this->redirectToRoute('student_classroom_list');

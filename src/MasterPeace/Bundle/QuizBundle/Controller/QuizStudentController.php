@@ -19,40 +19,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizStudentController extends Controller
 {
     /**
-     * @Route ("/quiz")
+     * @Route ("/quiz/view/{id}", name="student_quiz_view")  // TODO: VIEW only your Quiz
      *
      * @Method("GET")
      *
-     * @return Response
-     */
-    public function indexAction(): Response
-    {
-        return $this->redirectToRoute('student_quiz_list');
-    }
-
-    /**
-     * @Route ("/quiz/list", name="student_quiz_list")
-     *
-     * @Method("GET")
+     * @param Quiz $quiz
      *
      * @return Response
      */
-    public function listAction(): Response
+    public function viewAction(Quiz $quiz): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $quizzes = $em
-            ->getRepository('MasterPeaceQuizBundle:Quiz')
-            ->findAll();
-
-        return $this->render('MasterPeaceQuizBundle:Quiz/Student:list.html.twig', [
-            'quizzes' => $quizzes,
+//        $this->validateEntityCreator('View', $quiz);
+        return $this->render('MasterPeaceQuizBundle:Quiz/Student:view.html.twig', [
+            'quiz' => $quiz,
         ]);
     }
 
     /**
-     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer")
+     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer") // TODO: answer only your Quiz
      *
      * @Method({"GET", "POST"})
      *
