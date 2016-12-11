@@ -12,18 +12,28 @@ class HomePageControllerTest extends WebTestCase
     public function testTeacherAction()
     {
         $client = static::createClient();
-        $crawler = $this->formLogin($client, 'teacher', 'password', '/login');
-
+        $crawler = $this->formLogin($client, 'teacher', 'teacher', '/login');
+        $client->followRedirect();
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains(mokytojas)')->count());
+        $this->assertGreaterThan(
+            0,
+            $crawler
+                ->filterXPath('//*[contains(.,(mokytojas))]')
+                ->count()
+        );
     }
 
     public function testStudentAction()
     {
         $client = static::createClient();
-        $crawler = $this->formLogin($client, 'student', 'password', '/login');
-
+        $crawler = $this->formLogin($client, 'student', 'student', '/login');
+        $client->followRedirect();
         $this->assertTrue($client->getResponse()->isSuccessful());
-        $this->assertGreaterThan(0, $crawler->filter('html:contains(mokinys)')->count());
+        $this->assertGreaterThan(
+            0,
+            $crawler
+                ->filterXPath('//*[contains(.,(mokinys))]')
+                ->count()
+        );
     }
 }

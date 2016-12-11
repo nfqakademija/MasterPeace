@@ -1,4 +1,0 @@
-services:
-#    master_peace_classroom.example:
-#        class: MasterPeace\Bundle\ClassroomBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]

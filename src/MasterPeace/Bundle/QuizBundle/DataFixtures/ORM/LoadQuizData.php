@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\Bundle\QuizBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -17,7 +17,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
         foreach (self::getQuizDetails() as $id => $bookDetail) {
             $quiz = new Quiz();
             $quiz
-                ->setTeacher($this->getReference('user2'))
+                ->setTeacher($this->getReference('user1'))
                 ->setTitle($bookDetail['title'])
                 ->setBook($this->getReference('book1'));
             $manager->persist($quiz);

@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\Bundle\QuizBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -39,7 +39,7 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
             $answer = new Answer();
 
             $answer
-                ->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correctAnswers[$smt] . ' )')
+                ->setTitle('Atsakymas Nr. ' . $answerMod)
                 ->setCorrect($answerMod === $correctAnswers[$smt])
                 ->setQuestion($question);
 

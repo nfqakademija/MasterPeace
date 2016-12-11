@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\QuizBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\BookBundle\Entity\Book;
+use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -58,9 +59,17 @@ class Quiz
      */
     private $questions;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="MasterPeace\Bundle\ClassroomBundle\Entity\Classroom", mappedBy="quizzes")
+     */
+    private $classrooms;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->classrooms = new ArrayCollection();
     }
 
     /**
@@ -176,6 +185,50 @@ class Quiz
     public function setQuestions($questions)
     {
         $this->questions = $questions;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getClassrooms()
+    {
+        return $this->classrooms;
+    }
+
+    /**
+     * @param ArrayCollection $classrooms
+     */
+    public function setClassrooms(ArrayCollection $classrooms)
+    {
+        $this->classrooms = $classrooms;
+    }
+
+    /**
+     * @param Classroom $classroom
+     *
+     * @return $this
+     */
+    public function addClassroom(Classroom $classroom)
+    {
+        if (false === $this->classrooms->contains($classroom)) {
+            $this->classrooms->add($classroom);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Classroom $classroom
+     *
+     * @return $this
+     */
+    public function removeClassroom(Classroom $classroom)
+    {
+        if ($this->classrooms->contains($classroom)) {
+            $this->classrooms->removeElement($classroom);
+        }
 
         return $this;
     }

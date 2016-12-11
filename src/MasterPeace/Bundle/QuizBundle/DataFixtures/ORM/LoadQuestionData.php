@@ -1,6 +1,6 @@
 <?php
 
-namespace MasterPeace\Bundle\BookBundle\DataFixtures\ORM;
+namespace MasterPeace\Bundle\QuizBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -24,8 +24,6 @@ class LoadQuestionData extends AbstractFixture implements OrderedFixtureInterfac
             $question
                 ->setTitle('Klausimas nr. ' . $i)
                 ->setQuiz($quiz);
-
-            // TODO Add teacher
 
             $manager->persist($question);
 

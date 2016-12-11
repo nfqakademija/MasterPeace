@@ -36,7 +36,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\NotBlank()
      */
@@ -64,7 +64,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $publisher;
 
@@ -75,7 +75,7 @@ class Book
      *
      * @Assert\Image()
      */
-    private $cover = null;
+    private $cover;
 
     /**
      * @var string
@@ -129,7 +129,7 @@ class Book
     /**
      * @param string $title
      *
-     * @return $this
+     * @return Book
      */
     public function setTitle(string $title)
     {
@@ -149,7 +149,7 @@ class Book
     /**
      * @param string $author
      *
-     * @return $this
+     * @return Book
      */
     public function setAuthor(string $author)
     {
@@ -169,7 +169,7 @@ class Book
     /**
      * @param int $year
      *
-     * @return $this
+     * @return Book
      */
     public function setYear(int $year)
     {
@@ -189,7 +189,7 @@ class Book
     /**
      * @param string $publisher
      *
-     * @return $this
+     * @return Book
      */
     public function setPublisher(string $publisher)
     {
@@ -209,7 +209,7 @@ class Book
     /**
      * @param string $cover
      *
-     * @return $this
+     * @return Book
      */
     public function setCover(string $cover)
     {
@@ -229,7 +229,7 @@ class Book
     /**
      * @param string $isbnCode
      *
-     * @return $this
+     * @return Book
      */
     public function setIsbnCode(string $isbnCode)
     {

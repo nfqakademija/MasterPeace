@@ -1,4 +1,10 @@
 services:
-#    master_peace_quiz.example:
-#        class: MasterPeace\Bundle\QuizBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    master_peace_quiz.form_transformer.answer:
+        class: MasterPeace\Bundle\QuizBundle\Form\Transformer\AnswerTransformer
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    master_peace_quiz.form_type.answer_choice:
+        class: MasterPeace\Bundle\QuizBundle\Form\AnswerChoiceType
+        arguments: ["@master_peace_quiz.form_transformer.answer"]
+        tags:
+            - { name: form.type }

@@ -1,3 +1,5 @@
+login_form.signin_title: "Prisijunkite prie "
+
 menu.navigation.label: "Navigacija"
 menu.logout.label: "Atsijungti"
 
@@ -7,3 +9,9 @@ teacher.menu.books.label: "Knygų sąrašas"
 teacher.menu.role.label: "mokytojas"
 
 student.menu.role.label: "mokinys"
+
+sweetAlert_title: "Ar tikrai norite ištrinti šį įrašą?"
+sweetAlert_confirmButtonText: "Patvirtinti"
+sweetAlert_cancelButtonText: "Atšaukti"
+sweetAlert_deleted: "Ištrinta!"
+sweetAlert_deletedText: "Įrašas sėkmingai pašalintas"

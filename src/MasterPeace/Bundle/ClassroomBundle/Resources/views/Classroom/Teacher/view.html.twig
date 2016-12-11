@@ -1,9 +1,9 @@
-{% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
+{% extends '@MasterPeaceUpRead/UserLayout/teacher.html.twig' %}
 
 {% block page_wrapper %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{ 'classroom.view.title'|trans }}</h1>
+            <h1 class="page-header">"{{ classroom.title }}" {{ 'classroom.view.title'|trans }}</h1>
         </div>
     </div>
     <div class="row">
@@ -14,47 +14,26 @@
             <a href="{{ path('teacher_classroom_create') }}"
                class="btn btn-success">{{ 'classroom.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_classroom_delete', {'id': classroom.id}) }}"
-               class="btn btn-danger">{{ 'classroom.view.delete.button'|trans }}</a>
+               class="btn btn-danger confirmDelete" {{ delete_link(classroom.id) }}>{{ 'classroom.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
     <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
+        <div class="col-lg-3">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    {{ classroom.title }}
+                    {{ 'classroom.view.students.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.students|length }}</span>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
+                            {# TODO: show student Name intead of ID #}
+                            {% for student in classroom.students %}
                             <tr>
-                                <td>test</td>
+                                <td>{{ student.id }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Priskirti mokiniai
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <td>Jolanta Metaciute</td>
-                            </tr>
-                            <tr>
-                                <td>Arnas Grigonis</td>
-                            </tr>
-                            <tr>
-                                <td>Martynas Artelis</td>
-                            </tr>
+                            {%  endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -62,21 +41,20 @@
             </div>
         </div>
 
-        <div class="col-lg-2">
-            <div class="panel panel-default">
+        <div class="col-lg-3">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Priskirti klausimynai
+                    {{ 'classroom.view.quizzes.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.quizzes|length }}</span>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                            <tr>
-                                <td>Knygos supratimas 1</td>
-                            </tr>
-                            <tr>
-                                <td>Knygos supratimas 2</td>
-                            </tr>
+                            {% for quiz in classroom.quizzes %}
+                                <tr>
+                                    <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a></td>
+                                </tr>
+                            {%  endfor %}
                             </tbody>
                         </table>
                     </div>

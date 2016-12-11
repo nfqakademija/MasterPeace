@@ -43,13 +43,13 @@ class QuizResult
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="QuizResultAnswer", mappedBy="quizResult")
+     * @ORM\OneToMany(targetEntity="QuizResultAnswer", mappedBy="quizResult", cascade={"persist"})
      */
-    private $quizResultAnswers;
+    private $answers;
 
     public function __construct()
     {
-        $this->quizResultAnswers = new ArrayCollection();
+        $this->answers = new ArrayCollection();
     }
 
     /**
@@ -103,40 +103,41 @@ class QuizResult
     /**
      * @return ArrayCollection
      */
-    public function getQuizResultAnswers()
+    public function getAnswers()
     {
-        return $this->quizResultAnswers;
+        return $this->answers;
     }
 
     /**
-     * @param ArrayCollection $quizResultAnswers
+     * @param ArrayCollection $answers
      */
-    public function setQuizResultAnswers(ArrayCollection $quizResultAnswers)
+    public function setAnswers(ArrayCollection $answers)
     {
-        $this->quizResultAnswers = $quizResultAnswers;
+        $this->answers = $answers;
     }
 
     /**
-     * @param QuizResultAnswer $quizResultAnswer
+     * @param QuizResultAnswer $answer
      * @return $this
      */
-    public function addQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    public function addAnswer(QuizResultAnswer $answer)
     {
-        if (false === $this->quizResultAnswers->contains($quizResultAnswer)) {
-            $this->quizResultAnswers->add($quizResultAnswer);
+        if (false === $this->answers->contains($answer)) {
+            $answer->setQuizResult($this);
+            $this->answers->add($answer);
         }
 
         return $this;
     }
 
     /**
-     * @param QuizResultAnswer $quizResultAnswer
+     * @param QuizResultAnswer $answer
      * @return $this
      */
-    public function removeQuizResultAnswer(QuizResultAnswer $quizResultAnswer)
+    public function removeAnswer(QuizResultAnswer $answer)
     {
-        if ($this->quizResultAnswers->contains($quizResultAnswer)) {
-            $this->quizResultAnswers->removeElement($quizResultAnswer);
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
         }
 
         return $this;

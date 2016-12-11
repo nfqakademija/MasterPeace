@@ -3,10 +3,10 @@
 namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
-use MasterPeace\Bundle\ClassroomBundle\Repository\ClassroomRepository;
-use phpDocumentor\Reflection\Types\Object_;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,6 +18,8 @@ class ClassroomStudentController extends Controller
     /**
      * @Route ("/classroom")
      *
+     * @Method("GET")
+     *
      * @return Response
      */
     public function indexAction(): Response
@@ -26,79 +28,54 @@ class ClassroomStudentController extends Controller
     }
 
     /**
-     * @Route ("/classroom/list", name="student_classroom_list")
+     * @Route ("/classroom/list", name="student_classroom_list")  // TODO: make LIST only for own Classrooms
+     *
+     * @Method("GET")
      *
      * @return Response
      */
     public function listAction(): Response
     {
-        $repo = $this->getClassroomRepository();
-        $classrooms = $repo->findAll();
-
+        $em = $this->getDoctrine()->getManager();
+        $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findAll();
         return $this->render('MasterPeaceClassroomBundle:Classroom/Student:list.html.twig', [
             'classrooms' => $classrooms,
         ]);
     }
 
     /**
-     * @Route ("/classroom/view/{id}", name="student_classroom_view")
+     * @Route ("/classroom/view/{id}", name="student_classroom_view")  // TODO: make VIEW only for own Classroom
      *
-     * @param int $id
+     * @param Classroom $classroom
+     *
+     * @Method("GET")
      *
      * @return Response
      */
-    public function viewAction(int $id): Response
+    public function viewAction(Classroom $classroom): Response
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $classroom = $em
-            ->getRepository('MasterPeaceClassroomBundle:Classroom')
-            ->find($id);
-
         return $this->render('MasterPeaceClassroomBundle:Classroom/Student:view.html.twig', [
             'classroom' => $classroom,
         ]);
     }
 
     /**
-     * @Route ("/classroom/delete/{id}", name="student_classroom_delete")
+     * @Route ("/classroom/leave/{id}", name="student_classroom_leave")  // TODO: make LEAVE only for own Classroom
      *
-     * @param int $id
+     * @param Request $request
+     *
+     * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(int $id): Response
+    public function leaveAction(Request $request): Response
     {
-        $classroom = $this->getClassroomOr404($id);
         $em = $this->getDoctrine()->getManager();
-        $em->remove($classroom);
+        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        $classroom->removeStudent($this->getUser());
+        $em->persist($classroom);
         $em->flush();
 
         return $this->redirectToRoute('student_classroom_list');
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return Classroom
-     */
-    private function getClassroomOr404(int $id): Classroom
-    {
-        $classroom = $this->getDoctrine()->getRepository('MasterPeaceClassroomBundle:Classroom')->find($id);
-
-        if (null === $classroom) {
-            $this->createNotFoundException('Classroom not found');
-        }
-
-        return $classroom;
-    }
-
-    /**
-     * @return ClassroomRepository|object
-     */
-    private function getClassroomRepository()
-    {
-        return $this->get('masterpeace.classroom.repository');
     }
 }

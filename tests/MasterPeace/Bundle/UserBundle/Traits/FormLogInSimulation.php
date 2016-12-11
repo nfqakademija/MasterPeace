@@ -23,7 +23,6 @@ trait FormLogInSimulation
             '_username' => $username,
             '_password' => $password,
         ]);
-
         $client->submit($form);
 
         return $client->followRedirect();

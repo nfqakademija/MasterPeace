@@ -1,4 +1,4 @@
-{% extends '@MasterPeaceUpRead/HomePage/teacher.html.twig' %}
+{% extends '@MasterPeaceUpRead/UserLayout/teacher.html.twig' %}
 
 {% block page_wrapper %}
     <div class="row">
@@ -11,7 +11,7 @@
             <a href="{{ path('teacher_book_list') }}" class="btn btn-primary">{{ 'book.edit.list.button'|trans }}</a>
             <a href="{{ path('teacher_book_create') }}" class="btn btn-success">{{ 'book.edit.create.button'|trans }}</a>
             <a href="{{ path('teacher_book_delete', {'id': book.id}) }}"
-               class="btn btn-danger">{{ 'book.edit.delete.button'|trans }}</a>
+               class="btn btn-danger confirmDelete" {{ delete_link(book.id) }}>{{ 'book.edit.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
