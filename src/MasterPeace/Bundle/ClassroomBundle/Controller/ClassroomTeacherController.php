@@ -36,7 +36,6 @@ class ClassroomTeacherController extends Controller
         $classrooms = $em->getRepository('MasterPeaceClassroomBundle:Classroom')->findBy([
             'teacher' => $this->getUser()->getId(),
         ]);
-       //var_dump($classrooms); die;
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:list.html.twig', [
             'classrooms' => $classrooms,
         ]);
