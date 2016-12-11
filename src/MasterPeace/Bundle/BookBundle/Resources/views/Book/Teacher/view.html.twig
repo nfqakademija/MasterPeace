@@ -11,39 +11,50 @@
             <a href="{{ path('teacher_book_list') }}" class="btn btn-primary">{{ 'book.view.list.button'|trans }}</a>
             <a href="{{ path('teacher_book_edit', {'id': book.id}) }}"
                class="btn btn-info">{{ 'book.view.edit.button'|trans }}</a>
-            <a href="{{ path('teacher_book_create') }}" class="btn btn-success">{{ 'book.view.create.button'|trans }}</a>
+            <a href="{{ path('teacher_book_create') }}"
+               class="btn btn-success">{{ 'book.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_book_delete', {'id': book.id}) }}"
                class="btn btn-danger">{{ 'book.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
+
     <div class="row">
         <div class="col-lg-6">
-            <table class="table table-hover">
-                <tbody>
-                <tr>
-                    <td><b>{{ 'book.create.title.label'|trans }}</b></td>
-                    <td>{{ book.title }}</td>
-                </tr>
-                <tr>
-                    <td><b>{{ 'book.create.author.label'|trans }}</b></td>
-                    <td>{{ book.author }}</td>
-                </tr>
-                <tr>
-                    <td><b>{{ 'book.create.year.label'|trans }}</b></td>
-                    <td>{{ book.year }}</td>
-                </tr>
-                <tr>
-                    <td><b>{{ 'book.create.isbn_code.label'|trans }}</b></td>
-                    <td>{{ book.isbnCode }}</td>
-                </tr>
-                {% if book.cover %}
-                <tr>
-                    <td colspan="2">{{ book.cover }}</td>
-                </tr>
-                {% endif %}
-                </tbody>
-            </table>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{ 'book.view.book_info.label'|trans }}
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <td><b>{{ 'book.create.title.label'|trans }}</b></td>
+                                <td>{{ book.title }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ 'book.create.author.label'|trans }}</b></td>
+                                <td>{{ book.author }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ 'book.create.year.label'|trans }}</b></td>
+                                <td>{{ book.year }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ 'book.create.isbn_code.label'|trans }}</b></td>
+                                <td>{{ book.isbnCode }}</td>
+                            </tr>
+                            {% if book.cover %}
+                                <tr>
+                                    <td colspan="2">{{ book.cover }}</td>
+                                </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

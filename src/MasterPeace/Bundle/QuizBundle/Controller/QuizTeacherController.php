@@ -120,6 +120,7 @@ class QuizTeacherController extends Controller
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:edit.html.twig', [
             'form' => $form->createView(),
+            'quiz' => $quiz,
         ]);
     }
 

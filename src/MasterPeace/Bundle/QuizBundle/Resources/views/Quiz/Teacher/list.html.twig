@@ -19,6 +19,7 @@
                     <thead>
                     <tr>
                         <th>{{ 'quiz.list.table.title.label'|trans }}</th>
+                        <th>{{ 'quiz.list.table.questions.label'|trans }}</th>
                         <th>{{ 'quiz.list.table.book.label'|trans }}</th>
                         <th>{{ 'quiz.list.table.control.label'|trans }}</th>
                     </tr>
@@ -28,6 +29,9 @@
                         <tr>
                             <td>
                                 <a href="{{ path('teacher_quiz_view', {'id': quiz.id}) }}">{{ quiz.title }}</a>
+                            </td>
+                            <td>
+                                <span class="badge badge-classroom">{{ quiz.questions|length }}</span>
                             </td>
                             <td>
                                 <a href="{{ path('teacher_book_view', {'id': quiz.book.id}) }}" target="_blank">{{ quiz.book.title }} ({{ quiz.book.year }})</a>

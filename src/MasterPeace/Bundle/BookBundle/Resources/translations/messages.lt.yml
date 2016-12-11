@@ -24,6 +24,7 @@ book.edit.create.button: "Sukurti naują knygą"
 book.edit.delete.button: "Ištrinti šią knygą"
 
 book.view.title: "Knygos peržiūra"
+book.view.book_info.label: "Informacija apie knygą"
 book.view.list.button: "Grįžti į knygų sąrašą"
 book.view.create.button: "Sukurti naują knygą"
 book.view.edit.button: "Redaguoti šią knygą"

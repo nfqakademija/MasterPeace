@@ -4918,6 +4918,11 @@ a.label:focus {
 .badge-classroom {
     font-weight: bold;
 }
+.badge-classroom-view {
+    font-weight: bold;
+    background-color: #158cba;
+    margin-left: 5px
+}
 .badge:empty {
     display: none;
 }

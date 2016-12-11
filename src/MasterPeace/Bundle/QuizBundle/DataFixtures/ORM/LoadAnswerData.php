@@ -39,7 +39,7 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
             $answer = new Answer();
 
             $answer
-                ->setTitle('Atsakymas Nr. ' . $answerMod . ' (teisingas: ' . $correctAnswers[$smt] . ' )')
+                ->setTitle('Atsakymas Nr. ' . $answerMod)
                 ->setCorrect($answerMod === $correctAnswers[$smt])
                 ->setQuestion($question);
 

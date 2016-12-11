@@ -27,26 +27,37 @@
                                     <a href="{{ path('teacher_classroom_view', {'id':classroom.id}) }}">{{ classroom.title }}</a>
                                 </div>
                                 <div style="text-align: right">
-                                    {{ 'classroom.list.students'|trans }}: <span class="badge badge-classroom">4</span><br/>
-                                    {{ 'classroom.list.quizes'|trans }}: <span class="badge badge-classroom">10</span>
+                                    {{ 'classroom.list.students'|trans }}&nbsp;&nbsp;&nbsp;<span
+                                            class="badge badge-classroom">{{ classroom.students|length }}</span><br/>
+                                    {{ 'classroom.list.quizes'|trans }}&nbsp;&nbsp;&nbsp;<span
+                                            class="badge badge-classroom">{{ classroom.quizzes|length }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                        <div class="panel-footer">
+                    <div class="panel-footer">
+                        <input type="text" onclick="this.select()" class="form-control" style="cursor: pointer; text-align: center; background-color: beige"
+                               readonly="readonly"
+                               value="http://www.upread.com/invite/A4sdw5Asfhc"
+                               name="invite-link">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-footer">
                             <span class="pull-left">
                                 <a href="{{ path('teacher_classroom_view', {'id':classroom.id}) }}">
-                                    <button class="btn btn-xs btn-info" type="button">{{ 'classroom.list.details'|trans }}</button>
+                                    <button class="btn btn-xs btn-info"
+                                            type="button">{{ 'classroom.list.details'|trans }}</button>
                                 </a>
                             </span>
-                            <span class="pull-right">
+                        <span class="pull-right">
                                 <a href="{{ path('teacher_classroom_delete', {'id':classroom.id}) }}">
-                                    <button class="btn btn-xs btn-danger" type="button">{{ 'classroom.list.delete'|trans }}</button>
+                                    <button class="btn btn-xs btn-danger"
+                                            type="button">{{ 'classroom.list.delete'|trans }}</button>
                                 </a>
                             </span>
-                            <div class="clearfix"></div>
-                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                     </a>
                 </div>
             </div>
