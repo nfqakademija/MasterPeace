@@ -1,7 +1,18 @@
 $(function () {
-    $("a.confirmDelete").click(function (e) {
+    var createForm = function (action, data) {
+        var $form = $('<form action="' + action + '" method="POST"></form>');
+        for (input in data) {
+            if (data.hasOwnProperty(input)) {
+                $form.append('<input name="' + input + '" value="' + data[input] + '">');
+            }
+        }
+
+        return $form;
+    };
+
+    $(document).on('click', 'a[data-delete-link]', function (e) {
         e.preventDefault();
-        var href = $(this).attr('href');
+        var $this = $(this);
         swal({
             title: translations.title,
             text: "",
@@ -10,16 +21,20 @@ $(function () {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: translations.confirmButtonText,
-            cancelButtonText: translations.cancelButtonText,
-            closeOnConfirm: true
+            cancelButtonText: translations.cancelButtonText
         }).then(function () {
             swal(
                 translations.deleted,
                 translations.deletedText,
                 'success'
             );
-            setTimeout(function() {
-                window.location.href = href;
+            setTimeout(function () {
+                var $form = createForm($this.attr('href'), {
+                    id: $this.attr('data-delete-link'),
+                    _method: 'DELETE'
+                }).hide();
+                $('body').append($form);
+                $form.submit();
             }, 1000);
         })
     });

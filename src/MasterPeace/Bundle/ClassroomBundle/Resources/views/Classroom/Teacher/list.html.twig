@@ -55,7 +55,7 @@
                                 </a>
                             </span>
                         <span class="pull-right">
-                                <a href="{{ path('teacher_classroom_delete', {'id':classroom.id}) }}" class="confirmDelete">
+                                <a href="{{ path('teacher_classroom_delete', {'id':classroom.id}) }}" {{ delete_link(classroom.id) }} class="confirmDelete">
                                     <button class="btn btn-xs btn-danger"
                                             type="button">{{ 'classroom.list.delete'|trans }}</button>
                                 </a>

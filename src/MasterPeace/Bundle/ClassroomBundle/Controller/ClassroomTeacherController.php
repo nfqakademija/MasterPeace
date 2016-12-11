@@ -129,16 +129,17 @@ class ClassroomTeacherController extends Controller
     /**
      * @Route ("/classroom/delete/{id}", name="teacher_classroom_delete")
      *
-     * @param Classroom $classroom
+     * @param Request $request
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Classroom $classroom): Response
+    public function deleteAction(Request $request): Response
     {
-        $this->validateEntityCreator('Delete', $classroom);
         $em = $this->getDoctrine()->getManager();
+        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        $this->validateEntityCreator('Delete', $classroom);
         $em->remove($classroom);
         $em->flush();
 

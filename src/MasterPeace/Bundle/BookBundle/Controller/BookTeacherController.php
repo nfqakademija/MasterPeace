@@ -130,14 +130,16 @@ class BookTeacherController extends Controller
     /**
      * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
-     * @param Book $book
+     * @param Request $request
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Book $book): Response
+    public function deleteAction(Request $request): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository("MasterPeaceBookBundle:Book")->find($request->request->get('id'));
         $this->validateEntityCreator('Delete', $book);
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);
