@@ -19,6 +19,21 @@ class HomeController extends Controller
     }
 
     /**
+     * @Route("/invite/{inviteCode}", name="invite")
+     *
+     * @param $inviteCode
+     *
+     * @return Response
+     */
+    public function inviteAction($inviteCode): Response
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
+            return $this->redirectToRoute('student_classroom_list'); // TODO: make invitation possible
+        }
+        return $this->redirect('/login');
+    }
+
+    /**
      * @Route("/usercheck")
      *
      * @return Response
