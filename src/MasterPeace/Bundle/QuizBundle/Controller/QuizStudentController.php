@@ -31,9 +31,7 @@ class QuizStudentController extends Controller
     public function viewAction(Quiz $quiz): Response
     {
         $this->hasAccessToQuiz($quiz);
-        $result = $this->getDoctrine()
-            ->getRepository('MasterPeaceQuizBundle:QuizResult') // TODO: neleisti dar karta atsakineti
-            ->findOneBy(['quiz' => $quiz, 'student' => $this->getUser()]);
+        $result = $this->getQuizResult($quiz);
 
         return $this->render('MasterPeaceQuizBundle:Quiz/Student:view.html.twig', [
             'quiz' => $quiz,
@@ -54,7 +52,10 @@ class QuizStudentController extends Controller
     public function answerAction(Request $request, Quiz $quiz)
     {
         $this->hasAccessToQuiz($quiz);
-
+        $result = $this->getQuizResult($quiz);
+        if (false === empty($result)) {
+            throw $this->createAccessDeniedException("Quiz already answered");
+        }
         $result = QuizResultFactory::create($this->getUser(), $quiz);
 
         $form = $this->createForm(QuizResultType::class, $result);
@@ -88,5 +89,22 @@ class QuizStudentController extends Controller
         if (false === $hasQuiz) {
             throw $this->createAccessDeniedException("Student do not have access to requested quiz");
         }
+    }
+
+    /**
+     * @param Quiz $quiz
+     *
+     * @return QuizResult
+     */
+    private function getQuizResult(Quiz $quiz): QuizResult
+    {
+        $result = $this->getDoctrine()
+            ->getRepository('MasterPeaceQuizBundle:QuizResult')
+            ->findOneBy([
+                'quiz'    => $quiz,
+                'student' => $this->getUser()
+            ]);
+
+        return $result;
     }
 }

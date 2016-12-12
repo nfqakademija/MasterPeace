@@ -5,7 +5,6 @@ namespace MasterPeace\Bundle\BookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -37,7 +36,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      *
      * @Assert\NotBlank()
      */

@@ -60,7 +60,9 @@ class QuizTeacherController extends Controller
     {
         $results = $this->getDoctrine()
             ->getRepository('MasterPeaceQuizBundle:QuizResult')
-            ->findBy(['quiz' => $quiz]);
+            ->findBy([
+                'quiz' => $quiz,
+            ]);
 
         $this->validateEntityCreator('View', $quiz);
 
