@@ -71,6 +71,15 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
                 'enable'   => true,
                 'role'     => [User::ROLE_STUDENT],
             ],
+            [
+                'username' => 'student2',
+                'email'    => 'studento2@domain.com',
+                'name'     => 'Studentas2',
+                'surname'  => 'Studentauskas2',
+                'pass'     => 'student',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
+            ],
         ];
     }
 }
