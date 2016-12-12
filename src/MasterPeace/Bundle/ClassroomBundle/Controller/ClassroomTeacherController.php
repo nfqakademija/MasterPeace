@@ -62,16 +62,14 @@ class ClassroomTeacherController extends Controller
     {
         $this->validateEntityCreator('View', $classroom);
 
-        $form = $this->createForm(QuizAttachType::class, $classroom);
+        $form = $this->createForm(QuizAttachType::class, null, ['teacher' => $this->getUser()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $classroom->addQuiz($form->getData()['quiz']);
             $em->persist($classroom);
             $em->flush();
-            /* TODO: Expected argument of type "Doctrine\Common\Collections\ArrayCollection",
-                "MasterPeace\Bundle\QuizBundle\Entity\Quiz" given
-            */
         }
 
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:view.html.twig', [
@@ -154,9 +152,7 @@ class ClassroomTeacherController extends Controller
      */
     public function deleteAction(Request $request, Classroom $classroom): Response
     {
-        if (false === $this->isCsrfTokenValid($classroom->getId(), $request->request->get('token'))) {
-            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
-        }
+        $this->validateCsrf($request, $classroom);
         $this->validateEntityCreator('Delete', $classroom);
         $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
@@ -166,19 +162,19 @@ class ClassroomTeacherController extends Controller
     }
 
     /**
-     * @Route ("/classroom/detach/{id}", name="teacher_classroom_detach")
+     * @Route ("/classroom/view/{classroom}/detach/{quiz}", name="teacher_classroom_detach")
      *
      * @param Request $request
+     * @param Classroom $classroom
      * @param Quiz $quiz
      *
      * @return Response
-     *
      * @Method("DELETE")
      */
-    public function detachAction(Request $request, Quiz $quiz): Response
+    public function detachAction(Request $request, Classroom $classroom, Quiz $quiz): Response
     {
+        $this->validateCsrf($request, $classroom);
         $em = $this->getDoctrine()->getManager();
-        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
         $classroom->removeQuiz($quiz);
         $em->persist($classroom);
         $em->flush();
@@ -196,6 +192,19 @@ class ClassroomTeacherController extends Controller
     {
         if ($this->getUser() !== $classroom->getTeacher()) {
             throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param Classroom $classroom
+     */
+    private function validateCsrf(Request $request, Classroom $classroom)
+    {
+        $csrfId = $classroom->getTitle() . $classroom->getId();
+
+        if (false === $this->isCsrfTokenValid($csrfId, $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
     }
 }

@@ -81,14 +81,6 @@ class BookTeacherController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $book->getCover();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension(); // TODO: UploadedFile ??
-            $file->move(
-                $this->getParameter('covers_directory'),
-                $fileName
-            );
-            $book->setCover($fileName);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($book);
             $em->flush();
@@ -147,7 +139,7 @@ class BookTeacherController extends Controller
      */
     public function deleteAction(Request $request, Book $book): Response
     {
-        if (false === $this->isCsrfTokenValid($book->getId(), $request->request->get('token'))) {
+        if (false === $this->isCsrfTokenValid($book->getTitle() . $book->getId(), $request->request->get('token'))) {
             throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
         $this->validateEntityCreator('Delete', $book);

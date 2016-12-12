@@ -58,9 +58,15 @@ class QuizTeacherController extends Controller
      */
     public function viewAction(Quiz $quiz): Response
     {
+        $results = $this->getDoctrine()
+            ->getRepository('MasterPeaceQuizBundle:QuizResult')
+            ->findBy(['quiz' => $quiz]);
+
         $this->validateEntityCreator('View', $quiz);
+
         return $this->render('MasterPeaceQuizBundle:Quiz/Teacher:view.html.twig', [
             'quiz' => $quiz,
+            'results' => $results,
         ]);
     }
 
@@ -151,7 +157,7 @@ class QuizTeacherController extends Controller
      */
     public function deleteAction(Request $request, Quiz $quiz): Response
     {
-        if (false === $this->isCsrfTokenValid($quiz->getId(), $request->request->get('token'))) {
+        if (false === $this->isCsrfTokenValid($quiz->getTitle() . $quiz->getId(), $request->request->get('token'))) {
             throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
         $this->validateEntityCreator('Delete', $quiz);

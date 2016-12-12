@@ -22,10 +22,11 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                            {# TODO: show student Name intead of ID #}
                             {% for student in classroom.students %}
                                 <tr>
                                     <td>{{ student.id }}</td>
+                                    <td>{{ student.name }}</td>
+                                    <td>{{ student.surname }}</td>
                                 </tr>
                             {%  endfor %}
                             </tbody>

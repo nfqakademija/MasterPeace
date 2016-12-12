@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookStudentController extends Controller
 {
     /**
-     * @Route ("/book/view/{id}", name="student_book_view") // TODO: make VIEW only for attached Book to this student
+     * @Route ("/book/view/{id}", name="student_book_view")
      *
      * @param Book $book
      *
@@ -25,6 +25,14 @@ class BookStudentController extends Controller
      */
     public function viewAction(Book $book): Response
     {
+        $hasBook = $this->getDoctrine()
+            ->getRepository('MasterPeaceUserBundle:User')
+            ->hasStudentBook($this->getUser(), $book);
+
+        if (false === $hasBook) {
+            throw $this->createAccessDeniedException("Student do not have access to requested book");
+        }
+
         return $this->render('MasterPeaceBookBundle:Book/Student:view.html.twig', [
             'book' => $book,
         ]);

@@ -28,10 +28,11 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                            {# TODO: show student Name intead of ID #}
                             {% for student in classroom.students %}
                                 <tr>
                                     <td>{{ student.id }}</td>
+                                    <td>{{ student.name }}</td>
+                                    <td>{{ student.surname }}</td>
                                 </tr>
                             {%  endfor %}
                             </tbody>
@@ -53,7 +54,7 @@
                                     <tbody>
                                     {% for quiz in classroom.quizzes %}
                                         <tr>
-                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a href="{{ path('teacher_classroom_detach', { 'id': classroom.id }) }}" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}"><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
+                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a href="{{ path('teacher_classroom_detach', { 'classroom': classroom.id, 'quiz': quiz.id }) }}" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}"><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
                                         </tr>
                                     {%  endfor %}
                                     </tbody>
@@ -74,8 +75,8 @@
                                     <tr>
                                         <td>
                                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                                            {{ form_widget(form) }}
-                                            <button type="submit" class="btn btn-info">{{ 'classroom.view.attach_quiz.button'|trans }}</button>
+                                                {{ form_rest(form) }}
+                                                <button type="submit" class="btn btn-info">{{ 'classroom.view.attach_quiz.button'|trans }}</button>
                                             {{ form_end(form) }}
                                         </td>
                                     </tr>

@@ -7,6 +7,7 @@ use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,15 +21,23 @@ class QuizAttachType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quizzes', EntityType::class, [
+            ->add('quiz', EntityType::class, [
                 'class' => Quiz::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('b')  // TODO: Istraukti tik savo sukurtus quizus
-                        ->orderBy('b.title', 'ASC');
+                'query_builder' => function (EntityRepository $er) use ($options) {
+                    $qb = $er->createQueryBuilder('q');
+
+                    if ($options['teacher']) {
+                        $qb
+                            ->where($qb->expr()->eq('q.teacher', ':teacher'))
+                            ->setParameter('teacher', $options['teacher']);
+                    }
+
+                    $qb->orderBy('q.title', 'ASC');
+
+                    return $qb;
                 },
                 'placeholder' => 'classroom.view.select_quiz.placeholder',
                 'label' => false,
-                'multiple' => false,
                 'required' => true,
             ]);
     }
@@ -39,7 +48,7 @@ class QuizAttachType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Classroom::class,
+            'teacher' => null,
         ]);
     }
 }

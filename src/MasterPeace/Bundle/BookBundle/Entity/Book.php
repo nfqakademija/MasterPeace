@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\BookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -67,15 +68,6 @@ class Book
      * @ORM\Column(type="string", length=255)
      */
     private $publisher;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
-     */
-    private $cover;
 
     /**
      * @var string
@@ -194,26 +186,6 @@ class Book
     public function setPublisher(string $publisher)
     {
         $this->publisher = $publisher;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCover()
-    {
-        return $this->cover;
-    }
-
-    /**
-     * @param string $cover
-     *
-     * @return Book
-     */
-    public function setCover(string $cover)
-    {
-        $this->cover = $cover;
 
         return $this;
     }
