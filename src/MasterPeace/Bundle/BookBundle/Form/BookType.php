@@ -31,11 +31,11 @@ class BookType extends AbstractType
             ->add('publisher', TextType::class, [
                 'label' => 'book.create.publisher.label',
             ])
-//            ->add('cover', FileType::class, [
-//                'label' => 'book.create.cover.label',  // TODO: add COVER usage
-//            ])
             ->add('isbnCode', TextType::class, [
                 'label' => 'book.create.isbn_code.label',
+            ])
+            ->add('cover', FileType::class, [
+                'label' => 'book.create.cover.label',  // TODO: add COVER usage
             ]);
     }
 
