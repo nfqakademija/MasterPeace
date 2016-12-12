@@ -81,6 +81,14 @@ class BookTeacherController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $book->getCover();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension(); // TODO: UploadedFile ??
+            $file->move(
+                $this->getParameter('covers_directory'),
+                $fileName
+            );
+            $book->setCover($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($book);
             $em->flush();
