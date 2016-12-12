@@ -63,15 +63,18 @@ class ClassroomStudentController extends Controller
      * @Route ("/classroom/leave/{id}", name="student_classroom_leave")  // TODO: make LEAVE only for own Classroom
      *
      * @param Request $request
+     * @param Classroom $classroom
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function leaveAction(Request $request): Response
+    public function leaveAction(Request $request, Classroom $classroom): Response
     {
+        if (!$this->isCsrfTokenValid($classroom->getId(), $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
+        }
         $em = $this->getDoctrine()->getManager();
-        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
         $classroom->removeStudent($this->getUser());
         $em->persist($classroom);
         $em->flush();

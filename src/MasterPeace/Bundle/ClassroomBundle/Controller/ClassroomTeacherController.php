@@ -146,33 +146,24 @@ class ClassroomTeacherController extends Controller
      * @Route ("/classroom/delete/{id}", name="teacher_classroom_delete")
      *
      * @param Request $request
+     * @param Classroom $classroom
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Request $request): Response
+    public function deleteAction(Request $request, Classroom $classroom): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        if (!$this->isCsrfTokenValid($classroom->getId(), $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
+        }
         $this->validateEntityCreator('Delete', $classroom);
+        $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
 
         return $this->redirectToRoute('teacher_classroom_list');
     }
-
-    /**
-     * @param string $actionName
-     * @param Classroom $classroom
-     */
-    private function validateEntityCreator(string $actionName, Classroom $classroom)
-    {
-        if ($this->getUser() !== $classroom->getTeacher()) {
-            throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
-        }
-    }
-
 
     /**
      * @Route ("/classroom/detach/{id}", name="teacher_classroom_detach")
@@ -195,5 +186,16 @@ class ClassroomTeacherController extends Controller
         return $this->redirectToRoute('teacher_classroom_view', [
             'id' => $classroom->getId(),
         ]);
+    }
+
+    /**
+     * @param string $actionName
+     * @param Classroom $classroom
+     */
+    private function validateEntityCreator(string $actionName, Classroom $classroom)
+    {
+        if ($this->getUser() !== $classroom->getTeacher()) {
+            throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
     }
 }

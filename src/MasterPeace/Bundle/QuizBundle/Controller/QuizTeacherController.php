@@ -145,13 +145,15 @@ class QuizTeacherController extends Controller
      * @Method("DELETE")
      *
      * @param Request $request
+     * @param Quiz $quiz
      *
      * @return Response
      */
-    public function deleteAction(Request $request): Response
+    public function deleteAction(Request $request, Quiz $quiz): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $quiz = $em->getRepository("MasterPeaceQuizBundle:Quiz")->find($request->request->get('id'));
+        if (!$this->isCsrfTokenValid($quiz->getId(), $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
+        }
         $this->validateEntityCreator('Delete', $quiz);
         $em = $this->getDoctrine()->getManager();
         $em->remove($quiz);

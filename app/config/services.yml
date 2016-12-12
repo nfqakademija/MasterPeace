@@ -1,5 +1,0 @@
-services:
-    masterpeace.link_helper.twig_extension:
-        class: MasterPeace\Bundle\UpReadBundle\Twig\LinkHelperExtension
-        tags:
-            - { name: twig.extension }
