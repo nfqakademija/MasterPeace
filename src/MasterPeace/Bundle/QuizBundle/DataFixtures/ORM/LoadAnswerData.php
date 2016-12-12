@@ -26,7 +26,7 @@ class LoadAnswerData extends AbstractFixture implements OrderedFixtureInterface
             $smt = $i % Question::ANSWERS_COUNT;
 
             if (!isset($correctAnswers[$smt])) {
-                $correctAnswers[$smt] = random_int(1, 4);
+                $correctAnswers[$smt] = random_int(0, 3);
             }
 
             if ($questionReference === 0) {

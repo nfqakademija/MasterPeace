@@ -4,6 +4,8 @@ namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
+use MasterPeace\Bundle\ClassroomBundle\Form\QuizAttachType;
+use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -49,17 +51,32 @@ class ClassroomTeacherController extends Controller
     /**
      * @Route ("/classroom/view/{id}", name="teacher_classroom_view")
      *
+     * @param Request $request
      * @param Classroom $classroom
      *
-     * @Method("GET")
-     *
      * @return Response
+     *
+     * @Method({"GET", "POST"})
      */
-    public function viewAction(Classroom $classroom): Response
+    public function viewAction(Request $request, Classroom $classroom): Response
     {
         $this->validateEntityCreator('View', $classroom);
+
+        $form = $this->createForm(QuizAttachType::class, $classroom);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($classroom);
+            $em->flush();
+            /* TODO: Expected argument of type "Doctrine\Common\Collections\ArrayCollection",
+                "MasterPeace\Bundle\QuizBundle\Entity\Quiz" given
+            */
+        }
+
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:view.html.twig', [
             'classroom' => $classroom,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -154,5 +171,29 @@ class ClassroomTeacherController extends Controller
         if ($this->getUser() !== $classroom->getTeacher()) {
             throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
         }
+    }
+
+
+    /**
+     * @Route ("/classroom/detach/{id}", name="teacher_classroom_detach")
+     *
+     * @param Request $request
+     * @param Quiz $quiz
+     *
+     * @return Response
+     *
+     * @Method("DELETE")
+     */
+    public function detachAction(Request $request, Quiz $quiz): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        $classroom->removeQuiz($quiz);
+        $em->persist($classroom);
+        $em->flush();
+
+        return $this->redirectToRoute('teacher_classroom_view', [
+            'id' => $classroom->getId(),
+        ]);
     }
 }

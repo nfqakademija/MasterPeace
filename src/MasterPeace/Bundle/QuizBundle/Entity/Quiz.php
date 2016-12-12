@@ -48,6 +48,7 @@ class Quiz
      * @var Book
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
+     *
      * @Assert\NotBlank()
      */
     private $book;
@@ -231,5 +232,10 @@ class Quiz
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

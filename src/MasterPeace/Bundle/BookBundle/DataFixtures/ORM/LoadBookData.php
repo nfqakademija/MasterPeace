@@ -61,6 +61,14 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
             'cover' => '',
             'isbn_code' => 9789955232520,
             ],
+            [
+                'title' => 'Haris Poteris ir Išminties akmuo',
+                'author' => 'J. K. Rowling',
+                'year' => 1997,
+                'publisher' => 'Alma littera',
+                'cover' => '',
+                'isbn_code' => 9986029198,
+            ],
         ];
     }
 

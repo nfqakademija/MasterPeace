@@ -19,7 +19,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
             $quiz
                 ->setTeacher($this->getReference('user1'))
                 ->setTitle($bookDetail['title'])
-                ->setBook($this->getReference('book1'));
+                ->setBook($this->getReference('book3'));
             $manager->persist($quiz);
 
             $this->addReference('quiz' . $id, $quiz);
@@ -34,7 +34,7 @@ class LoadQuizData extends AbstractFixture implements OrderedFixtureInterface
     {
         return [
             [
-                'title' => 'Pats geriausias Klausimynas',
+                'title' => 'Įvairūs klausimai iš knygos',
             ],
 
         ];
