@@ -16,26 +16,33 @@
 
 # <a name="project-description"></a>Project Description
 
-UpRead is a platform developed for raising motivation to read more.
+UpRead is a platform developed for raising motivation for students to read more.
 
 # <a name="requirements"></a>Requirements
 
 * PHP >= 7.0.0
+* DB Engine (Doctrine ORM 2 compatible)
+* Composer
 
 # <a name="usage"></a>Usage
 
-To be announced
+You may run tests and load fixtures at once with:
+
+`sh run_tests.sh`
 
 # <a name="todo-list"></a>To-Do List
 
+* Quiz deadline dates
+* Google Book API implementation
 * Book reviews
 * Comments for questions
 
 # <a name="team-members"></a>Team Members
 
-#### Team Lead:
+#### Team Leads:
 
 * Povilas Sušinskas (<povilas.susinskas@nfq.lt>)
+* Tadas Gliaubicas (<tadas.gliaubicas@nfq.lt>)
 
 #### Developers:
 
