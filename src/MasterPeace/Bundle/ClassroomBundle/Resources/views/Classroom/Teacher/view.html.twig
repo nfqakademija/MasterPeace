@@ -30,29 +30,8 @@
                             <tbody>
                             {# TODO: show student Name intead of ID #}
                             {% for student in classroom.students %}
-                            <tr>
-                                <td>{{ student.id }}</td>
-                            </tr>
-                            {%  endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    {{ 'classroom.view.quizzes.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.quizzes|length }}</span>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                            {% for quiz in classroom.quizzes %}
                                 <tr>
-                                    <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a></td>
+                                    <td>{{ student.id }}</td>
                                 </tr>
                             {%  endfor %}
                             </tbody>
@@ -61,5 +40,53 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{ 'classroom.view.quizzes.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.quizzes|length }}</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    {% for quiz in classroom.quizzes %}
+                                        <tr>
+                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a class="confirmDelete" href="{{ path('teacher_classroom_detach', { 'id': classroom.id }) }}" {{ delete_link(classroom.id) }}><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
+                                        </tr>
+                                    {%  endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{ 'classroom.view.select_quiz.label'|trans }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                                            {{ form_widget(form) }}
+                                            <button type="submit" class="btn btn-info">{{ 'classroom.view.attach_quiz.button'|trans }}</button>
+                                            {{ form_end(form) }}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 {% endblock %}

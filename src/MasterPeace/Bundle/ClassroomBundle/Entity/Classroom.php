@@ -32,7 +32,7 @@ class Classroom
      * @ORM\Column(name="title", type="string")
      *
      * @Assert\NotBlank()
-     * @Assert\Length(max="10")
+     * @Assert\Length(max="15")
      */
     private $title;
 
