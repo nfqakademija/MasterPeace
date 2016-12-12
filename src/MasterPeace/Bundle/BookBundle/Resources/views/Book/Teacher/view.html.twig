@@ -14,7 +14,7 @@
             <a href="{{ path('teacher_book_create') }}"
                class="btn btn-success">{{ 'book.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_book_delete', {'id': book.id}) }}"
-               class="btn btn-danger confirmDelete" {{ delete_link(book.id) }}>{{ 'book.view.delete.button'|trans }}</a>
+               class="btn btn-danger" data-delete-token="{{ csrf_token(book.title ~ book.id) }}">{{ 'book.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>

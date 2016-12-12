@@ -14,7 +14,7 @@
             <a href="{{ path('teacher_classroom_create') }}"
                class="btn btn-success">{{ 'classroom.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_classroom_delete', {'id': classroom.id}) }}"
-               class="btn btn-danger confirmDelete" {{ delete_link(classroom.id) }}>{{ 'classroom.view.delete.button'|trans }}</a>
+               class="btn btn-danger" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}">{{ 'classroom.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
@@ -53,7 +53,7 @@
                                     <tbody>
                                     {% for quiz in classroom.quizzes %}
                                         <tr>
-                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a class="confirmDelete" href="{{ path('teacher_classroom_detach', { 'id': classroom.id }) }}" {{ delete_link(classroom.id) }}><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
+                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a href="{{ path('teacher_classroom_detach', { 'id': classroom.id }) }}" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}"><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
                                         </tr>
                                     {%  endfor %}
                                     </tbody>

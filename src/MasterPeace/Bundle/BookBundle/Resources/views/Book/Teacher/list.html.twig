@@ -46,7 +46,7 @@
                                 <a href="{{ path('teacher_book_edit', {'id': book.id}) }}"
                                    class="btn btn-info btn-xs">{{ 'book.list.table.control.edit.label'|trans }}</a>
                                 <a href="{{ path('teacher_book_delete', {'id': book.id}) }}"
-                                   class="btn btn-danger btn-xs confirmDelete" {{ delete_link(book.id) }}>{{ 'book.list.table.control.delete.label'|trans }}</a>
+                                   class="btn btn-danger btn-xs" data-delete-token="{{ csrf_token(book.title ~ book.id) }}">{{ 'book.list.table.control.delete.label'|trans }}</a>
                             </td>
                         </tr>
                     {% endfor %}

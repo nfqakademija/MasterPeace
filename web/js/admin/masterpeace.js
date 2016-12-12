@@ -10,7 +10,7 @@ $(function () {
         return $form;
     };
 
-    $(document).on('click', 'a[data-delete-link]', function (e) {
+    $(document).on('click', 'a[data-delete-token]', function (e) {
         e.preventDefault();
         var $this = $(this);
         swal({
@@ -30,7 +30,7 @@ $(function () {
             );
             setTimeout(function () {
                 var $form = createForm($this.attr('href'), {
-                    id: $this.attr('data-delete-link'),
+                    token: $this.attr('data-delete-token'),
                     _method: 'DELETE'
                 }).hide();
                 $('body').append($form);
