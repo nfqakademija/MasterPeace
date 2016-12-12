@@ -154,7 +154,7 @@ class ClassroomTeacherController extends Controller
      */
     public function deleteAction(Request $request, Classroom $classroom): Response
     {
-        if (!$this->isCsrfTokenValid($classroom->getId(), $request->request->get('token'))) {
+        if (false === $this->isCsrfTokenValid($classroom->getId(), $request->request->get('token'))) {
             throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
         $this->validateEntityCreator('Delete', $classroom);

@@ -151,7 +151,7 @@ class QuizTeacherController extends Controller
      */
     public function deleteAction(Request $request, Quiz $quiz): Response
     {
-        if (!$this->isCsrfTokenValid($quiz->getId(), $request->request->get('token'))) {
+        if (false === $this->isCsrfTokenValid($quiz->getId(), $request->request->get('token'))) {
             throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
         $this->validateEntityCreator('Delete', $quiz);
