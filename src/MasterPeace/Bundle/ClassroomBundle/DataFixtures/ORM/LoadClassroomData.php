@@ -21,7 +21,6 @@ class LoadClassroomData extends AbstractFixture implements OrderedFixtureInterfa
                 ->setInviteCode(substr(md5(uniqid(rand(), true)), 0, 6))
                 ->setTitle($quizDetail['title'])
                 ->addStudent($this->getReference('user2'))
-                ->addStudent($this->getReference('user3'))
                 ->addQuiz($this->getReference('quiz0'))
             ;
             $manager->persist($classroom);

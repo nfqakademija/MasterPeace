@@ -55,7 +55,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         return [
             [
                 'username' => 'teacher',
-                'email'    => 'mokytojo@domain.com',
+                'email'    => 'mokytojo@upread.com',
                 'name'     => 'Mokytojas',
                 'surname'  => 'Mokytojauskas',
                 'pass'     => 'teacher',
@@ -64,7 +64,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
             ],
             [
                 'username' => 'student',
-                'email'    => 'studento@domain.com',
+                'email'    => 'studento@upread.com',
                 'name'     => 'Studentas',
                 'surname'  => 'Studentauskas',
                 'pass'     => 'student',
@@ -73,12 +73,48 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
             ],
             [
                 'username' => 'sergej',
-                'email'    => 'sergej@domain.com',
+                'email'    => 'sergej@upread.com',
                 'name'     => 'Sergej',
                 'surname'  => 'Voronov',
                 'pass'     => 'sergej',
                 'enable'   => true,
                 'role'     => [User::ROLE_TEACHER],
+            ],
+            [
+                'username' => 'eligijus',
+                'email'    => 'eligijus@upread.com',
+                'name'     => 'Eligijus',
+                'surname'  => 'Vitkauskas',
+                'pass'     => 'sujigile',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
+            ],
+            [
+                'username' => 'marius',
+                'email'    => 'marius@upread.com',
+                'name'     => 'Marius',
+                'surname'  => 'Grigaitis',
+                'pass'     => 'suiram',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
+            ],
+            [
+                'username' => 'tautrimas',
+                'email'    => 'tadas@upread.com',
+                'name'     => 'Tautrimas',
+                'surname'  => 'Pajarskas',
+                'pass'     => 'samirtaut',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
+            ],
+            [
+                'username' => 'studentas',
+                'email'    => 'anonimas@upread.com',
+                'name'     => 'Studentas',
+                'surname'  => 'Anonimas',
+                'pass'     => 'studentas',
+                'enable'   => true,
+                'role'     => [User::ROLE_STUDENT],
             ],
         ];
     }
