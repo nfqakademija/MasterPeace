@@ -85,7 +85,7 @@ class QuizTeacherController extends Controller
     {
         $quiz = new Quiz();
         $quiz->setTeacher($this->getUser());
-        $form = $this->createForm(QuizType::class, $quiz);
+        $form = $this->createForm(QuizType::class, $quiz, ['teacher' => $this->getUser()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
