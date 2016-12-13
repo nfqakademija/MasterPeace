@@ -21,16 +21,21 @@ class QuizType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.title.label',
             ])
             ->add('book', EntityType::class, [
                 'class' => Book::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('b')
-                        ->orderBy('b.title', 'ASC');
+                'query_builder' => function (EntityRepository $er) use ($options) {
+                        $qb = $er->createQueryBuilder('b');
+                    if ($options['teacher']) {
+                        $qb
+                            ->where($qb->expr()->eq('b.teacher', ':teacher'))
+                            ->setParameter('teacher', $options['teacher']);
+                    }
+                    $qb->orderBy('b.title', 'ASC');
+                    return $qb;
                 },
                 'placeholder' => 'quiz.create.book.placeholder',
                 'label' => 'quiz.create.book.label',
@@ -50,7 +55,7 @@ class QuizType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Quiz::class,
+            'teacher' => null,
         ]);
     }
 }
