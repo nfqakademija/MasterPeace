@@ -48,6 +48,7 @@ class Quiz
      * @var Book
      *
      * @ORM\ManyToOne(targetEntity="MasterPeace\Bundle\BookBundle\Entity\Book")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      *
      * @Assert\NotBlank()
      */

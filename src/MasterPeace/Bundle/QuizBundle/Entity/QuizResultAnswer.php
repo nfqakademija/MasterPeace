@@ -26,6 +26,7 @@ class QuizResultAnswer
      * @var QuizResult
      *
      * @ORM\ManyToOne(targetEntity="QuizResult", inversedBy="answers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $quizResult;
 
