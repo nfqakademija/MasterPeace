@@ -18,7 +18,6 @@ class QuizResultType extends AbstractType
         $builder->add('answers', CollectionType::class, [
             'entry_type' => QuizResultAnswerType::class,
             'label' => false,
-            'required' => true,
         ]);
     }
 

@@ -23,7 +23,6 @@ class QuizAttachType extends AbstractType
         $builder
             ->add('quiz', EntityType::class, [
                 'class' => Quiz::class,
-                'required' => true,
                 'empty_data' => new Quiz(),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     $qb = $er->createQueryBuilder('q');

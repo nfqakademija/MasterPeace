@@ -20,7 +20,6 @@ class ClassroomType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'classroom.create.title.label',
-                'required' => true,
                 'empty_data' => '',
             ]);
     }

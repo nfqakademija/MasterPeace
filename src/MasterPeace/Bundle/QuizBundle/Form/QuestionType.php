@@ -20,7 +20,6 @@ class QuestionType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.question.label',
-                'required' => true,
                 'empty_data' => '',
             ])
             ->add('answers', CollectionType::class, [

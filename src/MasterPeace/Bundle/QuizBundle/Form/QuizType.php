@@ -29,7 +29,6 @@ class QuizType extends AbstractType
             ])
             ->add('book', EntityType::class, [
                 'class' => Book::class,
-                'required' => true,
                 'empty_data' => new Book(),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                         $qb = $er->createQueryBuilder('b');
