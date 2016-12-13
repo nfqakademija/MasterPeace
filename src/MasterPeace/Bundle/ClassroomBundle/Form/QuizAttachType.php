@@ -23,6 +23,8 @@ class QuizAttachType extends AbstractType
         $builder
             ->add('quiz', EntityType::class, [
                 'class' => Quiz::class,
+                'required' => true,
+                'empty_data' => new Quiz(),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     $qb = $er->createQueryBuilder('q');
 
@@ -38,7 +40,6 @@ class QuizAttachType extends AbstractType
                 },
                 'placeholder' => 'classroom.view.select_quiz.placeholder',
                 'label' => false,
-                'required' => true,
             ]);
     }
 

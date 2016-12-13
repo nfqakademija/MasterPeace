@@ -24,9 +24,13 @@ class QuizType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.title.label',
+                'required' => true,
+                'empty_data' => '',
             ])
             ->add('book', EntityType::class, [
                 'class' => Book::class,
+                'required' => true,
+                'empty_data' => new Book(),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                         $qb = $er->createQueryBuilder('b');
                     if ($options['teacher']) {

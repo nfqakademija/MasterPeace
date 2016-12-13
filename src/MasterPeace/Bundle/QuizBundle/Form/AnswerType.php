@@ -19,6 +19,8 @@ class AnswerType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'quiz.create.answer.label',
+                'required' => true,
+                'empty_data' => '',
             ])
             ->add('correct', CheckboxType::class, [
                 'label' => 'quiz.create.correct.label',

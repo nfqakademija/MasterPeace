@@ -56,6 +56,8 @@ class Quiz
     /**
      * @var ArrayCollection|Question[]
      *
+     * @Assert\Valid
+     *
      * @ORM\OneToMany(targetEntity="Question", mappedBy="quiz", cascade={"persist"}, orphanRemoval=true)
      */
     private $questions;

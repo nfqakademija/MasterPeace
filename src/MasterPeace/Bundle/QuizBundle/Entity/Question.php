@@ -48,6 +48,8 @@ class Question
     /**
      * @var ArrayCollection|Answer[]
      *
+     * @Assert\Valid
+     *
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
      */
     private $answers;
