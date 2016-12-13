@@ -96,7 +96,7 @@ class QuizStudentController extends Controller
      *
      * @return QuizResult
      */
-    private function getQuizResult(Quiz $quiz): QuizResult
+    private function getQuizResult(Quiz $quiz)
     {
         $result = $this->getDoctrine()
             ->getRepository('MasterPeaceQuizBundle:QuizResult')

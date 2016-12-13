@@ -6,6 +6,7 @@ use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
 use MasterPeace\Bundle\ClassroomBundle\Form\QuizAttachType;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -176,6 +177,30 @@ class ClassroomTeacherController extends Controller
         $this->validateCsrf($request, $classroom);
         $em = $this->getDoctrine()->getManager();
         $classroom->removeQuiz($quiz);
+        $em->persist($classroom);
+        $em->flush();
+
+        return $this->redirectToRoute('teacher_classroom_view', [
+            'id' => $classroom->getId(),
+        ]);
+    }
+
+    /**
+     * @Route ("/classroom/view/{classroom}/studentdetach/{student}", name="teacher_student_detach")
+     *
+     * @param Request $request
+     * @param Classroom $classroom
+     * @param User $student
+     *
+     * @return Response
+     *
+     * @Method("DELETE")
+     */
+    public function detachStudentAction(Request $request, Classroom $classroom, User $student): Response
+    {
+        $this->validateCsrf($request, $classroom);
+        $em = $this->getDoctrine()->getManager();
+        $classroom->removeStudent($student);
         $em->persist($classroom);
         $em->flush();
 

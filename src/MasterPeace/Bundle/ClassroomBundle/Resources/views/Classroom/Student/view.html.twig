@@ -21,12 +21,17 @@
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">
+                            <thead>
+                            <tr>
+                                <td align="center"><b>{{ 'classroom.view.name.label'|trans }}</b></td>
+                                <td align="center"><b>{{ 'classroom.view.surname.label'|trans }}</b></td>
+                            </tr>
+                            </thead>
                             <tbody>
                             {% for student in classroom.students %}
                                 <tr>
-                                    <td>{{ student.id }}</td>
-                                    <td>{{ student.name }}</td>
-                                    <td>{{ student.surname }}</td>
+                                    <td align="center">{{ student.name }}</td>
+                                    <td align="center">{{ student.surname }}</td>
                                 </tr>
                             {%  endfor %}
                             </tbody>

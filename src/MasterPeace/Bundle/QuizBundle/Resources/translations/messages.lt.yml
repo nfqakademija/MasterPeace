@@ -22,6 +22,7 @@ quiz.view.answered.button: "Klausimynas atsakytas"
 quiz.view.results.title: "Rezultatas"
 quiz.view.result_chart.title: "Rezultatų lentelė"
 quiz.view.result.title: "NEATSAKYTAS"
+quiz.view.no_result.label: "Dar niekas neatsakė į šį klausimyną"
 
 quiz.edit.title: "Klausimyno redagavimas"
 quiz.edit.add_question.label: "Pridėti klausimą"
