@@ -30,7 +30,7 @@ class BookStudentController extends Controller
             ->hasStudentBook($this->getUser(), $book);
 
         if (false === $hasBook) {
-            throw $this->createAccessDeniedException("Student do not have access to requested book");
+            throw $this->createAccessDeniedException("Student does not have access to requested book");
         }
 
         return $this->render('MasterPeaceBookBundle:Book/Student:view.html.twig', [

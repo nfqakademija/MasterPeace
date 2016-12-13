@@ -87,7 +87,7 @@ class QuizStudentController extends Controller
             ->hasStudentQuiz($this->getUser(), $quiz);
 
         if (false === $hasQuiz) {
-            throw $this->createAccessDeniedException("Student do not have access to requested quiz");
+            throw $this->createAccessDeniedException("Student does not have access to requested quiz");
         }
     }
 

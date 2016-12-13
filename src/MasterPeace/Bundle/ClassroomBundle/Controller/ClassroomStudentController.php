@@ -79,7 +79,7 @@ class ClassroomStudentController extends Controller
     public function leaveAction(Request $request, Classroom $classroom): Response
     {
         if (false === $this->hasClassroom($classroom)) {
-            throw $this->createAccessDeniedException('Student do not have access to classroom');
+            throw $this->createAccessDeniedException('Student does not have access to classroom');
         }
 
         $csrfId = $classroom->getTitle() . $classroom->getId();
