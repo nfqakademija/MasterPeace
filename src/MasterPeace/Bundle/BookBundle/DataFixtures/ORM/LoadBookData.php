@@ -22,7 +22,6 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
                 ->setAuthor($bookDetail['author'])
                 ->setYear($bookDetail['year'])
                 ->setPublisher($bookDetail['publisher'])
-                ->setCover($bookDetail['cover'])
                 ->setIsbnCode($bookDetail['isbn_code']);
             $manager->persist($book);
 
@@ -50,7 +49,6 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Džeronimas Stiltonas',
             'year' => 2013,
             'publisher' => 'Baltų lankų leidyba',
-            'cover' => '',
             'isbn_code' => 9789955236788,
             ],
             [
@@ -58,8 +56,14 @@ class LoadBookData extends AbstractFixture implements OrderedFixtureInterface
             'author' => 'Haruki Murakami',
             'year' => 2016,
             'publisher' => 'Baltų lankų leidyba',
-            'cover' => '',
             'isbn_code' => 9789955232520,
+            ],
+            [
+                'title' => 'Haris Poteris ir Išminties akmuo',
+                'author' => 'J. K. Rowling',
+                'year' => 1997,
+                'publisher' => 'Alma littera',
+                'isbn_code' => 9986029198,
             ],
         ];
     }

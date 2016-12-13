@@ -4,8 +4,8 @@ namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use MasterPeace\Bundle\BookBundle\Entity\Book;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Question
@@ -31,7 +31,9 @@ class Question
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -44,7 +46,7 @@ class Question
     private $quiz;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Answer[]
      *
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
      */

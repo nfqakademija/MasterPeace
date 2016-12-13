@@ -27,12 +27,11 @@ class HomeController extends Controller
      *
      * @Method("GET")
      *
-     * @param Request $request
      * @param $inviteCode
      *
      * @return Response
      */
-    public function inviteAction(Request $request, $inviteCode): Response
+    public function inviteAction($inviteCode): Response
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -40,7 +39,7 @@ class HomeController extends Controller
                 'inviteCode' => $inviteCode,
             ]);
             if (is_null($classroom)) {
-                $this->createNotFoundException(strtoupper('Classroom not found'));
+                $this->createNotFoundException(strtoupper('INVITE: Classroom not found'));
             } else {
                 $classroom->addStudent($this->getUser());
                 $em->persist($classroom);

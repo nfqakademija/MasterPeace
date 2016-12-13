@@ -20,7 +20,8 @@ class LoadClassroomData extends AbstractFixture implements OrderedFixtureInterfa
                 ->setTeacher($this->getReference('user1'))
                 ->setInviteCode(substr(md5(uniqid(rand(), true)), 0, 6))
                 ->setTitle($quizDetail['title'])
-                ->addStudent($this->getReference('user2')) // TODO: Causes flush() type value error
+                ->addStudent($this->getReference('user2'))
+                ->addStudent($this->getReference('user3'))
                 ->addQuiz($this->getReference('quiz0'))
             ;
             $manager->persist($classroom);
@@ -37,7 +38,7 @@ class LoadClassroomData extends AbstractFixture implements OrderedFixtureInterfa
     {
         return [
             [
-                'title' => '1A klasė',
+                'title' => 'NFQ Akademija',
             ],
 
         ];

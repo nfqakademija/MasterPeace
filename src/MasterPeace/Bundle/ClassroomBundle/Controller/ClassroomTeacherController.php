@@ -4,6 +4,9 @@ namespace MasterPeace\Bundle\ClassroomBundle\Controller;
 
 use MasterPeace\Bundle\ClassroomBundle\Entity\Classroom;
 use MasterPeace\Bundle\ClassroomBundle\Form\ClassroomType;
+use MasterPeace\Bundle\ClassroomBundle\Form\QuizAttachType;
+use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
+use MasterPeace\Bundle\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -49,17 +52,30 @@ class ClassroomTeacherController extends Controller
     /**
      * @Route ("/classroom/view/{id}", name="teacher_classroom_view")
      *
+     * @param Request $request
      * @param Classroom $classroom
      *
-     * @Method("GET")
-     *
      * @return Response
+     *
+     * @Method({"GET", "POST"})
      */
-    public function viewAction(Classroom $classroom): Response
+    public function viewAction(Request $request, Classroom $classroom): Response
     {
         $this->validateEntityCreator('View', $classroom);
+
+        $form = $this->createForm(QuizAttachType::class, null, ['teacher' => $this->getUser()]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $classroom->addQuiz($form->getData()['quiz']);
+            $em->persist($classroom);
+            $em->flush();
+        }
+
         return $this->render('MasterPeaceClassroomBundle:Classroom/Teacher:view.html.twig', [
             'classroom' => $classroom,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -129,20 +145,68 @@ class ClassroomTeacherController extends Controller
      * @Route ("/classroom/delete/{id}", name="teacher_classroom_delete")
      *
      * @param Request $request
+     * @param Classroom $classroom
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Request $request): Response
+    public function deleteAction(Request $request, Classroom $classroom): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $classroom = $em->getRepository("MasterPeaceClassroomBundle:Classroom")->find($request->request->get('id'));
+        $this->validateCsrf($request, $classroom);
         $this->validateEntityCreator('Delete', $classroom);
+        $em = $this->getDoctrine()->getManager();
         $em->remove($classroom);
         $em->flush();
 
         return $this->redirectToRoute('teacher_classroom_list');
+    }
+
+    /**
+     * @Route ("/classroom/view/{classroom}/detach/{quiz}", name="teacher_classroom_detach")
+     *
+     * @param Request $request
+     * @param Classroom $classroom
+     * @param Quiz $quiz
+     *
+     * @return Response
+     * @Method("DELETE")
+     */
+    public function detachAction(Request $request, Classroom $classroom, Quiz $quiz): Response
+    {
+        $this->validateCsrf($request, $classroom);
+        $em = $this->getDoctrine()->getManager();
+        $classroom->removeQuiz($quiz);
+        $em->persist($classroom);
+        $em->flush();
+
+        return $this->redirectToRoute('teacher_classroom_view', [
+            'id' => $classroom->getId(),
+        ]);
+    }
+
+    /**
+     * @Route ("/classroom/view/{classroom}/studentdetach/{student}", name="teacher_student_detach")
+     *
+     * @param Request $request
+     * @param Classroom $classroom
+     * @param User $student
+     *
+     * @return Response
+     *
+     * @Method("DELETE")
+     */
+    public function detachStudentAction(Request $request, Classroom $classroom, User $student): Response
+    {
+        $this->validateCsrf($request, $classroom);
+        $em = $this->getDoctrine()->getManager();
+        $classroom->removeStudent($student);
+        $em->persist($classroom);
+        $em->flush();
+
+        return $this->redirectToRoute('teacher_classroom_view', [
+            'id' => $classroom->getId(),
+        ]);
     }
 
     /**
@@ -153,6 +217,19 @@ class ClassroomTeacherController extends Controller
     {
         if ($this->getUser() !== $classroom->getTeacher()) {
             throw $this->createNotFoundException(strtoupper($actionName).': Classroom not found');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param Classroom $classroom
+     */
+    private function validateCsrf(Request $request, Classroom $classroom)
+    {
+        $csrfId = $classroom->getTitle() . $classroom->getId();
+
+        if (false === $this->isCsrfTokenValid($csrfId, $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
         }
     }
 }

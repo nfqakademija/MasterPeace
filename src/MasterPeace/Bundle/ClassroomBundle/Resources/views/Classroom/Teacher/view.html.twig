@@ -14,12 +14,14 @@
             <a href="{{ path('teacher_classroom_create') }}"
                class="btn btn-success">{{ 'classroom.view.create.button'|trans }}</a>
             <a href="{{ path('teacher_classroom_delete', {'id': classroom.id}) }}"
-               class="btn btn-danger confirmDelete" {{ delete_link(classroom.id) }}>{{ 'classroom.view.delete.button'|trans }}</a>
+               class="btn btn-danger" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}">{{ 'classroom.view.delete.button'|trans }}</a>
         </div>
     </div>
     <br/>
     <div class="row">
-        <div class="col-lg-3">
+    <div class="col-lg-3">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     {{ 'classroom.view.students.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.students|length }}</span>
@@ -27,32 +29,19 @@
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <tbody>
-                            {# TODO: show student Name intead of ID #}
-                            {% for student in classroom.students %}
+                            <thead>
                             <tr>
-                                <td>{{ student.id }}</td>
+                                <td align="center"><b>{{ 'classroom.view.name.label'|trans }}</b></td>
+                                <td align="center"><b>{{ 'classroom.view.surname.label'|trans }}</b></td>
+                                <td align="center"><b>{{ 'classroom.view.control.label'|trans }}</b></td>
                             </tr>
-                            {%  endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    {{ 'classroom.view.quizzes.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.quizzes|length }}</span>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table">
+                            </thead>
                             <tbody>
-                            {% for quiz in classroom.quizzes %}
+                            {% for student in classroom.students %}
                                 <tr>
-                                    <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a></td>
+                                    <td align="center">{{ student.name }}</td>
+                                    <td align="center">{{ student.surname }}</td>
+                                    <td align="center"><a href="{{ path('teacher_student_detach', { 'classroom': classroom.id, 'student': student.id }) }}" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}"><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a></td>
                                 </tr>
                             {%  endfor %}
                             </tbody>
@@ -61,5 +50,74 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{ 'classroom.view.invite_link'|trans }}
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <div class="input-group">
+                            <span class="input-group-addon progress-bar-info" style="color: white; font-weight: bold">Invite</span>
+                            <input type="text" onclick="this.select()" class="form-control"
+                                   style="cursor: pointer; text-align: center; background-color: beige"
+                                   readonly="readonly"
+                                   value="{{ url('homepage') }}invite/{{ classroom.inviteCode }}"
+                                   name="invite-link">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{ 'classroom.view.quizzes.title'|trans }} <span class="badge badge-classroom-view">{{ classroom.quizzes|length }}</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    {% for quiz in classroom.quizzes %}
+                                        <tr>
+                                            <td><a target="_blank" href="{{ path('teacher_quiz_view', { 'id': quiz.id }) }}">{{ quiz.title }}</a>&nbsp;&nbsp;<a href="{{ path('teacher_classroom_detach', { 'classroom': classroom.id, 'quiz': quiz.id }) }}" data-delete-token="{{ csrf_token(classroom.title ~ classroom.id) }}"><span class="badge progress-bar-danger">{{ 'classroom.view.delete'|trans }}</span></a> </td>
+                                        </tr>
+                                    {%  endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{ 'classroom.view.select_quiz.label'|trans }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                                                {{ form_rest(form) }}
+                                                <button type="submit" class="btn btn-info">{{ 'classroom.view.attach_quiz.button'|trans }}</button>
+                                            {{ form_end(form) }}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

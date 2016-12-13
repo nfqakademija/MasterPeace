@@ -10,7 +10,7 @@ use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MasterPeace\Bundle\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User extends BaseUser

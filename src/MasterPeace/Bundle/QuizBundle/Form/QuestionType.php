@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\QuizBundle\Form;
 
 use MasterPeace\Bundle\QuizBundle\Entity\Question;
+use MasterPeace\Bundle\QuizBundle\Form\Transformer\QuestionTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,6 +26,8 @@ class QuestionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => false,
             ]);
+
+        $builder->addModelTransformer(new QuestionTransformer());
     }
 
     /**

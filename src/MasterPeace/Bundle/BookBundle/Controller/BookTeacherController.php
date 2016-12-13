@@ -131,15 +131,17 @@ class BookTeacherController extends Controller
      * @Route ("/book/delete/{id}", name="teacher_book_delete")
      *
      * @param Request $request
+     * @param Book $book
      *
      * @Method("DELETE")
      *
      * @return Response
      */
-    public function deleteAction(Request $request): Response
+    public function deleteAction(Request $request, Book $book): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $book = $em->getRepository("MasterPeaceBookBundle:Book")->find($request->request->get('id'));
+        if (false === $this->isCsrfTokenValid($book->getTitle() . $book->getId(), $request->request->get('token'))) {
+            throw $this->createAccessDeniedException('DELETE: CSRF token is invalid');
+        }
         $this->validateEntityCreator('Delete', $book);
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);

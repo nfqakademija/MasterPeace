@@ -101,7 +101,7 @@ class QuizResult
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|QuizResultAnswer[]
      */
     public function getAnswers()
     {
@@ -141,5 +141,20 @@ class QuizResult
         }
 
         return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCorrectPercent()
+    {
+        $correctCount = 0;
+        foreach ($this->getAnswers() as $answer) {
+            if ($answer->isCorrect()) {
+                $correctCount++;
+            }
+        }
+
+        return (($correctCount / $this->getAnswers()->count()) * 100);
     }
 }

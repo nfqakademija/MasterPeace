@@ -1,0 +1,48 @@
+var $collectionHolder;
+
+var $addQuestionLink = $('<a href="#" class="add-question-link">{{ 'quiz.edit.add_question.label'|trans }}</a>');
+var $newLinkLi = $('<li></li>').append($addQuestionLink);
+
+jQuery(document).ready(function () {
+    $collectionHolder = $('ul.questions');
+
+    $('ul.questions > li').each(function () {
+        addTagFormDeleteLink($(this));
+    });
+
+    $collectionHolder.append($newLinkLi);
+
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $addQuestionLink.on('click', function (e) {
+        e.preventDefault();
+
+        addQuestionForm($collectionHolder, $newLinkLi);
+    });
+});
+
+function addQuestionForm($collectionHolder, $newLinkLi) {
+
+    var prototype = $collectionHolder.data('prototype');
+
+    var index = $collectionHolder.data('index');
+
+    var newForm = prototype.replace(/__name__/g, index);
+
+    $collectionHolder.data('index', index + 1);
+
+    var $newFormLi = $('<li></li>').append(newForm);
+    $newLinkLi.before($newFormLi);
+    addTagFormDeleteLink($newFormLi);
+}
+
+function addTagFormDeleteLink($tagFormLi) {
+    var $removeFormA = $('<a href="#">{{ 'quiz.edit.del_question.label'|trans }}</a>');
+    $tagFormLi.append($removeFormA);
+
+    $removeFormA.on('click', function (e) {
+        e.preventDefault();
+
+        $tagFormLi.remove();
+    });
+}

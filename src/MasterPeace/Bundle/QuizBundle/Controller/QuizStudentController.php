@@ -5,6 +5,7 @@ namespace MasterPeace\Bundle\QuizBundle\Controller;
 use MasterPeace\Bundle\QuizBundle\Entity\Quiz;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResult;
 use MasterPeace\Bundle\QuizBundle\Entity\QuizResultAnswer;
+use MasterPeace\Bundle\QuizBundle\Factory\QuizResultFactory;
 use MasterPeace\Bundle\QuizBundle\Form\QuizResultType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizStudentController extends Controller
 {
     /**
-     * @Route ("/quiz/view/{id}", name="student_quiz_view")  // TODO: VIEW only your Quiz
+     * @Route ("/quiz/view/{id}", name="student_quiz_view")
      *
      * @Method("GET")
      *
@@ -29,14 +30,17 @@ class QuizStudentController extends Controller
      */
     public function viewAction(Quiz $quiz): Response
     {
-//        $this->validateEntityCreator('View', $quiz);
+        $this->hasAccessToQuiz($quiz);
+        $result = $this->getQuizResult($quiz);
+
         return $this->render('MasterPeaceQuizBundle:Quiz/Student:view.html.twig', [
             'quiz' => $quiz,
+            'result' => $result,
         ]);
     }
 
     /**
-     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer") // TODO: answer only your Quiz and only ONE time
+     * @Route ("/quiz/answer/{quiz}", name="student_quiz_answer")
      *
      * @Method({"GET", "POST"})
      *
@@ -45,26 +49,19 @@ class QuizStudentController extends Controller
      *
      * @return Response
      */
-    public function answerAction(Request $request, Quiz $quiz) // TODO: extract answer creation to Factory
+    public function answerAction(Request $request, Quiz $quiz)
     {
-        $result = new QuizResult();
-        $result
-            ->setStudent($this->getUser())
-            ->setQuiz($quiz);
-
-
-        foreach ($quiz->getQuestions() as $question) {
-            $answer = new QuizResultAnswer();
-            $answer->setQuestion($question);
-
-            $result->addAnswer($answer);
+        $this->hasAccessToQuiz($quiz);
+        $result = $this->getQuizResult($quiz);
+        if (false === empty($result)) {
+            throw $this->createAccessDeniedException("Quiz already answered");
         }
+        $result = QuizResultFactory::create($this->getUser(), $quiz);
 
         $form = $this->createForm(QuizResultType::class, $result);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            var_dump($result->getAnswers()->toArray()); die;
             $om = $this->getDoctrine()->getManager();
             $om->persist($result);
             $om->flush();
@@ -78,5 +75,36 @@ class QuizStudentController extends Controller
             'form' => $form->createView(),
             'quiz' => $quiz,
         ]);
+    }
+
+    /**
+     * @param Quiz $quiz
+     */
+    private function hasAccessToQuiz(Quiz $quiz)
+    {
+        $hasQuiz = $this->getDoctrine()
+            ->getRepository('MasterPeaceUserBundle:User')
+            ->hasStudentQuiz($this->getUser(), $quiz);
+
+        if (false === $hasQuiz) {
+            throw $this->createAccessDeniedException("Student do not have access to requested quiz");
+        }
+    }
+
+    /**
+     * @param Quiz $quiz
+     *
+     * @return QuizResult
+     */
+    private function getQuizResult(Quiz $quiz)
+    {
+        $result = $this->getDoctrine()
+            ->getRepository('MasterPeaceQuizBundle:QuizResult')
+            ->findOneBy([
+                'quiz'    => $quiz,
+                'student' => $this->getUser()
+            ]);
+
+        return $result;
     }
 }
