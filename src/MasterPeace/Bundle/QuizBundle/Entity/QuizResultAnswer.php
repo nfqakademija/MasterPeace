@@ -3,6 +3,7 @@
 namespace MasterPeace\Bundle\QuizBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * QuizResultAnswer
@@ -32,6 +33,8 @@ class QuizResultAnswer
      * @var Answer
      *
      * @ORM\ManyToOne(targetEntity="Answer")
+     *
+     * @Assert\NotBlank()
      */
     private $answer;
 
@@ -39,6 +42,7 @@ class QuizResultAnswer
      * @var Question
      *
      * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $question;
 

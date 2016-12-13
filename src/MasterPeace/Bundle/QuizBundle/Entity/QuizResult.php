@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MasterPeace\Bundle\UpReadBundle\Traits\TimestampableTrait;
 use MasterPeace\Bundle\UserBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Result
@@ -37,6 +38,7 @@ class QuizResult
      * @var Quiz
      *
      * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $quiz;
 
@@ -44,6 +46,8 @@ class QuizResult
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="QuizResultAnswer", mappedBy="quizResult", cascade={"persist"})
+     *
+     * @Assert\Valid
      */
     private $answers;
 

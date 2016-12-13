@@ -35,6 +35,9 @@ class AnswerTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
+        if (null === $value) {
+            return null;
+        }
         $answer = $this->em->getRepository('MasterPeaceQuizBundle:Answer')->find($value);
 
         return $answer;
